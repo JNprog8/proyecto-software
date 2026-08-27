@@ -1,0 +1,98 @@
+/* ============================================================
+   ZeroZone — Base
+   Reset ligero + tipografía global, foco y base de controles.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--zz-bg);
+  color: var(--zz-text);
+  font-family: var(--zz-font-body);
+  font-size: var(--zz-fs-400);
+  line-height: var(--zz-lh-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--zz-font-display);
+  color: var(--zz-text);
+  line-height: var(--zz-lh-tight);
+  letter-spacing: 0;
+  margin: 0 0 var(--zz-space-2);
+}
+
+h1 { font-size: var(--zz-fs-900); }
+h2 { font-size: var(--zz-fs-800); }
+h3 { font-size: var(--zz-fs-700); }
+
+p {
+  margin: 0 0 var(--zz-space-2);
+  color: var(--zz-text-muted);
+}
+
+a {
+  color: var(--zz-accent-secondary);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+/* Foco visible consistente en todo el sitio (a11y) */
+:focus-visible {
+  outline: 2px solid var(--zz-accent-secondary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Contenedor centrado reutilizable */
+.wrap {
+  width: 100%;
+  max-width: var(--zz-max-width);
+  margin-inline: auto;
+  padding-inline: var(--zz-space-3);
+}
+
+/* Utilidad tipográfica: texto pequeño "eyebrow" sobre títulos */
+.eyebrow {
+  font-family: var(--zz-font-mono);
+  font-size: var(--zz-fs-300);
+  color: var(--zz-accent-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--zz-space-2);
+}
+
+/* Link de salto de accesibilidad, visible solo al enfocar */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--zz-accent-primary);
+  color: var(--zz-text-on-accent);
+  padding: var(--zz-space-1) var(--zz-space-2);
+  z-index: 1000;
+  border-radius: 0 0 var(--zz-radius-sm) 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}

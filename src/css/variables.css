@@ -1,0 +1,69 @@
+/* ============================================================
+   ZeroZone — Design Tokens
+   Cambiar de temática/campaña = editar este archivo únicamente.
+   ============================================================ */
+
+:root {
+  /* --- Color: fondo y superficie --- */
+  --zz-bg: #0d0b14;
+  --zz-surface: #16121f;
+  --zz-surface-raised: #1e1830;
+  --zz-border: #2b2440;
+
+  /* --- Color: acentos --- */
+  --zz-accent-primary: #ff3d81;   /* magenta marquesina */
+  --zz-accent-primary-dim: #b32b5c;
+  --zz-accent-secondary: #00e5c7; /* cian fósforo CRT */
+
+  /* --- Color: texto --- */
+  --zz-text: #f2eef7;
+  --zz-text-muted: #8b84a3;
+  --zz-text-on-accent: #0d0b14;
+
+  /* --- Color: estado --- */
+  --zz-error: #ff6b6b;
+  --zz-success: #00e5c7;
+
+  /* --- Tipografía --- */
+  --zz-font-display: "Segoe UI", system-ui, sans-serif;
+  --zz-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --zz-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", ui-monospace, monospace;
+
+  --zz-fs-900: clamp(2.75rem, 2rem + 3vw, 4.5rem);   /* H1 */
+  --zz-fs-800: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);  /* H2 */
+  --zz-fs-700: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);/* H3 */
+  --zz-fs-500: 1.125rem;  /* body destacado */
+  --zz-fs-400: 1rem;      /* body */
+  --zz-fs-300: 0.875rem;  /* caption / small */
+
+  --zz-lh-tight: 1.1;
+  --zz-lh-normal: 1.55;
+
+  /* --- Spacing (escala de 8px) --- */
+  --zz-space-1: 0.5rem;
+  --zz-space-2: 1rem;
+  --zz-space-3: 1.5rem;
+  --zz-space-4: 2rem;
+  --zz-space-5: 3rem;
+  --zz-space-6: 4.5rem;
+  --zz-space-7: 6rem;
+
+  /* --- Layout --- */
+  --zz-max-width: 72rem;
+  --zz-radius-sm: 6px;
+  --zz-radius-md: 8px;
+  --zz-radius-lg: 8px;
+
+  /* --- Efectos --- */
+  --zz-shadow-card: 0 8px 24px -8px rgb(0 0 0 / 0.5);
+  --zz-glow-primary: 0 0 0 1px var(--zz-accent-primary),
+                      0 0 24px -4px var(--zz-accent-primary);
+  --zz-transition: 180ms ease;
+}
+
+/* Respeta la preferencia de movimiento reducido del sistema */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --zz-transition: 0ms;
+  }
+}

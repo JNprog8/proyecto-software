@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZonaZero — Tecnología, componentes y gaming</title>
+  <meta name="author" content="ZonaZero by @JoaquinNeguelua">
+  <meta name="title" content="ZonaZero">
+  <meta name="description" content="Comprá componentes de PC, consolas, videojuegos físicos y digitales con carrito simple y cálculo de envío por código postal.">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header class="site-header" data-header>
+    <div class="wrap site-header__inner">
+      <a href="#hero" class="logo" aria-label="ZonaZero, inicio">
+        Zona<span class="logo__accent">Zero</span>
+      </a>
+
+      <form class="header-search" role="search" aria-label="Buscar productos">
+        <label class="sr-only" for="site-search">Buscar productos</label>
+        <input id="site-search" type="search" placeholder="Buscar componentes, consolas o juegos" data-search-input>
+        <button type="submit" aria-label="Buscar">Buscar</button>
+      </form>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#armador">Armá tu PC</a>
+        <a href="#envios">Envíos</a>
+        <a href="#faq">Ayuda</a>
+      </nav>
+
+      <button type="button" class="btn btn--outline cart-btn" data-open-modal="cart-modal" data-cart-button>
+        Carrito <span class="cart-btn__count" data-cart-count>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="hero" class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">Hardware · Consolas · Juegos físicos y digitales</p>
+          <h1 class="hero__title">
+            Comprá tecnología gamer sin vueltas.
+          </h1>
+          <p class="hero__subtitle">
+            Componentes para armar tu PC, consolas, periféricos y videojuegos en un catálogo directo:
+            elegís, agregás al carrito y calculás envío solo cuando el producto lo necesita.
+          </p>
+          <div class="hero__actions">
+            <a href="#catalogo" class="btn btn--primary">Comprar ahora</a>
+            <a href="#armador" class="btn btn--ghost">Ver armado de PC</a>
+          </div>
+        </div>
+
+        <figure class="commerce-preview" aria-labelledby="commerce-preview-title">
+          <figcaption id="commerce-preview-title" class="commerce-preview__title">Compra simple</figcaption>
+          <div class="commerce-preview__screen">
+            <div class="commerce-preview__featured">
+              <span class="product-visual product-visual--gpu" aria-hidden="true"></span>
+              <div>
+                <span class="badge">Físico</span>
+                <strong>RTX 4060 OC 8GB</strong>
+                <small>Envío calculable por CP</small>
+              </div>
+            </div>
+            <div class="commerce-preview__summary">
+              <span>Subtotal</span>
+              <strong>$489.999</strong>
+              <small>Retiro gratis o envío a domicilio</small>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="category-strip" aria-label="Categorías destacadas">
+      <div class="wrap category-strip__inner">
+        <a href="#catalogo" data-category-link="Componentes">Componentes</a>
+        <a href="#catalogo" data-category-link="Consolas">Consolas</a>
+        <a href="#catalogo" data-category-link="Videojuegos">Videojuegos</a>
+        <a href="#catalogo" data-category-link="Periféricos">Periféricos</a>
+        <a href="#catalogo" data-category-link="Almacenamiento">Almacenamiento</a>
+      </div>
+    </section>
+
+    <section id="beneficios" class="beneficios">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Por qué ZonaZero</p>
+          <h2>Todo lo importante para comprar rápido.</h2>
+        </div>
+
+        <div class="beneficios__grid">
+          <article class="benefit-card">
+            <p class="benefit-card__icon" aria-hidden="true">01</p>
+            <h3>Catálogo listo para decidir</h3>
+            <p>Stock, formato, precio y acción de compra visibles desde cada tarjeta.</p>
+          </article>
+
+          <article class="benefit-card">
+            <p class="benefit-card__icon" aria-hidden="true">02</p>
+            <h3>Digital o físico, sin confusión</h3>
+            <p>Los juegos digitales no piden envío; los productos físicos habilitan cálculo por código postal.</p>
+          </article>
+
+          <article class="benefit-card">
+            <p class="benefit-card__icon" aria-hidden="true">03</p>
+            <h3>Carrito corto</h3>
+            <p>Agregás productos, revisás totales y seguís a finalizar compra desde el mismo modal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo" class="catalogo">
+      <div class="wrap catalogo__layout">
+        <aside class="catalog-sidebar" aria-label="Filtros de catálogo">
+          <h2>Catálogo</h2>
+          <p>Elegí una categoría o buscá por nombre, marca o tipo de producto.</p>
+
+          <div class="filter-group" role="group" aria-label="Filtrar por categoría">
+            <button type="button" class="filter-chip is-active" data-category-filter="Todos">Todos</button>
+            <button type="button" class="filter-chip" data-category-filter="Componentes">Componentes</button>
+            <button type="button" class="filter-chip" data-category-filter="Consolas">Consolas</button>
+            <button type="button" class="filter-chip" data-category-filter="Videojuegos">Videojuegos</button>
+            <button type="button" class="filter-chip" data-category-filter="Periféricos">Periféricos</button>
+            <button type="button" class="filter-chip" data-category-filter="Almacenamiento">Almacenamiento</button>
+          </div>
+
+          <div id="envios" class="shipping-note">
+            <h3>Envíos</h3>
+            <p>Si tu carrito tiene productos físicos, ingresá tu código postal para ver el costo antes de finalizar.</p>
+          </div>
+        </aside>
+
+        <div class="catalog-content">
+          <div class="catalog-toolbar">
+            <p data-catalog-summary>Productos destacados</p>
+            <button type="button" class="btn btn--outline" data-open-modal="cart-modal">Ver carrito</button>
+          </div>
+          <div class="catalogo__grid" data-catalog></div>
+          <p class="catalog-empty" data-catalog-empty hidden>No encontramos productos con ese filtro.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="armador" class="armador">
+      <div class="wrap armador__inner">
+        <div>
+          <p class="eyebrow">Armá tu PC</p>
+          <h2>Comprá por partes o empezá desde una base recomendada.</h2>
+          <p class="armador__desc">
+            ZonaZero se especializa en componentes compatibles para setups gamer, oficina y creación de contenido.
+            El catálogo ya permite comprar piezas clave y la experiencia está preparada para sumar armado guiado.
+          </p>
+        </div>
+        <div class="build-list" aria-label="Componentes principales para armar una PC">
+          <span>Procesador</span>
+          <span>Motherboard</span>
+          <span>Memoria RAM</span>
+          <span>Placa de video</span>
+          <span>SSD</span>
+          <span>Fuente</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Ayuda rápida</p>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+
+        <div class="faq__list">
+          <details>
+            <summary>¿Qué diferencia hay entre producto físico y digital?</summary>
+            <p>El físico requiere retiro o envío a domicilio. El digital se entrega por email o cuenta asociada, sin costo de envío.</p>
+          </details>
+          <details>
+            <summary>¿Cuándo se pide el código postal?</summary>
+            <p>Solo cuando el carrito incluye al menos un producto físico. Así evitamos pasos innecesarios.</p>
+          </details>
+          <details>
+            <summary>¿Puedo comprar componentes y juegos juntos?</summary>
+            <p>Sí. El carrito combina categorías y calcula el envío únicamente sobre los artículos físicos.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="wrap cta-final__inner">
+        <h2>Elegí tu próximo upgrade y compralo en minutos.</h2>
+        <a href="#catalogo" class="btn btn--primary btn--lg">Ir al catálogo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <span class="logo logo--sm">Zona<span class="logo__accent">Zero</span></span>
+      <p>© 2026 ZonaZero. Tecnología, hardware y gaming.</p>
+    </div>
+  </footer>
+
+  <dialog id="cart-modal" class="modal modal--wide" aria-labelledby="cart-modal-title">
+    <div class="modal__header">
+      <h2 id="cart-modal-title">Tu carrito</h2>
+      <button type="button" class="modal__close" data-close-modal aria-label="Cerrar">x</button>
+    </div>
+
+    <div class="modal__body">
+      <p class="cart-empty" data-cart-empty>
+        Todavía no agregaste productos. Volvé al catálogo para empezar.
+      </p>
+      <div class="cart-items" data-cart-items></div>
+
+      <form class="shipping-calculator" data-shipping-form hidden novalidate>
+        <div class="field">
+          <label for="shipping-postal-code">Código postal para calcular envío</label>
+          <div class="inline-field">
+            <input type="text" id="shipping-postal-code" name="postalCode" inputmode="numeric" placeholder="Ej: 8400" maxlength="8" aria-describedby="shipping-postal-code-error shipping-result">
+            <button type="submit" class="btn btn--outline">Calcular</button>
+          </div>
+          <small id="shipping-postal-code-error" class="field__error" data-shipping-error aria-live="polite"></small>
+        </div>
+        <p id="shipping-result" class="shipping-result" data-shipping-result aria-live="polite"></p>
+      </form>
+
+      <p class="digital-note" data-digital-note hidden>Tu carrito solo tiene productos digitales: no se requiere envío.</p>
+    </div>
+
+    <div class="modal__footer cart-footer">
+      <dl class="cart-totals">
+        <div>
+          <dt>Subtotal</dt>
+          <dd data-cart-subtotal>$0</dd>
+        </div>
+        <div>
+          <dt>Envío</dt>
+          <dd data-cart-shipping>$0</dd>
+        </div>
+        <div class="cart-totals__total">
+          <dt>Total</dt>
+          <dd data-cart-total>$0</dd>
+        </div>
+      </dl>
+      <button type="button" class="btn btn--primary" data-checkout-trigger disabled>
+        Finalizar compra
+      </button>
+    </div>
+  </dialog>
+
+  <dialog id="checkout-modal" class="modal modal--wide" aria-labelledby="checkout-modal-title">
+    <form class="modal__form" novalidate data-checkout-form>
+      <div class="modal__header">
+        <h2 id="checkout-modal-title">Finalizar compra</h2>
+        <button type="button" class="modal__close" data-close-modal aria-label="Cerrar">x</button>
+      </div>
+
+      <div class="modal__body">
+        <p class="checkout-total">Total a pagar: <strong data-checkout-total>$0</strong></p>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="checkout-name">Nombre completo</label>
+            <input type="text" id="checkout-name" name="customerName" autocomplete="name" required aria-describedby="checkout-name-error">
+            <small id="checkout-name-error" class="field__error" data-error-for="checkout-name" aria-live="polite"></small>
+          </div>
+          <div class="field">
+            <label for="checkout-email">Email</label>
+            <input type="email" id="checkout-email" name="customerEmail" autocomplete="email" required aria-describedby="checkout-email-error">
+            <small id="checkout-email-error" class="field__error" data-error-for="checkout-email" aria-live="polite"></small>
+          </div>
+        </div>
+
+        <div class="field" data-address-field hidden>
+          <label for="checkout-address">Dirección de entrega</label>
+          <input type="text" id="checkout-address" name="shippingAddress" autocomplete="street-address" aria-describedby="checkout-address-error">
+          <small id="checkout-address-error" class="field__error" data-error-for="checkout-address" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="checkout-card-number">Número de tarjeta</label>
+          <input type="text" id="checkout-card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required aria-describedby="checkout-card-number-error">
+          <small id="checkout-card-number-error" class="field__error" data-error-for="checkout-card-number" aria-live="polite"></small>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="checkout-card-exp">Vencimiento</label>
+            <input type="text" id="checkout-card-exp" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required aria-describedby="checkout-card-exp-error">
+            <small id="checkout-card-exp-error" class="field__error" data-error-for="checkout-card-exp" aria-live="polite"></small>
+          </div>
+          <div class="field">
+            <label for="checkout-card-cvv">Código de seguridad</label>
+            <input type="text" id="checkout-card-cvv" name="cardCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" maxlength="4" required aria-describedby="checkout-card-cvv-error">
+            <small id="checkout-card-cvv-error" class="field__error" data-error-for="checkout-card-cvv" aria-live="polite"></small>
+          </div>
+        </div>
+
+        <p class="modal__disclaimer">
+          Revisá el total antes de confirmar. Los productos digitales se entregan sin costo de envío.
+        </p>
+      </div>
+
+      <div class="modal__footer">
+        <button type="submit" class="btn btn--primary">Confirmar compra</button>
+      </div>
+    </form>
+    <div class="checkout-success" data-checkout-success hidden tabindex="-1">
+      Compra confirmada. Te enviamos el detalle del pedido por email.
+    </div>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
