@@ -3,323 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZonaZero — Tecnología, componentes y gaming</title>
-  <meta name="author" content="ZonaZero by @JoaquinNeguelua">
-  <meta name="title" content="ZonaZero">
-  <meta name="description" content="Comprá componentes de PC, consolas, videojuegos físicos y digitales con carrito simple y cálculo de envío por código postal.">
+  <title>Next Corp — Desarrollo de Software, Cloud & AI</title>
+  <meta name="description" content="Next Corp: Soluciones de ingeniería de software a medida, arquitecturas cloud SaaS, aplicaciones móviles nativas y modelos de Inteligencia Artificial con RAG.">
+  <meta name="author" content="Next Corp">
 
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Modulares -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
+  <!-- Fondo Animado Atmosférico con Efecto Blur -->
+  <div class="site-background" aria-hidden="true">
+    <img src="assets/img/background-animated.gif" alt="" class="site-background__media">
+    <div class="site-background__overlay"></div>
+  </div>
+
+  <!-- Barra de Progreso de Navegación Superior (Top Progress Bar) -->
+  <div class="page-progress-bar" aria-hidden="true"></div>
+
+  <!-- Enlace accesible para saltar al contenido principal -->
   <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
+  <!-- ==========================================================================
+       Header y Navegación Principal
+       ========================================================================== -->
   <header class="site-header" data-header>
-    <div class="wrap site-header__inner">
-      <a href="#hero" class="logo" aria-label="ZonaZero, inicio">
-        Zona<span class="logo__accent">Zero</span>
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Next Corp, ir a la página de inicio">
+        <span class="logo__mark" aria-hidden="true">N</span>
+        <span>Next<span class="logo__accent">Corp</span></span>
       </a>
 
-      <form class="header-search" role="search" aria-label="Buscar productos">
-        <label class="sr-only" for="site-search">Buscar productos</label>
-        <input id="site-search" type="search" placeholder="Buscar componentes, consolas o juegos" data-search-input>
-        <button type="submit" aria-label="Buscar">Buscar</button>
-      </form>
-
+      <!-- Navegación Desktop -->
       <nav class="site-nav" aria-label="Navegación principal">
-        <a href="#catalogo">Catálogo</a>
-        <a href="#armador">Armá tu PC</a>
-        <a href="#envios">Envíos</a>
-        <a href="#faq">Ayuda</a>
+        <a href="index.html" class="site-nav__link is-active" data-nav-link>Home</a>
+        <a href="equipo.html" class="site-nav__link" data-nav-link>El Equipo</a>
+        <a href="servicios.html" class="site-nav__link" data-nav-link>Servicios</a>
+        <a href="trabajos.html" class="site-nav__link" data-nav-link>Trabajos & Clientes</a>
+        <a href="contacto.html" class="site-nav__link" data-nav-link>Contacto</a>
       </nav>
 
-      <button type="button" class="btn btn--outline cart-btn" data-open-modal="cart-modal" data-cart-button>
-        Carrito <span class="cart-btn__count" data-cart-count>0</span>
-      </button>
+      <div class="flex items-center gap-sm">
+        <a href="contacto.html" class="btn btn--primary" id="header-cta-btn">Cotizar Proyecto</a>
+        <button type="button" class="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" data-nav-toggle>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div class="mobile-nav" data-mobile-nav aria-label="Menú móvil">
+      <a href="index.html" class="mobile-nav__link is-active" data-nav-link>Home</a>
+      <a href="equipo.html" class="mobile-nav__link" data-nav-link>El Equipo</a>
+      <a href="servicios.html" class="mobile-nav__link" data-nav-link>Servicios</a>
+      <a href="trabajos.html" class="mobile-nav__link" data-nav-link>Trabajos & Clientes</a>
+      <a href="contacto.html" class="mobile-nav__link" data-nav-link>Contacto</a>
     </div>
   </header>
 
-  <main id="main">
-    <section id="hero" class="hero">
-      <div class="wrap hero__inner">
-        <div class="hero__copy">
-          <p class="eyebrow">Hardware · Consolas · Juegos físicos y digitales</p>
-          <h1 class="hero__title">
-            Comprá tecnología gamer sin vueltas.
-          </h1>
-          <p class="hero__subtitle">
-            Componentes para armar tu PC, consolas, periféricos y videojuegos en un catálogo directo:
-            elegís, agregás al carrito y calculás envío solo cuando el producto lo necesita.
-          </p>
-          <div class="hero__actions">
-            <a href="#catalogo" class="btn btn--primary">Comprar ahora</a>
-            <a href="#armador" class="btn btn--ghost">Ver armado de PC</a>
-          </div>
-        </div>
-
-        <figure class="commerce-preview" aria-labelledby="commerce-preview-title">
-          <figcaption id="commerce-preview-title" class="commerce-preview__title">Compra simple</figcaption>
-          <div class="commerce-preview__screen">
-            <div class="commerce-preview__featured">
-              <span class="product-visual product-visual--gpu" aria-hidden="true"></span>
-              <div>
-                <span class="badge">Físico</span>
-                <strong>RTX 4060 OC 8GB</strong>
-                <small>Envío calculable por CP</small>
+  <main id="main" class="page-content">
+    <!-- ==========================================================================
+         Hero con Carrusel Interactivo Horizontal (5s)
+         ========================================================================== -->
+    <section class="hero" aria-label="Presentación principal de Next Corp">
+      <div class="carousel" data-carousel>
+        <div class="carousel__track">
+          
+          <!-- Slide 1: Web & Cloud -->
+          <article class="carousel__slide is-active" data-carousel-slide>
+            <div class="carousel__bg">
+              <img src="assets/img/hero/hero_web_cloud.jpg" alt="Ingeniería de software, plataformas web y arquitectura cloud" fetchpriority="high">
+            </div>
+            <div class="container">
+              <div class="carousel__content">
+                <p class="eyebrow">Desarrollo Web & Cloud SaaS</p>
+                <h1 class="carousel__title">Plataformas cloud de alto impacto y software a medida.</h1>
+                <p class="carousel__description">
+                  Diseñamos arquitecturas distribuidas de alta disponibilidad, microservicios resilientes y aplicaciones web preparadas para escala global.
+                </p>
+                <div class="carousel__actions">
+                  <a href="servicios.html" class="btn btn--primary">Nuestras Soluciones</a>
+                  <a href="trabajos.html" class="btn btn--outline">Ver Proyectos</a>
+                </div>
               </div>
             </div>
-            <div class="commerce-preview__summary">
-              <span>Subtotal</span>
-              <strong>$489.999</strong>
-              <small>Retiro gratis o envío a domicilio</small>
+          </article>
+
+          <!-- Slide 2: Mobile Apps -->
+          <article class="carousel__slide" data-carousel-slide>
+            <div class="carousel__bg">
+              <img src="assets/img/hero/hero_mobile_apps.jpg" alt="Desarrollo de aplicaciones móviles para iOS y Android" loading="lazy">
             </div>
-          </div>
-        </figure>
-      </div>
-    </section>
-
-    <section class="category-strip" aria-label="Categorías destacadas">
-      <div class="wrap category-strip__inner">
-        <a href="#catalogo" data-category-link="Componentes">Componentes</a>
-        <a href="#catalogo" data-category-link="Consolas">Consolas</a>
-        <a href="#catalogo" data-category-link="Videojuegos">Videojuegos</a>
-        <a href="#catalogo" data-category-link="Periféricos">Periféricos</a>
-        <a href="#catalogo" data-category-link="Almacenamiento">Almacenamiento</a>
-      </div>
-    </section>
-
-    <section id="beneficios" class="beneficios">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Por qué ZonaZero</p>
-          <h2>Todo lo importante para comprar rápido.</h2>
-        </div>
-
-        <div class="beneficios__grid">
-          <article class="benefit-card">
-            <p class="benefit-card__icon" aria-hidden="true">01</p>
-            <h3>Catálogo listo para decidir</h3>
-            <p>Stock, formato, precio y acción de compra visibles desde cada tarjeta.</p>
+            <div class="container">
+              <div class="carousel__content">
+                <p class="eyebrow" style="color: var(--color-secondary);">Mobile Engineering</p>
+                <h2 class="carousel__title">Experiencias móviles fluidas, nativas y multiplataforma.</h2>
+                <p class="carousel__description">
+                  Creamos aplicaciones para iOS y Android con micro-interacciones de alta fidelidad, capacidades offline-first y seguridad de nivel bancario.
+                </p>
+                <div class="carousel__actions">
+                  <a href="servicios.html#mobile" class="btn btn--secondary">Desarrollo Móvil</a>
+                  <a href="trabajos.html" class="btn btn--outline">Ver Apps</a>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="benefit-card">
-            <p class="benefit-card__icon" aria-hidden="true">02</p>
-            <h3>Digital o físico, sin confusión</h3>
-            <p>Los juegos digitales no piden envío; los productos físicos habilitan cálculo por código postal.</p>
+          <!-- Slide 3: AI & Data -->
+          <article class="carousel__slide" data-carousel-slide>
+            <div class="carousel__bg">
+              <img src="assets/img/hero/hero_ai_data.jpg" alt="Inteligencia artificial generativa, modelos LLM y analítica de datos" loading="lazy">
+            </div>
+            <div class="container">
+              <div class="carousel__content">
+                <p class="eyebrow" style="color: var(--color-sand);">Inteligencia Artificial & Data</p>
+                <h2 class="carousel__title">Modelos LLM, arquitecturas RAG y análisis predictivo.</h2>
+                <p class="carousel__description">
+                  Potenciamos procesos de negocio integrando agentes inteligentes autónomos, búsqueda semántica vectorial y pipelines analíticos en tiempo real.
+                </p>
+                <div class="carousel__actions">
+                  <a href="servicios.html#ai" class="btn btn--primary">Soluciones de IA</a>
+                  <a href="contacto.html" class="btn btn--outline">Consultar Especialistas</a>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="benefit-card">
-            <p class="benefit-card__icon" aria-hidden="true">03</p>
-            <h3>Carrito corto</h3>
-            <p>Agregás productos, revisás totales y seguís a finalizar compra desde el mismo modal.</p>
+        </div>
+
+        <!-- Barra de Carga y Progreso del Carrusel (5s con avance automático) -->
+        <div class="carousel__progress" aria-hidden="true">
+          <div class="carousel__progress-bar" data-carousel-progress></div>
+        </div>
+
+        <!-- Controles del Carrusel -->
+        <div class="carousel__controls">
+          <button type="button" class="carousel__btn" data-carousel-prev aria-label="Slide anterior">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <div class="carousel__indicators" data-carousel-dots aria-label="Seleccionar diapositiva"></div>
+
+          <button type="button" class="carousel__btn" data-carousel-next aria-label="Slide siguiente">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+
+          <button type="button" class="carousel__btn" data-carousel-pause aria-label="Pausar carrusel" aria-pressed="false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Sección: Resumen de Servicios y Especialidades
+         ========================================================================== -->
+    <section class="section section--featured" aria-label="Especialidades de Software">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Especialidades Tech</p>
+          <h2 class="section-title">Ingeniería integral para desafíos complejos</h2>
+          <p class="section-subtitle">Tres divisiones complementarias diseñadas para construir plataformas líderes en el mercado.</p>
+        </div>
+
+        <div class="grid grid--3-col">
+          <!-- Card 1 -->
+          <article class="strip-card" data-animate data-delay="100">
+            <div>
+              <div class="strip-card__icon" aria-hidden="true">
+                <img src="assets/icons/code.svg" width="24" height="24" alt="">
+              </div>
+              <h3 class="strip-card__title">Desarrollo Web & Cloud SaaS</h3>
+              <p>Plataformas distribuidas, microservicios resilientes y aplicaciones web empresariales de alta disponibilidad.</p>
+            </div>
+            <a href="servicios.html" class="strip-card__link">
+              <span>Explorar Servicios Cloud</span>
+              <img src="assets/icons/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
+            </a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="strip-card" data-animate data-delay="200">
+            <div>
+              <div class="strip-card__icon strip-card__icon--orange" aria-hidden="true">
+                <img src="assets/icons/code.svg" width="24" height="24" alt="">
+              </div>
+              <h3 class="strip-card__title">Aplicaciones Móviles Multiplataforma</h3>
+              <p>Desarrollo nativo e híbrido para iOS y Android con biometría, pagos instantáneos y modo offline.</p>
+            </div>
+            <a href="servicios.html#mobile" class="strip-card__link" style="color: var(--color-secondary);">
+              <span>Explorar Servicios Mobile</span>
+              <img src="assets/icons/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
+            </a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="strip-card" data-animate data-delay="300">
+            <div>
+              <div class="strip-card__icon strip-card__icon--teal" aria-hidden="true">
+                <img src="assets/icons/code.svg" width="24" height="24" alt="">
+              </div>
+              <h3 class="strip-card__title">Inteligencia Artificial & Data</h3>
+              <p>Modelos LLM empresariales, arquitecturas RAG, agentes autónomos y pipelines analíticos en tiempo real.</p>
+            </div>
+            <a href="servicios.html#ai" class="strip-card__link" style="color: var(--color-sand);">
+              <span>Explorar Soluciones IA</span>
+              <img src="assets/icons/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
+            </a>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="catalogo" class="catalogo">
-      <div class="wrap catalogo__layout">
-        <aside class="catalog-sidebar" aria-label="Filtros de catálogo">
-          <h2>Catálogo</h2>
-          <p>Elegí una categoría o buscá por nombre, marca o tipo de producto.</p>
+    <!-- ==========================================================================
+         Sección: Resumen de Casos de Éxito
+         ========================================================================== -->
+    <section class="section" aria-label="Casos de Éxito">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Casos de Éxito</p>
+          <h2 class="section-title">Soluciones probadas en producción</h2>
+          <p class="section-subtitle">Una muestra de plataformas digitales y modelos de inteligencia artificial creados por nuestro equipo.</p>
+        </div>
 
-          <div class="filter-group" role="group" aria-label="Filtrar por categoría">
-            <button type="button" class="filter-chip is-active" data-category-filter="Todos">Todos</button>
-            <button type="button" class="filter-chip" data-category-filter="Componentes">Componentes</button>
-            <button type="button" class="filter-chip" data-category-filter="Consolas">Consolas</button>
-            <button type="button" class="filter-chip" data-category-filter="Videojuegos">Videojuegos</button>
-            <button type="button" class="filter-chip" data-category-filter="Periféricos">Periféricos</button>
-            <button type="button" class="filter-chip" data-category-filter="Almacenamiento">Almacenamiento</button>
-          </div>
+        <div class="grid grid--3-col">
+          <article class="project-card" data-animate data-delay="100">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_cloud_analytics.jpg" alt="Dashboard SaaS CloudScale Analytics" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge project-card__category">Web & Cloud</span>
+              <h3 class="project-card__title">CloudScale Analytics</h3>
+              <p class="project-card__desc">Plataforma SaaS en tiempo real para observabilidad y monitoreo de microservicios distribuidos.</p>
+            </div>
+          </article>
 
-          <div id="envios" class="shipping-note">
-            <h3>Envíos</h3>
-            <p>Si tu carrito tiene productos físicos, ingresá tu código postal para ver el costo antes de finalizar.</p>
-          </div>
-        </aside>
+          <article class="project-card" data-animate data-delay="200">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_fintech_app.jpg" alt="Billetera digital móvil FinSecure Pay" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--orange project-card__category">Mobile Apps</span>
+              <h3 class="project-card__title">FinSecure Pay Mobile</h3>
+              <p class="project-card__desc">Billetera digital multiplataforma con pagos sin contacto y autenticación biométrica.</p>
+            </div>
+          </article>
 
-        <div class="catalog-content">
-          <div class="catalog-toolbar">
-            <p data-catalog-summary>Productos destacados</p>
-            <button type="button" class="btn btn--outline" data-open-modal="cart-modal">Ver carrito</button>
-          </div>
-          <div class="catalogo__grid" data-catalog></div>
-          <p class="catalog-empty" data-catalog-empty hidden>No encontramos productos con ese filtro.</p>
+          <article class="project-card" data-animate data-delay="300">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_ai_copilot.jpg" alt="Copiloto inteligente Nexus AI" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--teal project-card__category">IA & Data</span>
+              <h3 class="project-card__title">Nexus AI Copilot</h3>
+              <p class="project-card__desc">Asistente corporativo con búsqueda vectorial RAG para síntesis documental automatizada.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="flex justify-center" style="margin-top: var(--space-xl);" data-animate>
+          <a href="trabajos.html" class="btn btn--outline">Ver todos los proyectos y clientes</a>
         </div>
       </div>
     </section>
 
-    <section id="armador" class="armador">
-      <div class="wrap armador__inner">
-        <div>
-          <p class="eyebrow">Armá tu PC</p>
-          <h2>Comprá por partes o empezá desde una base recomendada.</h2>
-          <p class="armador__desc">
-            ZonaZero se especializa en componentes compatibles para setups gamer, oficina y creación de contenido.
-            El catálogo ya permite comprar piezas clave y la experiencia está preparada para sumar armado guiado.
-          </p>
-        </div>
-        <div class="build-list" aria-label="Componentes principales para armar una PC">
-          <span>Procesador</span>
-          <span>Motherboard</span>
-          <span>Memoria RAM</span>
-          <span>Placa de video</span>
-          <span>SSD</span>
-          <span>Fuente</span>
-        </div>
-      </div>
-    </section>
+    <!-- ==========================================================================
+         Sección: Resumen de Cultura de Ingeniería
+         ========================================================================== -->
+    <section class="section section--featured" aria-label="Cultura Institucional">
+      <div class="container">
+        <div class="grid grid--2-col items-center">
+          <div data-animate>
+            <p class="eyebrow">Quiénes Somos</p>
+            <h2 class="section-title">Pasión por el código limpio y la arquitectura robusta</h2>
+            <p style="margin-bottom: var(--space-md);">
+              En <strong>Next Corp</strong> concebimos el software como una disciplina de ingeniería rigurosa. Creamos productos digitales diseñados para soportar alta concurrencia, minimizar latencias y evolucionar sin deuda técnica.
+            </p>
+            <p style="margin-bottom: var(--space-lg);">
+              Trabajamos con metodologías ágiles, pruebas automatizadas y las mejores prácticas de Spec-Driven Development (SDD).
+            </p>
+            <a href="equipo.html" class="btn btn--primary">Conocé a nuestro Equipo Tech</a>
+          </div>
 
-    <section id="faq" class="faq">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Ayuda rápida</p>
-          <h2>Preguntas frecuentes</h2>
+          <div data-animate data-delay="200" style="background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline); border-radius: var(--radius-lg); padding: var(--space-xl);">
+            <h3 style="color: var(--color-light); margin-bottom: var(--space-sm);">Nuestros Pilares Técnicos</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Arquitectura Limpia & Modular:</strong> Componentes desacoplados, mantenibles y altamente testeables.</span>
+              </li>
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Rendimiento & Latencia Ultrabaja:</strong> Optimización de recursos, Core Web Vitals y microservicios.</span>
+              </li>
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Seguridad de Grado Empresarial:</strong> Cifrado de extremo a extremo y auditorías continuas.</span>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div class="faq__list">
-          <details>
-            <summary>¿Qué diferencia hay entre producto físico y digital?</summary>
-            <p>El físico requiere retiro o envío a domicilio. El digital se entrega por email o cuenta asociada, sin costo de envío.</p>
-          </details>
-          <details>
-            <summary>¿Cuándo se pide el código postal?</summary>
-            <p>Solo cuando el carrito incluye al menos un producto físico. Así evitamos pasos innecesarios.</p>
-          </details>
-          <details>
-            <summary>¿Puedo comprar componentes y juegos juntos?</summary>
-            <p>Sí. El carrito combina categorías y calcula el envío únicamente sobre los artículos físicos.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-final">
-      <div class="wrap cta-final__inner">
-        <h2>Elegí tu próximo upgrade y compralo en minutos.</h2>
-        <a href="#catalogo" class="btn btn--primary btn--lg">Ir al catálogo</a>
       </div>
     </section>
   </main>
 
+  <!-- ==========================================================================
+       Footer Corporativo
+       ========================================================================== -->
   <footer class="site-footer">
-    <div class="wrap site-footer__inner">
-      <span class="logo logo--sm">Zona<span class="logo__accent">Zero</span></span>
-      <p>© 2026 ZonaZero. Tecnología, hardware y gaming.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="margin-bottom: var(--space-xs);">
+            <span class="logo__mark" aria-hidden="true">N</span>
+            <span>Next<span class="logo__accent">Corp</span></span>
+          </a>
+          <p>
+            Compañía de ingeniería de software especializada en Plataformas Cloud SaaS, Aplicaciones Móviles nativas y Multiplataforma, e Inteligencia Artificial con arquitecturas RAG.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Secciones</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="equipo.html">El Equipo Tech</a></li>
+            <li><a href="servicios.html">Servicios de Software</a></li>
+            <li><a href="trabajos.html">Trabajos & Clientes</a></li>
+            <li><a href="contacto.html">Contacto & Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contacto Rápido</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:engineering@nextcorp.com">engineering@nextcorp.com</a></li>
+            <li><a href="tel:+541148901234">+54 (11) 4890-1234</a></li>
+            <li><a href="contacto.html">Av. Corrientes 1450, CABA</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Next Corp. Todos los derechos reservados.</p>
+        <p>Desarrollado con estándares de ingeniería por JNprog8.</p>
+      </div>
     </div>
   </footer>
 
-  <dialog id="cart-modal" class="modal modal--wide" aria-labelledby="cart-modal-title">
-    <div class="modal__header">
-      <h2 id="cart-modal-title">Tu carrito</h2>
-      <button type="button" class="modal__close" data-close-modal aria-label="Cerrar">x</button>
-    </div>
-
-    <div class="modal__body">
-      <p class="cart-empty" data-cart-empty>
-        Todavía no agregaste productos. Volvé al catálogo para empezar.
-      </p>
-      <div class="cart-items" data-cart-items></div>
-
-      <form class="shipping-calculator" data-shipping-form hidden novalidate>
-        <div class="field">
-          <label for="shipping-postal-code">Código postal para calcular envío</label>
-          <div class="inline-field">
-            <input type="text" id="shipping-postal-code" name="postalCode" inputmode="numeric" placeholder="Ej: 8400" maxlength="8" aria-describedby="shipping-postal-code-error shipping-result">
-            <button type="submit" class="btn btn--outline">Calcular</button>
-          </div>
-          <small id="shipping-postal-code-error" class="field__error" data-shipping-error aria-live="polite"></small>
-        </div>
-        <p id="shipping-result" class="shipping-result" data-shipping-result aria-live="polite"></p>
-      </form>
-
-      <p class="digital-note" data-digital-note hidden>Tu carrito solo tiene productos digitales: no se requiere envío.</p>
-    </div>
-
-    <div class="modal__footer cart-footer">
-      <dl class="cart-totals">
-        <div>
-          <dt>Subtotal</dt>
-          <dd data-cart-subtotal>$0</dd>
-        </div>
-        <div>
-          <dt>Envío</dt>
-          <dd data-cart-shipping>$0</dd>
-        </div>
-        <div class="cart-totals__total">
-          <dt>Total</dt>
-          <dd data-cart-total>$0</dd>
-        </div>
-      </dl>
-      <button type="button" class="btn btn--primary" data-checkout-trigger disabled>
-        Finalizar compra
-      </button>
-    </div>
-  </dialog>
-
-  <dialog id="checkout-modal" class="modal modal--wide" aria-labelledby="checkout-modal-title">
-    <form class="modal__form" novalidate data-checkout-form>
-      <div class="modal__header">
-        <h2 id="checkout-modal-title">Finalizar compra</h2>
-        <button type="button" class="modal__close" data-close-modal aria-label="Cerrar">x</button>
-      </div>
-
-      <div class="modal__body">
-        <p class="checkout-total">Total a pagar: <strong data-checkout-total>$0</strong></p>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="checkout-name">Nombre completo</label>
-            <input type="text" id="checkout-name" name="customerName" autocomplete="name" required aria-describedby="checkout-name-error">
-            <small id="checkout-name-error" class="field__error" data-error-for="checkout-name" aria-live="polite"></small>
-          </div>
-          <div class="field">
-            <label for="checkout-email">Email</label>
-            <input type="email" id="checkout-email" name="customerEmail" autocomplete="email" required aria-describedby="checkout-email-error">
-            <small id="checkout-email-error" class="field__error" data-error-for="checkout-email" aria-live="polite"></small>
-          </div>
-        </div>
-
-        <div class="field" data-address-field hidden>
-          <label for="checkout-address">Dirección de entrega</label>
-          <input type="text" id="checkout-address" name="shippingAddress" autocomplete="street-address" aria-describedby="checkout-address-error">
-          <small id="checkout-address-error" class="field__error" data-error-for="checkout-address" aria-live="polite"></small>
-        </div>
-
-        <div class="field">
-          <label for="checkout-card-number">Número de tarjeta</label>
-          <input type="text" id="checkout-card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required aria-describedby="checkout-card-number-error">
-          <small id="checkout-card-number-error" class="field__error" data-error-for="checkout-card-number" aria-live="polite"></small>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="checkout-card-exp">Vencimiento</label>
-            <input type="text" id="checkout-card-exp" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required aria-describedby="checkout-card-exp-error">
-            <small id="checkout-card-exp-error" class="field__error" data-error-for="checkout-card-exp" aria-live="polite"></small>
-          </div>
-          <div class="field">
-            <label for="checkout-card-cvv">Código de seguridad</label>
-            <input type="text" id="checkout-card-cvv" name="cardCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" maxlength="4" required aria-describedby="checkout-card-cvv-error">
-            <small id="checkout-card-cvv-error" class="field__error" data-error-for="checkout-card-cvv" aria-live="polite"></small>
-          </div>
-        </div>
-
-        <p class="modal__disclaimer">
-          Revisá el total antes de confirmar. Los productos digitales se entregan sin costo de envío.
-        </p>
-      </div>
-
-      <div class="modal__footer">
-        <button type="submit" class="btn btn--primary">Confirmar compra</button>
-      </div>
-    </form>
-    <div class="checkout-success" data-checkout-success hidden tabindex="-1">
-      Compra confirmada. Te enviamos el detalle del pedido por email.
-    </div>
-  </dialog>
-
-  <script type="module" src="js/main.js"></script>
+  <!-- Script Principal ES Modules -->
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>

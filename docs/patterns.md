@@ -1,339 +1,105 @@
-# Landing Page Design Patterns
+# Patrones UX/UI del Portal Web (Next Corp)
 
-## 1. Objetivo
+## 1. Objetivo y Rol
 
-Los patrones de esta documentación son herramientas de UX.
+Este documento compila los patrones de diseño, interacción y experiencia de usuario (UX) que guían al **Desarrollador Frontend de páginas web** en la construcción del portal corporativo para **Next Corp**, empresa especializada en **Desarrollo de Software** (*Desarrollo Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial & Data Engineering*), en cumplimiento estricto del **Sprint 1**.
 
-No deben implementarse simplemente para aumentar la cantidad de secciones.
-
-Cada patrón debe resolver una necesidad concreta de:
-
-* comprensión;
-* confianza;
-* demostración;
-* navegación;
-* conversión.
+Los patrones seleccionados combinan la usabilidad y accesibilidad de [Material Design 3](https://m3.material.io/) y [Bootstrap](https://getbootstrap.com/) con la inspiración visual de [Awwwards](https://www.awwwards.com/) y [Dribbble](https://dribbble.com/).
 
 ---
 
-# 2. Modelo narrativo
+## 2. Modelo Narrativo del Portal
 
-La landing debe intentar seguir:
+El flujo de interacción del usuario está diseñado para generar confianza, credibilidad y conversión:
 
 ```text
-Atención
-↓
-Comprensión
-↓
-Demostración
-↓
-Confianza
-↓
-Deseo
-↓
-Conversión
-```
-
-La estructura final depende del producto.
-
----
-
-# 3. Hero + CTA
-
-### Propósito
-
-Explicar rápidamente:
-
-* qué es el producto;
-* para quién es;
-* qué valor proporciona.
-
-### Debe contener
-
-* propuesta de valor;
-* supporting text;
-* CTA principal;
-* visual relevante cuando corresponda.
-
-### Evitar
-
-* slogans genéricos;
-* exceso de texto;
-* múltiples CTAs compitiendo.
-
----
-
-# 4. Product Preview
-
-Mostrar:
-
-* dashboard;
-* aplicación;
-* interfaz;
-* producto;
-* resultado.
-
-Debe demostrar el valor del producto, no ser una imagen decorativa.
-
----
-
-# 5. Problem → Solution
-
-Estructura:
-
-```text
-Problema
-↓
-Consecuencia
-↓
-Solución
-↓
-Beneficio
-```
-
-Preferir beneficios concretos sobre listas de funcionalidades.
-
----
-
-# 6. Social Proof
-
-Puede incluir:
-
-* testimonios;
-* métricas;
-* logos;
-* ratings;
-* resultados.
-
-La información debe ser real.
-
-No inventar testimonios, clientes, métricas o logos.
-
----
-
-# 7. Feature Grid
-
-Utilizar cuando existan varias capacidades claramente diferenciadas.
-
-Cada feature debería comunicar:
-
-```text
-Característica
-↓
-Beneficio
-↓
-Resultado
-```
-
-No utilizar seis tarjetas idénticas si el contenido no necesita esa estructura.
-
----
-
-# 8. Bento Grid
-
-Utilizar para presentar capacidades relacionadas con diferentes niveles de importancia visual.
-
-Debe existir jerarquía.
-
-No utilizar Bento Grid únicamente por tendencia estética.
-
----
-
-# 9. Feature + Visual
-
-Alternar:
-
-```text
-Texto → Visual
-Visual → Texto
-```
-
-Útil para explicar productos complejos.
-
-Cada bloque debe contar una pequeña historia.
-
----
-
-# 10. How It Works
-
-Reducir el funcionamiento a aproximadamente 3–4 pasos cuando sea posible.
-
-Ejemplo:
-
-```text
-01 Registrarse
-02 Configurar
-03 Utilizar
-04 Obtener resultado
+Atención (Hero / Carrusel Home)
+     ↓
+Comprensión (Tiras de Servicios Tech y Cultura de Ingeniería)
+     ↓
+Demostración (Showcase de Proyectos de Software y Métricas)
+     ↓
+Confianza (Perfiles del Equipo Tech y Clientes)
+     ↓
+Conversión (Formulario de Cotización Tech y Canales Directos)
 ```
 
 ---
 
-# 11. Before / After
+## 3. Catálogo de Patrones del Sprint 1
 
-Mostrar transformación.
+### 3.1. Patrón 1: Hero con Carrusel Interactivo ("Quiénes Somos y Qué Hacemos")
+- **Propósito:** Captar la atención inmediata del visitante comunicando las tres áreas clave de especialidad en software de Next Corp (*Cloud SaaS*, *Apps Móviles*, *IA & Data*).
+- **Estructura:**
+  - Contenedor de ancho completo o contenido centralizado con slides dinámicos.
+  - Título principal (`h1`), subtítulo explicativo y botones de llamada a la acción (CTA) primario ("Conocer Soluciones") y secundario ("Ver Proyectos").
+  - Controles de carrusel: flechas anterior/siguiente con iconos de [Lucide Icons](https://lucide.dev/), indicadores de posición paginados y soporte para swipe táctil en dispositivos móviles.
+  - Accesibilidad: Posibilidad de pausar la reproducción automática y navegación por teclado.
 
-```text
-Antes
-↓
-Problemas
-↓
-Después
-↓
-Resultado
-```
+### 3.2. Patrón 2: Tiras Modulares del Home (3 Tiras del Sprint 1)
+- **Tira 1: Resumen de Servicios Tech**
+  - Grid de 3 columnas (inspirado en el layout de [Bootstrap](https://getbootstrap.com/)) con tarjetas que sintetizan: *Desarrollo Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial & Data*.
+  - Iconos vectoriales de [SVG Repo](https://www.svgrepo.com/) o [Heroicons](https://heroicons.com/) y botón de acceso directo a la sección completa.
+- **Tira 2: Resumen de Trabajos**
+  - Galería visual horizontal o grid fluido con previews de los proyectos de software más representativos y badges descriptivos.
+- **Tira 3: Resumen de Quiénes Somos**
+  - Bloque dividido: propuesta de valor sobre la excelencia en ingeniería de software y elemento visual de soporte (fotografía o animación vectorial de [LottieFiles](https://lottiefiles.com/)).
 
-Utilizar únicamente cuando exista una transformación real.
+### 3.3. Patrón 3: Team Grid & Perfiles Profesionales (El Equipo)
+- **Propósito:** Humanizar la empresa y transmitir transparencia y liderazgo técnico.
+- **Estructura:**
+  - Descripción general de Next Corp, su cultura de desarrollo ágil y estándares de arquitectura.
+  - Grid responsivo de tarjetas de integrantes (mínimo 3 integrantes):
+    - Foto profesional optimizada;
+    - Nombre y rol dentro de la organización (*CTO & Cloud Architect*, *Lead Frontend & Mobile*, *Lead AI & Data*);
+    - Breve semblanza curricular y especialidad técnica;
+    - Enlaces a GitHub, LinkedIn y contacto profesional con iconos SVG.
+  - Elevación interactiva con sombras M3 al hacer hover.
 
----
+### 3.4. Patrón 4: Services Showcase (Servicios)
+- **Propósito:** Detallar la oferta técnica en cada una de las 3 áreas de desarrollo de software.
+- **Estructura:**
+  - Bloques alternados o tarjetas detalladas para:
+    1. *Desarrollo Web & Plataformas Cloud SaaS* (microservicios, APIs, cloud-native).
+    2. *Aplicaciones Móviles & Multiplataforma* (iOS/Android nativo, React Native/Flutter, offline-first).
+    3. *Inteligencia Artificial, RAG & Data Engineering* (LLMs, embeddings vectoriales, agentes inteligentes, pipelines).
+  - Puntos destacados de valor y botón para solicitar cotización tecnológica.
 
-# 12. Interactive Demo
+### 3.5. Patrón 5: Portfolio Showcase & Client Cloud (Trabajos / Clientes)
+- **Showcase de Trabajos:**
+  - Grid de tarjetas de proyectos de software (mínimo 5 trabajos):
+    - Imagen de alta definición del dashboard o mockup del producto;
+    - Título del proyecto y cliente beneficiario;
+    - Badge de categoría (*Web & Cloud*, *Mobile*, *AI & Data*);
+    - Resumen del desafío técnico y la solución implementada.
+- **Nube de Clientes (Social Proof):**
+  - Fila o grid con logotipos de empresas tech, scale-ups y clientes destacados.
+  - Efecto visual sutil con transiciones calculadas en [Cubic-bezier.com](https://cubic-bezier.com/).
 
-Permitir al usuario experimentar el producto.
+### 3.6. Patrón 6: Contact Hub & Formulario Accesible (Contacto)
+- **Propósito:** Facilitar la comunicación y captura de prospectos con mínima fricción.
+- **Estructura:**
+  - **Formulario de Contacto:**
+    - Campos: Nombre completo, Correo electrónico, Teléfono (opcional), Servicio de interés tech y Mensaje.
+    - Validación accesible en tiempo real con mensajes de error descriptivos.
+    - Botón de envío con micro-interacción y estado de carga.
+  - **Información Directa y Ubicación:**
+    - Dirección física del hub tecnológico.
+    - Mapa de ubicación interactivo o embed responsivo.
+    - Teléfono de contacto directo y correo electrónico corporativo.
+    - Enlaces a redes sociales oficiales con iconos SVG de [Lucide Icons](https://lucide.dev/) o [Heroicons](https://heroicons.com/).
 
-Ejemplos:
-
-* calculadora;
-* configuración;
-* tabs;
-* demo de dashboard;
-* búsqueda;
-* flujo reducido.
-
-La demo debe ser representativa y no convertirse en una aplicación innecesariamente compleja.
-
----
-
-# 13. Sticky Navigation
-
-Útil para páginas largas.
-
-Debe:
-
-* facilitar orientación;
-* mantener acceso a CTA;
-* funcionar en mobile;
-* no ocupar espacio excesivo.
-
----
-
-# 14. Scroll Storytelling
-
-Utilizar progresión visual durante el scroll.
-
-La animación debe apoyar la narrativa.
-
-Evitar efectos que:
-
-* dificulten la lectura;
-* perjudiquen performance;
-* impidan navegación;
-* causen mareos.
-
----
-
-# 15. Testimonials
-
-Un testimonio efectivo puede incluir:
-
-* persona;
-* rol;
-* organización;
-* contexto;
-* resultado.
-
-Nunca inventar información presentada como evidencia real.
+### 3.7. Patrón 7: Header Fijo y Navegación Responsive
+- **Estructura:**
+  - Barra de navegación superior fija (`sticky`) con efecto glassmorphism o fondo sólido con elevación M3.
+  - Logotipo institucional de Next Corp y enlaces directos a las 5 secciones (Home, Equipo, Servicios, Trabajos/Clientes, Contacto).
+  - Menú hamburguesa accesible para dispositivos móviles con soporte para tecla Escape y bloqueo de scroll al abrirse.
 
 ---
 
-# 16. Pricing
+## 4. Animaciones y Transiciones Fluidas
 
-Cuando el producto tenga planes:
-
-* destacar diferencias relevantes;
-* facilitar comparación;
-* mostrar plan recomendado si existe;
-* evitar complejidad innecesaria.
-
----
-
-# 17. FAQ
-
-Utilizar para eliminar objeciones.
-
-Preguntas recomendadas:
-
-* precio;
-* funcionamiento;
-* compatibilidad;
-* seguridad;
-* cancelación;
-* soporte.
-
-El contenido debe responder preguntas reales.
-
----
-
-# 18. Repeated CTA
-
-Repetir el CTA puede ser útil en páginas largas.
-
-Cada CTA debe conducir a la misma acción principal o a una acción claramente relacionada.
-
-No saturar al usuario.
-
----
-
-# 19. Final CTA
-
-Debe resumir:
-
-* valor;
-* acción;
-* reducción de fricción.
-
-Ejemplo conceptual:
-
-```text
-Propuesta de valor
-+
-beneficio principal
-+
-CTA
-```
-
----
-
-# 20. Selección de patrones
-
-Antes de implementar un patrón, responder:
-
-1. ¿Qué problema de UX resuelve?
-2. ¿Qué información comunica?
-3. ¿Por qué esta estructura es mejor que una alternativa más simple?
-4. ¿Qué impacto tiene en responsive?
-5. ¿Qué comportamiento necesita?
-6. ¿Cómo se verificará?
-7. ¿Qué complejidad añade?
-
-Si no existe una respuesta clara, no implementar el patrón.
-
----
-
-# 21. Regla principal
-
-> Un patrón de diseño debe justificar su existencia mediante una necesidad del usuario, no mediante una tendencia visual.
-
----
-
-# 22. Patrones activos en ZonaZero
-
-La landing actual utiliza un conjunto reducido de patrones:
-
-* **Hero + CTA**: comunica que ZonaZero es una tienda gamer demo y dirige al catálogo o al registro demo.
-* **Product Preview**: muestra una representación visual del flujo catálogo → carrito sin presentarla como una captura real.
-* **Feature Grid**: resume beneficios concretos del flujo disponible y separa el armador de PC como evolución futura.
-* **FAQ**: aclara que el checkout no procesa pagos reales, que el registro habilita el carrito y que el armador todavía no está disponible.
-* **Final CTA**: repite la acción principal de crear una cuenta demo.
-
-No se utilizan testimonios ni métricas porque el proyecto no cuenta con evidencia real para respaldarlos.
+- Utilizar keyframes probados de [Animista](https://animista.net/) para entradas suaves de tarjetas y títulos.
+- Transiciones fluidas en hover utilizando las curvas de aceleración de [Cubic-bezier.com](https://cubic-bezier.com/).
+- Posibilidad de orquestar transiciones complejas mediante [GreenSock (GSAP)](https://greensock.com/) o `IntersectionObserver`.
+- Respeto absoluto de `prefers-reduced-motion` para usuarios con sensibilidad al movimiento.

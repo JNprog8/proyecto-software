@@ -1,183 +1,103 @@
-# Landing Page
+# Next Corp — Portal Web Corporativo (Desarrollo de Software)
 
-Landing page web desarrollada con **HTML5, CSS3 y JavaScript Vanilla**.
+Portal web corporativo de alto rendimiento desarrollado con **HTML5, CSS3 y JavaScript Vanilla**, diseñado según las especificaciones del **Sprint 1** ("Desarrollo de un portal Web").
 
-El proyecto está diseñado para priorizar:
+**Next Corp** es una empresa de ingeniería especializada en tres divisiones clave de **Desarrollo de Software**:
 
-* mantenibilidad;
-* extensibilidad;
-* portabilidad;
-* accesibilidad;
-* responsive design;
-* performance;
-* verificación visual y funcional simple.
+1. **Desarrollo Web & Plataformas Cloud SaaS:** Aplicaciones a medida, microservicios, cloud-native y dashboards corporativos.
+2. **Aplicaciones Móviles & Multiplataforma:** Soluciones nativas e híbridas para iOS y Android de alta concurrencia.
+3. **Inteligencia Artificial, RAG & Data Engineering:** Integración de modelos LLM, agentes autónomos y analítica en tiempo real.
 
----
+El proyecto está diseñado bajo el rol de **Desarrollador Frontend de páginas web** y metodología **Spec-Driven Development (SDD)**, priorizando:
 
-## Objetivo
-
-Crear una landing page profesional capaz de comunicar rápidamente:
-
-1. Qué es el producto.
-2. Qué problema resuelve.
-3. Qué valor proporciona.
-4. Por qué debería confiarse en él.
-5. Qué acción debe realizar el usuario.
-
-La experiencia debe conducir progresivamente:
-
-**Atención → Comprensión → Demostración → Confianza → Deseo → Conversión**
+- mantenibilidad y modularidad;
+- extensibilidad y bajo acoplamiento;
+- portabilidad (ejecutable como sitio estático sin dependencias de compilación);
+- accesibilidad web (WCAG 2.1 AA);
+- responsive design (mobile-first);
+- rendimiento y Core Web Vitals;
+- excelencia estética basada en referencias visuales contemporáneas.
 
 ---
 
-## Stack
+## Estructura del Portal (5 Secciones)
 
-### Producción
+```text
+1. Home (Inicio)
+   ├── Hero con Carrusel interactivo ("Quiénes somos y lo que hacemos en Software")
+   ├── Tira 1: Resumen de Servicios Tech (Web/Cloud, Mobile, AI/Data)
+   ├── Tira 2: Resumen de Trabajos / Proyectos (5 casos de éxito)
+   └── Tira 3: Resumen de Quiénes Somos (Cultura de ingeniería Next Corp)
 
-* HTML5
-* CSS3
-* JavaScript Vanilla
-* ES Modules
+2. El Equipo
+   ├── Descripción institucional y valores de ingeniería de Next Corp
+   └── Perfiles profesionales detallados (mínimo 3 integrantes: CTO, Lead Mobile, Lead AI con foto, rol y redes)
 
-No utiliza frameworks frontend ni dependencias de runtime externas. La página debe poder abrirse como archivos estáticos o servirse con un servidor estático simple.
+3. Servicios
+   └── Detalle completo de servicios de software (Web & Cloud, Mobile Apps, IA & Data)
+
+4. Trabajos / Clientes
+   ├── Showcase de proyectos realizados (mínimo 5 trabajos de software destacados)
+   └── Panel de clientes y marcas asociadas
+
+5. Contacto
+   ├── Ubicación física con mapa integrado
+   ├── Redes sociales oficiales (GitHub, LinkedIn, Twitter/X)
+   ├── Contacto directo (email corporativo y teléfono)
+   └── Formulario de contacto interactivo y validado
+```
 
 ---
 
-## Estructura
+## Stack Tecnológico
+
+- **HTML5 Semántico:** Estructura limpia y accesible.
+- **CSS3 Moderno:** Design Tokens con CSS Custom Properties, Flexbox, CSS Grid de 12 columnas y animaciones nativas.
+- **JavaScript Vanilla (ES Modules):** Módulos nativos (`type="module"`), APIs estándar del navegador (`IntersectionObserver`, `FormData`).
+
+---
+
+## Ecosistema de Diseño y Referencias Frontend
+
+- **Sistemas de Diseño y Layout:** [Material Design 3 (M3)](https://m3.material.io/) y [Bootstrap](https://getbootstrap.com/).
+- **Inspiración y Benchmarking:** [Awwwards](https://www.awwwards.com/) y [Dribbble](https://dribbble.com/).
+- **Colorimetría:** [Coolors](https://coolors.co/).
+- **Animaciones y Curvas:** [Animista](https://animista.net/), [GreenSock (GSAP)](https://greensock.com/), [Cubic-bezier.com](https://cubic-bezier.com/) y [LottieFiles](https://lottiefiles.com/).
+- **Iconografía y Vectores:** [Lucide Icons](https://lucide.dev/), [Heroicons](https://heroicons.com/) y [SVG Repo](https://www.svgrepo.com/).
+- **Estándares:** WHATWG, W3C, MDN y W3Schools.
+
+---
+
+## Estructura del Repositorio
 
 ```text
 .
-├── AGENTS.md
-├── README.md
+├── AGENTS.md               # Reglas operativas para agentes de IA
+├── GEMINI.md               # Directrices y contexto para Gemini
+├── README.md               # Este documento
 │
-├── src/
-│   ├── index.html
-│   ├── css/
-│   │   ├── variables.css
-│   │   ├── base.css
-│   │   └── components.css
-│   ├── js/
-│   └── assets/
-└── docs/
-    ├── architecture.md
-    ├── standards.md
-    ├── design-system.md
-    └── patterns.md
+├── docs/                   # Documentación técnica
+│   ├── architecture.md     # Arquitectura de componentes y módulos
+│   ├── design-system.md    # Design Tokens, elevación y guías visuales
+│   ├── patterns.md         # Patrones UX/UI y modelo narrativo
+│   └── standards.md        # Estándares de codificación y accesibilidad
+│
+└── src/
+    ├── index.html          # Estructura del portal
+    ├── css/                # Estilos modulares
+    ├── js/                 # Módulos JavaScript Vanilla
+    └── assets/             # Imágenes, iconos SVG y animaciones
 ```
 
-La estructura puede evolucionar si la complejidad del proyecto lo requiere.
-
 ---
 
-## Arquitectura
+## Documentación para Agentes
 
-El proyecto mantiene una separación básica de responsabilidades:
-
-```text
-HTML
-  └── estructura + contenido + semántica
-
-CSS
-  └── presentación + layout + responsive + estados visuales
-
-JavaScript
-  └── comportamiento + interacciones
-
-Docs
-  └── conocimiento y decisiones del proyecto
-```
-
-Detalles: [`docs/architecture.md`](docs/architecture.md).
-
----
-
-## Estándares
-
-Las decisiones de implementación toman como referencia:
-
-* W3Schools HTML Tutorial / Reference.
-* W3Schools CSS Tutorial / Reference.
-* W3Schools JavaScript Tutorial / Reference.
-* WHATWG / W3C.
-* MDN.
-
-Las especificaciones y documentación de estándares tienen prioridad sobre ejemplos educativos que puedan estar simplificados.
-
-Detalles: [`docs/standards.md`](docs/standards.md).
-
----
-
-## Diseño
-
-La landing utiliza patrones de diseño orientados a:
-
-* jerarquía visual;
-* comprensión rápida;
-* demostración del producto;
-* confianza;
-* conversión.
-
-Los patrones se seleccionan según las necesidades reales del producto.
-
-Detalles: [`docs/patterns.md`](docs/patterns.md).
-
----
-
-## Sistema visual
-
-El proyecto utiliza un sistema visual centralizado basado en CSS Custom Properties.
-
-Los tokens deben concentrar decisiones como:
-
-* colores;
-* tipografía;
-* espaciado;
-* radios;
-* sombras;
-* tamaños relevantes.
-
-Detalles: [`docs/design-system.md`](docs/design-system.md).
-
----
-
-## Principios de mantenimiento
-
-Antes de añadir una solución:
-
-1. Comprobar si ya existe una implementación reutilizable.
-2. Evitar duplicación.
-3. Evitar nuevas dependencias sin necesidad.
-4. Mantener las responsabilidades separadas.
-5. Preferir APIs estándar del navegador.
-6. Mantener el comportamiento accesible.
-7. Verificar manualmente los flujos visuales y funcionales relevantes.
-8. Actualizar documentación cuando cambien decisiones importantes.
-
----
-
-## Portabilidad
-
-El sitio debe poder desplegarse como archivos estáticos siempre que sus funcionalidades lo permitan.
-
-No debe depender de:
-
-* un framework frontend;
-* un servidor Node en runtime;
-* APIs propietarias innecesarias;
-* herramientas de build obligatorias para funcionalidades básicas.
-
-La infraestructura de desarrollo puede evolucionar independientemente del runtime del sitio.
-
----
-
-## Documentación para agentes
-
-Los agentes de IA deben comenzar leyendo:
+Los agentes de IA que colaboren en el proyecto deben consultar prioritariamente:
 
 ```text
 AGENTS.md
+GEMINI.md
 ```
 
-y consultar únicamente la documentación relevante para la tarea.
-
-No es necesario leer todos los documentos para modificaciones triviales.
+y profundizar en la carpeta [`docs/`](docs/) según el alcance de la tarea.

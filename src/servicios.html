@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios de Software — Next Corp</title>
+  <meta name="description" content="Servicios especializados en desarrollo web y plataformas cloud SaaS, aplicaciones móviles iOS/Android, e Inteligencia Artificial con RAG y data engineering.">
+  <meta name="author" content="Next Corp">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Modulares -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Fondo Animado Atmosférico con Efecto Blur -->
+  <div class="site-background" aria-hidden="true">
+    <img src="assets/img/background-animated.gif" alt="" class="site-background__media">
+    <div class="site-background__overlay"></div>
+  </div>
+
+  <!-- Barra de Progreso de Navegación Superior (Top Progress Bar) -->
+  <div class="page-progress-bar" aria-hidden="true"></div>
+
+  <!-- Enlace accesible para saltar al contenido principal -->
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- ==========================================================================
+       Header y Navegación Principal
+       ========================================================================== -->
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Next Corp, ir al inicio">
+        <span class="logo__mark" aria-hidden="true">N</span>
+        <span>Next<span class="logo__accent">Corp</span></span>
+      </a>
+
+      <!-- Navegación Desktop -->
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="index.html" class="site-nav__link" data-nav-link>Home</a>
+        <a href="equipo.html" class="site-nav__link" data-nav-link>El Equipo</a>
+        <a href="servicios.html" class="site-nav__link is-active" data-nav-link>Servicios</a>
+        <a href="trabajos.html" class="site-nav__link" data-nav-link>Trabajos & Clientes</a>
+        <a href="contacto.html" class="site-nav__link" data-nav-link>Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-sm">
+        <a href="contacto.html" class="btn btn--primary" id="header-cta-btn">Cotizar Proyecto</a>
+        <button type="button" class="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" data-nav-toggle>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div class="mobile-nav" data-mobile-nav aria-label="Menú móvil">
+      <a href="index.html" class="mobile-nav__link" data-nav-link>Home</a>
+      <a href="equipo.html" class="mobile-nav__link" data-nav-link>El Equipo</a>
+      <a href="servicios.html" class="mobile-nav__link is-active" data-nav-link>Servicios</a>
+      <a href="trabajos.html" class="mobile-nav__link" data-nav-link>Trabajos & Clientes</a>
+      <a href="contacto.html" class="mobile-nav__link" data-nav-link>Contacto</a>
+    </div>
+  </header>
+
+  <main id="main" class="page-content" style="padding-top: calc(var(--header-height, 74px) + var(--space-xl));">
+    <!-- ==========================================================================
+         Encabezado de Servicios
+         ========================================================================== -->
+    <section class="section" aria-label="Servicios de Ingeniería de Software">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Capacidades de Vanguardia</p>
+          <h1 class="section-title">Servicios de Ingeniería de Software</h1>
+          <p class="section-subtitle">
+            Soluciones tecnológicas diseñadas a medida para resolver los desafíos de escalabilidad, rendimiento e inteligencia de las empresas modernas.
+          </p>
+        </div>
+
+        <!-- Servicio 1: Web & Cloud SaaS -->
+        <article id="web-cloud" class="service-block" data-animate>
+          <div class="service-block__image-wrap">
+            <img src="assets/img/services/service_cloud.jpg" alt="Desarrollo Web y Plataformas Cloud SaaS" class="service-block__image" loading="lazy">
+          </div>
+          <div class="service-block__content">
+            <span class="badge">Cloud & Microservicios</span>
+            <h2 style="font-size: 1.75rem; margin-block: var(--space-xs); color: var(--color-light);">Desarrollo Web & Plataformas Cloud SaaS</h2>
+            <p>
+              Diseñamos y desarrollamos plataformas SaaS escalables con arquitecturas nativas de nube. Implementamos microservicios elásticos, APIs RESTful y GraphQL, garantizando una disponibilidad superior al 99.99% y tiempos de respuesta ultrarrápidos.
+            </p>
+            <ul class="service-block__features">
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" aria-hidden="true">✔</span>
+                <span>Arquitecturas serverless y microservicios orquestados con Kubernetes y Docker.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" aria-hidden="true">✔</span>
+                <span>Frontends ultra-optimizados con JavaScript moderno, accesibilidad y Core Web Vitals.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" aria-hidden="true">✔</span>
+                <span>Bases de datos distribuidas (PostgreSQL, Redis, DynamoDB) y pipelines CI/CD automatizados.</span>
+              </li>
+            </ul>
+            <a href="contacto.html?service=web-cloud" class="btn btn--primary">Solicitar Presupuesto Web & Cloud</a>
+          </div>
+        </article>
+
+        <!-- Servicio 2: Mobile Apps -->
+        <article id="mobile" class="service-block service-block--reverse" data-animate>
+          <div class="service-block__image-wrap">
+            <img src="assets/img/services/service_mobile.jpg" alt="Desarrollo de Aplicaciones Móviles Nativas y Multiplataforma" class="service-block__image" loading="lazy">
+          </div>
+          <div class="service-block__content">
+            <span class="badge badge--orange">Mobile Engineering</span>
+            <h2 style="font-size: 1.75rem; margin-block: var(--space-xs); color: var(--color-light);">Aplicaciones Móviles & Multiplataforma</h2>
+            <p>
+              Creamos aplicaciones móviles de alto rendimiento para iOS y Android. Desarrollamos interfaces cautivantes con micro-animaciones fluidas, pasarelas de pago seguras, biometría y soporte completo offline-first con sincronización automática.
+            </p>
+            <ul class="service-block__features">
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-secondary);" aria-hidden="true">✔</span>
+                <span>Desarrollo nativo en Swift y Kotlin o multiplataforma de alta fidelidad en Flutter y React Native.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-secondary);" aria-hidden="true">✔</span>
+                <span>Almacenamiento local seguro, cifrado de datos y arquitectura reactiva offline-first.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-secondary);" aria-hidden="true">✔</span>
+                <span>Integración de geolocalización en tiempo real, notificaciones push y wallets digitales.</span>
+              </li>
+            </ul>
+            <a href="contacto.html?service=mobile" class="btn btn--secondary">Cotizar Aplicación Móvil</a>
+          </div>
+        </article>
+
+        <!-- Servicio 3: IA & Data -->
+        <article id="ai" class="service-block" data-animate>
+          <div class="service-block__image-wrap">
+            <img src="assets/img/services/service_ai.jpg" alt="Inteligencia Artificial, RAG y Data Engineering" class="service-block__image" loading="lazy">
+          </div>
+          <div class="service-block__content">
+            <span class="badge badge--teal">AI & Machine Learning</span>
+            <h2 style="font-size: 1.75rem; margin-block: var(--space-xs); color: var(--color-light);">Inteligencia Artificial, RAG & Data Engineering</h2>
+            <p>
+              Revolucionamos tus flujos de trabajo integrando modelos LLM de última generación, recuperación aumentada con generación (RAG), bases de datos vectoriales y orquestación de agentes inteligentes capaces de razonar y ejecutar acciones complejas.
+            </p>
+            <ul class="service-block__features">
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-sand);" aria-hidden="true">✔</span>
+                <span>Arquitecturas RAG avanzadas con búsqueda híbrida y embeddings vectoriales de alta precisión.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-sand);" aria-hidden="true">✔</span>
+                <span>Agentes autónomos para atención al cliente, análisis legal, finanzas y automatización.</span>
+              </li>
+              <li class="service-block__feature-item">
+                <span class="service-block__feature-icon" style="color: var(--color-sand);" aria-hidden="true">✔</span>
+                <span>Pipelines de datos en streaming (Kafka / Flink) y dashboards analíticos predictivos en tiempo real.</span>
+              </li>
+            </ul>
+            <a href="contacto.html?service=ai-data" class="btn btn--primary">Consultar Solución de IA</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Corporativo
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="margin-bottom: var(--space-xs);">
+            <span class="logo__mark" aria-hidden="true">N</span>
+            <span>Next<span class="logo__accent">Corp</span></span>
+          </a>
+          <p>
+            Compañía de ingeniería de software especializada en Plataformas Cloud SaaS, Aplicaciones Móviles nativas y Multiplataforma, e Inteligencia Artificial con arquitecturas RAG.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Secciones</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="equipo.html">El Equipo Tech</a></li>
+            <li><a href="servicios.html">Servicios de Software</a></li>
+            <li><a href="trabajos.html">Trabajos & Clientes</a></li>
+            <li><a href="contacto.html">Contacto & Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contacto Rápido</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:engineering@nextcorp.com">engineering@nextcorp.com</a></li>
+            <li><a href="tel:+541148901234">+54 (11) 4890-1234</a></li>
+            <li><a href="contacto.html">Av. Corrientes 1450, CABA</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Next Corp. Todos los derechos reservados.</p>
+        <p>Desarrollado con estándares de ingeniería por JNprog8.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal ES Modules -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

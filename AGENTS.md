@@ -1,348 +1,173 @@
 # AGENTS.md
 
-## Propósito
+## Propósito y Rol
 
-Este archivo define las reglas operativas para agentes de IA que trabajen en este repositorio.
+Este archivo define las reglas operativas y metodológicas para agentes de IA que trabajen en este repositorio asumiendo el rol de **Desarrollador Frontend de páginas web**.
 
-El proyecto es una pagina web construida con:
+El objetivo es desarrollar, optimizar y mantener el portal web corporativo de **Next Corp** cumpliendo con las especificaciones del **Sprint 1** ("Desarrollo de un portal Web" para una empresa dedicada al **Desarrollo de Software** de vanguardia: *Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial*).
 
-- HTML5
-- CSS3
-- JavaScript Vanilla moderno
+El código producido debe ser:
 
-El objetivo es mantener un código:
-
-- mantenible;
+- mantenible y modular;
 - extensible;
-- portable;
-- accesible;
-- responsive;
-- performante;
-- verificable visual y funcionalmente;
-- fácil de comprender.
+- portable (ejecutable en cualquier navegador sin compilación obligatoria);
+- accesible (cumpliendo pautas WCAG 2.1 AA);
+- responsive (mobile-first);
+- performante y optimizado;
+- visualmente atractivo, profesional y de estándar internacional;
+- verificable visual y funcionalmente.
 
 ---
 
-## 1. Reglas prioritarias
+## 1. Contexto del Negocio y Secciones del Portal (Sprint 1)
+
+**Next Corp** opera en tres divisiones clave de la ingeniería de software:
+1. **Desarrollo Web & Plataformas Cloud SaaS**: Aplicaciones a medida, microservicios, cloud-native y dashboards corporativos.
+2. **Aplicaciones Móviles & Multiplataforma**: Soluciones nativas e híbridas de alta concurrencia para iOS y Android.
+3. **Inteligencia Artificial, RAG & Data Engineering**: Integración de modelos LLM, agentes autónomos y analítica en tiempo real.
+
+### Estructura de Secciones Requeridas
+
+```text
+1. Home (Página Principal)
+   ├── Hero / Banner con Imagen destacada o Carrusel ("Quiénes somos y lo que hacemos en Software")
+   ├── Tira 1: Resumen de Servicios Tech (Web & Cloud, Mobile, AI & Data)
+   ├── Tira 2: Resumen de Trabajos / Proyectos (5 casos de éxito de software)
+   └── Tira 3: Resumen de Quiénes Somos (Cultura de ingeniería de Next Corp)
+
+2. El Equipo
+   ├── Descripción completa y valores de ingeniería de Next Corp
+   └── Fichas de integrantes del equipo tech (mínimo 3 integrantes: CTO, Lead Mobile, Lead AI con foto, rol, biografía y enlaces)
+
+3. Servicios
+   └── Descripción completa y detallada de los servicios (mínimo 3: Web & Cloud, Mobile Apps, IA & Data)
+
+4. Trabajos / Clientes
+   ├── Showcase de trabajos y proyectos realizados (mínimo 5 proyectos de software con detalle visual y técnico)
+   └── Grid / nube de clientes y marcas tech de confianza
+
+5. Contacto
+   ├── Ubicación física del hub tecnológico con mapa integrado
+   ├── Redes sociales oficiales (GitHub, LinkedIn, Twitter/X)
+   ├── Contacto personal directo: correo electrónico corporativo y teléfono
+   └── Formulario de contacto interactivo y validado para cotizaciones de software
+```
+
+---
+
+## 2. Reglas Prioritarias para el Desarrollador Frontend
 
 Antes de modificar código:
 
 1. Inspecciona la estructura existente.
-2. Lee este archivo.
+2. Lee `GEMINI.md` y este archivo (`AGENTS.md`).
 3. Consulta la documentación relevante en `docs/`.
-4. Comprende las funcionalidades existentes.
-5. Identifica el menor conjunto de cambios necesario.
+4. Comprende los requerimientos funcionales y de diseño.
+5. Identifica el menor conjunto de cambios necesario y modular.
 6. Implementa incrementalmente.
-7. Ejecuta las verificaciones correspondientes.
+7. Ejecuta las verificaciones visuales y de interacción.
 8. Actualiza la documentación cuando el cambio sea significativo.
 
-No reconstruyas el proyecto desde cero salvo que exista una razón técnica documentada.
-
-No elimines funcionalidades existentes sin justificarlo.
-
-No introduzcas complejidad innecesaria.
+No introduzcas complejidad innecesaria ni dependencias pesadas de runtime sin justificación técnica.
 
 ---
 
-## 2. Stack
+## 3. Stack Tecnológico
 
-### Runtime
+El sitio se ejecuta en el navegador mediante tecnologías web estándares:
 
-El sitio debe ejecutarse únicamente con:
-
-- HTML5
-- CSS3
-- JavaScript Vanilla
-
-No introducir frameworks frontend como:
-
-- React
-- Vue
-- Angular
-- Svelte
-- Astro
-- Next.js
-- Nuxt
-- Bootstrap
-- Tailwind
-
-salvo que el proyecto adopte explícitamente una nueva arquitectura.
+- **HTML5**: Estructura semántica, accesibilidad nativa y SEO.
+- **CSS3**: Variables CSS (Design Tokens), Grid, Flexbox, media queries y animaciones nativas.
+- **JavaScript Vanilla**: Módulos nativos (`type="module"`), APIs estándar del navegador (`IntersectionObserver`, `FormData`, etc.).
 
 ---
 
-## 3. Fuentes de referencia
+## 4. Fuentes de Referencia y Ecosistema de Diseño Frontend
 
-Utiliza las siguientes referencias como guía práctica:
+El Desarrollador Frontend debe utilizar como referencia e inspiración las siguientes plataformas especializadas:
 
-- W3Schools HTML Tutorial / HTML Reference.
-- W3Schools CSS Tutorial / CSS Reference.
-- W3Schools JavaScript Tutorial / JavaScript Reference.
+### 4.1. Sistemas de Diseño, Layout e Inspiración Visual
+- **[Material Design 3 (M3)](https://m3.material.io/)**: Tokens de diseño, elevación de capas, paletas dinámicas, estados interactivos (`hover`, `focus`, `pressed`) y componentes.
+- **[Bootstrap](https://getbootstrap.com/)**: Patrones de grid responsivo (12 columnas), contenedores, flexbox utilities y breakpoints estándar (`sm`, `md`, `lg`, `xl`, `xxl`).
+- **[Awwwards](https://www.awwwards.com/)**: Inspiración estética de clase mundial, diseño editorial interactivo y micro-interacciones.
+- **[Dribbble](https://dribbble.com/)**: Referencias visuales contemporáneas para portales corporativos, agencias creativas y exhibición de proyectos.
 
-Para cuestiones que dependan de estándares reales de la plataforma web, prioriza:
+### 4.2. Color y Tipografía
+- **[Coolors](https://coolors.co/)**: Paletas cromáticas profesionales y verificación de ratios de contraste WCAG accesibles.
 
-1. WHATWG / W3C.
-2. MDN.
-3. W3Schools.
+### 4.3. Animación, Motion y Curvas
+- **[Animista](https://animista.net/)**: Colección de micro-animaciones CSS y keyframes listos para aplicar.
+- **[GreenSock (GSAP)](https://greensock.com/)**: Referencia para animaciones coordinadas, secuencias fluidas y scroll interactivo.
+- **[Cubic-bezier.com](https://cubic-bezier.com/)**: Definición y ajuste de curvas de aceleración y timing functions para transiciones suaves y naturales.
+- **[LottieFiles](https://lottiefiles.com/)**: Animaciones vectoriales ligeras para enriquecer estados visuales, loaders y feedback interactivo.
 
-No copies patrones de W3Schools que contradigan buenas prácticas modernas.
+### 4.4. Iconografía y Recursos Vectoriales
+- **[Lucide Icons](https://lucide.dev/)**: Set de iconos SVG modernos, limpios y consistentes.
+- **[Heroicons](https://heroicons.com/)**: Iconografía de alta calidad en estilos outline y solid.
+- **[SVG Repo](https://www.svgrepo.com/)**: Repositorio de vectores e ilustraciones libres en formato SVG optimizado.
 
-La documentación debe servir como referencia, no como motivo para introducir malas prácticas.
-
----
-
-## 4. HTML
-
-Priorizar HTML semántico y accesible.
-
-Preferir elementos con significado:
-
-- `header`
-- `nav`
-- `main`
-- `section`
-- `article`
-- `aside`
-- `figure`
-- `figcaption`
-- `footer`
-- `form`
-- `button`
-- `a`
-
-Reglas:
-
-- Utilizar `<a>` para navegación.
-- Utilizar `<button>` para acciones.
-- Mantener una jerarquía coherente de headings.
-- Usar `alt` apropiado en imágenes.
-- Utilizar HTML nativo antes que ARIA cuando sea posible.
-- No utilizar elementos semánticos únicamente como decoración.
-- No utilizar `<div>` como sustituto de controles interactivos.
-- Mantener el documento válido y estructurado.
-
-Referencia: `docs/standards.md`.
+### 4.5. Estándares y Documentación Web
+- **WHATWG / W3C** y **MDN Web Docs** como fuentes canónicas de especificaciones.
+- **W3Schools** como referencia práctica y pedagógica.
 
 ---
 
-## 5. CSS
+## 5. Directrices de HTML
 
-Priorizar:
-
-- CSS Custom Properties.
-- Mobile-first.
-- Flexbox.
-- CSS Grid.
-- Media queries.
-- Unidades relativas.
-- `clamp()` cuando aporte valor.
-- Selectores simples.
-- Bajo nivel de especificidad.
-
-Evitar:
-
-- `!important` sin justificación.
-- IDs para estilos.
-- Selectores excesivamente específicos.
-- CSS duplicado.
-- Valores repetidos sin token.
-- Hacks dependientes de un navegador.
-- JavaScript para resolver problemas que CSS puede resolver correctamente.
-
-Referencia: `docs/design-system.md` y `docs/standards.md`.
+- Utilizar etiquetas semánticas con significado estructural: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<figure>`, `<figcaption>`, `<footer>`, `<form>`, `<button>`, `<a>`.
+- Emplear `<a>` exclusivamente para navegación y `<button>` para acciones interactivas.
+- Mantener una jerarquía estricta de encabezados (`h1` único por página, seguido de `h2`, `h3`, etc.).
+- Proporcionar atributos `alt` descriptivos en imágenes informativas y `alt=""` en decorativas.
+- Priorizar controles nativos de formulario con etiquetas asociadas mediante `<label for="...">`.
+- Documento válido y estructurado (`<!doctype html>`, `<html lang="es">`).
 
 ---
 
-## 6. JavaScript
+## 6. Directrices de CSS
 
-Utilizar JavaScript moderno y Vanilla.
-
-Preferir:
-
-- ES Modules.
-- `const` y `let`.
-- funciones pequeñas;
-- dependencias explícitas;
-- `addEventListener()`;
-- APIs estándar del navegador;
-- `IntersectionObserver` cuando corresponda;
-- separación entre comportamiento y markup.
-
-Evitar:
-
-- inline event handlers;
-- variables globales innecesarias;
-- código duplicado;
-- selectores frágiles;
-- manipulación excesiva del DOM;
-- dependencias innecesarias;
-- abstracciones prematuras.
-
-Usar `data-*` para conectar comportamiento JS con elementos HTML cuando resulte apropiado.
+- Centralizar el sistema de diseño en Custom Properties dentro de `src/css/variables.css`.
+- Enfoque **Mobile-First**: estilos base para mobile y media queries progresivas (`min-width`).
+- Utilizar **CSS Grid** para estructuras bidimensionales (secciones, grids de servicios y proyectos) y **Flexbox** para componentes y alineaciones unidimensionales.
+- Utilizar `clamp()` para tipografía fluida y espaciados responsivos cuando mejore la experiencia.
+- Mantener especificidad baja con selectores simples basados en clases; evitar `!important` e IDs para estilos.
+- Curvas de transición calculadas mediante `cubic-bezier()` y animaciones respetuosas con `@media (prefers-reduced-motion: reduce)`.
 
 ---
 
-## 7. Arquitectura
+## 7. Directrices de JavaScript
 
-La arquitectura debe favorecer:
+- Estructurar el código en **ES Modules** (`import` / `export`).
+- Mantener `src/js/main.js` como punto central de inicialización y composición.
+- Utilizar `const` y `let`, evitando variables globales.
+- Conectar markup y comportamiento mediante atributos `data-*` (ejemplo: `data-carousel-next`, `data-nav-toggle`).
+- Utilizar `addEventListener` y APIs nativas como `IntersectionObserver` para lazy loading y animaciones al hacer scroll.
+- Validación de formularios del lado del cliente con feedback visual y accesible en tiempo real.
+
+---
+
+## 8. Arquitectura
+
+La arquitectura mantiene una clara separación de responsabilidades:
 
 ```text
-HTML → estructura y contenido
-CSS  → presentación y layout
-JS   → comportamiento
-Docs  → conocimiento del proyecto
+HTML → Estructura, contenido y semántica
+CSS  → Presentación, diseño visual, responsive y animaciones
+JS   → Comportamiento modular e interactividad
+Docs → Conocimiento, decisiones de diseño y arquitectura
 ```
 
-No mezclar responsabilidades sin necesidad.
+---
 
-Utilizar módulos JavaScript cuando la cantidad de comportamiento lo justifique.
+## 9. Accesibilidad (a11y)
 
-No hace falta crear una arquitectura similar a un framework para una página web sencilla.
-
-La modularidad debe reducir el acoplamiento, no aumentar la complejidad.
+- Navegación completa mediante teclado (Tab, Shift+Tab, Enter, Space, Escape).
+- Indicadores de foco visibles y con buen contraste (`:focus-visible`).
+- Contraste cromático validado según WCAG 2.1 AA (mínimo 4.5:1 para texto normal y 3:1 para texto grande/componentes).
+- Iconos decorativos con `aria-hidden="true"` e interactivos con `aria-label` o texto alternativo visible.
 
 ---
 
-## 8. Diseño
+## 10. Documentación
 
-La pagina web debe guiar al usuario mediante:
-
-```text
-Atención
-↓
-Comprensión
-↓
-Demostración
-↓
-Confianza
-↓
-Deseo
-↓
-Conversión
-```
-
-Utilizar únicamente los patrones que tengan sentido para el producto.
-
-Referencia: `docs/patterns.md`.
-
----
-
-## 9. Accesibilidad
-
-Toda funcionalidad interactiva debe ser usable mediante teclado.
-
-Considerar:
-
-- focus visible;
-- orden lógico de tabulación;
-- contraste;
-- nombres accesibles;
-- HTML semántico;
-- estados interactivos;
-- `prefers-reduced-motion`;
-- formularios accesibles;
-- navegación mediante teclado.
-
-No utilizar ARIA para compensar HTML incorrecto.
-
----
-
-## 10. Responsive Design
-
-Desarrollar mobile-first.
-
-La interfaz debe funcionar correctamente en:
-
-- mobile;
-- tablet;
-- desktop;
-- pantallas grandes.
-
-No depender de tamaños de viewport específicos para garantizar el funcionamiento.
-
----
-
-## 11. Performance
-
-Priorizar:
-
-- imágenes optimizadas;
-- dimensiones explícitas de imágenes;
-- lazy loading cuando corresponda;
-- JavaScript mínimo;
-- CSS eficiente;
-- evitar trabajo innecesario durante scroll;
-- evitar dependencias externas innecesarias.
-
-No realizar micro-optimizaciones que perjudiquen la legibilidad.
-
----
-
-## 12. Cambios
-
-Antes de editar:
-
-- identifica archivos afectados;
-- identifica posibles dependencias;
-- identifica riesgos de regresión.
-
-Después de editar:
-
-- revisa errores de consola;
-- verifica HTML/CSS/JS;
-- verifica responsive;
-- verifica accesibilidad;
-- actualiza documentación significativa.
-
-No modifiques archivos no relacionados con la tarea.
-
----
-
-## 13. Documentación
-
-Toda documentación generada por el agente debe estar escrita en español.
-
-Actualizar documentación cuando cambie:
-
-- arquitectura;
-- estructura;
-- sistema visual;
-- patrones UX;
-- comportamiento;
-- estrategia de verificación;
-- estándares internos.
-
-No documentar cambios triviales.
-
-La documentación debe explicar principalmente:
-
-**qué existe, por qué existe y qué restricciones debe respetar.**
-
----
-
-## 15. Regla de simplicidad
-
-Ante dos soluciones técnicamente válidas:
-
-> Preferir la solución más simple que mantenga claridad, accesibilidad, extensibilidad y verificabilidad.
-
-No sobreingenierizar.
-
-No crear abstracciones para problemas que todavía no existen.
-
----
-
-## 16. Orden de decisión
-
-Cuando existan dudas, priorizar:
-
-1. Estándares web.
-2. Accesibilidad.
-3. Funcionalidad existente.
-4. Mantenibilidad.
-5. Extensibilidad.
-6. Portabilidad.
-7. Performance.
-8. UX.
-9. Estética.
-
-La estética nunca debe justificar romper semántica, accesibilidad o mantenibilidad.
+Toda la documentación técnica producida debe redactarse en **español**.
+Mantener actualizados los archivos de `docs/` (`architecture.md`, `design-system.md`, `patterns.md`, `standards.md`) ante cualquier cambio de diseño, arquitectura o componentes.

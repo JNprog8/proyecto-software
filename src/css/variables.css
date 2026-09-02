@@ -1,69 +1,143 @@
-/* ============================================================
-   ZeroZone — Design Tokens
-   Cambiar de temática/campaña = editar este archivo únicamente.
-   ============================================================ */
-
 :root {
-  /* --- Color: fondo y superficie --- */
-  --zz-bg: #0d0b14;
-  --zz-surface: #16121f;
-  --zz-surface-raised: #1e1830;
-  --zz-border: #2b2440;
+  /* ==========================================================================
+     Design Tokens - Paleta Armónica UX/UI Solicitada
+     #28536B (Azul Petróleo), #C2948A (Dusty Rose), #7EA8BE (Azul Aero),
+     #F6F0ED (Blanco Alabastro / Fondo Claro), #BBB193 (Sage Arena)
+     ========================================================================== */
+  
+  /* Colores Base de la Paleta */
+  --color-primary: #28536B;            /* Azul petróleo / Navy profundo corporativo */
+  --color-primary-dark: #173241;       /* Azul petróleo oscuro para fondos y headers */
+  --color-primary-light: #3a6f8c;      /* Azul petróleo brillante */
 
-  /* --- Color: acentos --- */
-  --zz-accent-primary: #ff3d81;   /* magenta marquesina */
-  --zz-accent-primary-dim: #b32b5c;
-  --zz-accent-secondary: #00e5c7; /* cian fósforo CRT */
+  --color-secondary: #C2948A;          /* Dusty Rose / Arcilla cálida (Acento y botones secundarios) */
+  --color-secondary-dark: #a8766b;
+  --color-secondary-light: #d6b2aa;
 
-  /* --- Color: texto --- */
-  --zz-text: #f2eef7;
-  --zz-text-muted: #8b84a3;
-  --zz-text-on-accent: #0d0b14;
+  --color-tertiary: #7EA8BE;           /* Azul Aero / Celeste suave (Links, badges, highlights) */
+  --color-tertiary-dark: #5c8b9f;
+  --color-tertiary-light: #a3c4d5;
 
-  /* --- Color: estado --- */
-  --zz-error: #ff6b6b;
-  --zz-success: #00e5c7;
+  --color-light: #F6F0ED;              /* Blanco Alabastro / Lino suave (Superficie clara y textos) */
+  --color-sand: #BBB193;               /* Sage Arena / Dorado suave (Detalles sutiles, bordes, tags) */
 
-  /* --- Tipografía --- */
-  --zz-font-display: "Segoe UI", system-ui, sans-serif;
-  --zz-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --zz-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", ui-monospace, monospace;
+  /* Roles Tonales Material Design 3 */
+  --md-sys-color-primary: var(--color-primary);
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d8e5ed;
+  --md-sys-color-on-primary-container: #102430;
 
-  --zz-fs-900: clamp(2.75rem, 2rem + 3vw, 4.5rem);   /* H1 */
-  --zz-fs-800: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);  /* H2 */
-  --zz-fs-700: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);/* H3 */
-  --zz-fs-500: 1.125rem;  /* body destacado */
-  --zz-fs-400: 1rem;      /* body */
-  --zz-fs-300: 0.875rem;  /* caption / small */
+  --md-sys-color-secondary: var(--color-secondary);
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #faebe8;
+  --md-sys-color-on-secondary-container: #44241d;
 
-  --zz-lh-tight: 1.1;
-  --zz-lh-normal: 1.55;
+  --md-sys-color-tertiary: var(--color-tertiary);
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #e6f0f5;
+  --md-sys-color-on-tertiary-container: #1b3542;
 
-  /* --- Spacing (escala de 8px) --- */
-  --zz-space-1: 0.5rem;
-  --zz-space-2: 1rem;
-  --zz-space-3: 1.5rem;
-  --zz-space-4: 2rem;
-  --zz-space-5: 3rem;
-  --zz-space-6: 4.5rem;
-  --zz-space-7: 6rem;
+  /* Superficies y Fondos en Modo Dark/High-Tech Elegante */
+  --md-sys-color-background: #0f1c24;
+  --md-sys-color-on-background: var(--color-light);
+  --md-sys-color-surface: #152632;
+  --md-sys-color-surface-container: #1b3140;
+  --md-sys-color-surface-container-high: #243e50;
+  --md-sys-color-on-surface: var(--color-light);
+  --md-sys-color-on-surface-variant: #b8c9d4;
+  --md-sys-color-outline: rgba(187, 177, 147, 0.28);
+  --md-sys-color-outline-variant: rgba(126, 168, 190, 0.2);
 
-  /* --- Layout --- */
-  --zz-max-width: 72rem;
-  --zz-radius-sm: 6px;
-  --zz-radius-md: 8px;
-  --zz-radius-lg: 8px;
+  /* Colores de Acento y Marcadores */
+  --color-accent-blue: var(--color-tertiary);
+  --color-accent-orange: var(--color-secondary);
+  --color-accent-teal: #48bca6;
+  --color-accent-sand: var(--color-sand);
 
-  /* --- Efectos --- */
-  --zz-shadow-card: 0 8px 24px -8px rgb(0 0 0 / 0.5);
-  --zz-glow-primary: 0 0 0 1px var(--zz-accent-primary),
-                      0 0 24px -4px var(--zz-accent-primary);
-  --zz-transition: 180ms ease;
-}
+  /* Estados Funcionales */
+  --color-success: #2ec4b6;
+  --color-success-bg: rgba(46, 196, 182, 0.15);
+  --color-warning: #e7a93c;
+  --color-error: #e76f51;
+  --color-error-bg: rgba(231, 111, 81, 0.15);
 
-/* Respeta la preferencia de movimiento reducido del sistema */
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --zz-transition: 0ms;
-  }
+  /* ==========================================================================
+     Tipografía y Jerarquía Modular (Outfit + Inter)
+     ========================================================================== */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Outfit", "Inter", sans-serif;
+
+  --font-size-display: clamp(2.5rem, 5vw + 1rem, 4.25rem);
+  --font-size-h1: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+  --font-size-h2: clamp(1.6rem, 2.5vw + 0.5rem, 2.35rem);
+  --font-size-h3: clamp(1.25rem, 1.5vw + 0.5rem, 1.75rem);
+  --font-size-h4: 1.15rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-caption: 0.75rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+
+  /* ==========================================================================
+     Espaciado Proporcional (M3 Base 8px)
+     ========================================================================== */
+  --space-2xs: 0.25rem; /* 4px */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 3rem;     /* 48px */
+  --space-2xl: 4.5rem;  /* 72px */
+  --space-3xl: 6rem;    /* 96px */
+
+  /* ==========================================================================
+     Elevación y Sombras (Material Design 3)
+     ========================================================================== */
+  --elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.28), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.32), 0 1px 3px 0 rgba(0, 0, 0, 0.45);
+  --elevation-4: 0 6px 10px 4px rgba(0, 0, 0, 0.35), 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+  --elevation-5: 0 8px 12px 6px rgba(0, 0, 0, 0.38), 0 4px 4px 0 rgba(0, 0, 0, 0.55);
+
+  /* Sombras Cromáticas con la paleta de diseño */
+  --glow-primary: 0 0 25px rgba(126, 168, 190, 0.35);
+  --glow-secondary: 0 0 25px rgba(194, 148, 138, 0.35);
+
+  /* ==========================================================================
+     Radios de Borde
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Curvas de Aceleración y Motion (Inspirado en Lando Norris / Offbrand)
+     ========================================================================== */
+  --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+  --cubic-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 180ms var(--cubic-smooth);
+  --transition-normal: 350ms var(--cubic-smooth);
+  --transition-slow: 600ms var(--cubic-default);
+  --transition-page: 400ms var(--cubic-default);
+
+  /* ==========================================================================
+     Z-Index Layering
+     ========================================================================== */
+  --z-base: 1;
+  --z-card: 10;
+  --z-sticky: 100;
+  --z-header: 1000;
+  --z-loader-bar: 1100;
+  --z-modal: 2000;
 }

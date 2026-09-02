@@ -1,303 +1,79 @@
-# Design System
+# Design System del Portal Web (Next Corp)
 
-## 1. Objetivo
+## 1. Objetivo y Rol
 
-El sistema visual debe proporcionar coherencia entre todas las secciones de la landing.
-
-Debe facilitar:
-
-- consistencia;
-- mantenimiento;
-- extensión;
-- responsive design;
-- cambios globales.
-
-Las decisiones visuales compartidas deben centralizarse.
+El presente Sistema de Diseño proporciona un lenguaje visual coherente, escalable y accesible para el **Desarrollador Frontend de páginas web**. Su propósito es garantizar la excelencia estética y funcional en todas las páginas del portal corporativo de **Next Corp** (**Desarrollo de Software**, abarcando *Desarrollo Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial & Data Engineering*), conforme a los requerimientos del **Sprint 1** y la metodología **Spec-Driven Development (SDD)**.
 
 ---
 
-# 2. Design Tokens
+## 2. Paleta de Colores UX/UI y Roles Tonales
 
-Los valores reutilizables deben definirse mediante CSS Custom Properties.
+La identidad cromática se basa en una paleta armónica refinada de cinco colores esenciales:
 
-Ejemplo conceptual:
+| Token | Código HEX | Rol Semántico en la Interfaz |
+| :--- | :--- | :--- |
+| `--color-primary` | `#28536B` | **Azul Petróleo / Navy Profundo:** Identidad de marca, solidez técnica, encabezados y botones de acción principal. |
+| `--color-secondary` | `#C2948A` | **Dusty Rose / Arcilla Cálida:** Color de acento cálido, botones secundarios, badges de Apps Móviles y elementos destacados. |
+| `--color-tertiary` | `#7EA8BE` | **Azul Aero / Celeste Suave:** Enlaces, bordes de foco interactivo, badges de Cloud y detalles luminosos. |
+| `--color-light` | `#F6F0ED` | **Blanco Alabastro / Lino Suave:** Tipografía principal de alto contraste, superficies limpias y fondos claros. |
+| `--color-sand` | `#BBB193` | **Sage Arena / Dorado Suave:** Bordes tenues, badges de Inteligencia Artificial & Data y marcadores sutiles. |
+
+### 2.1. Tokens en CSS (`src/css/variables.css`)
 
 ```css
 :root {
-  --color-primary: ...;
-  --color-primary-contrast: ...;
+  --color-primary: #28536B;
+  --color-secondary: #C2948A;
+  --color-tertiary: #7EA8BE;
+  --color-light: #F6F0ED;
+  --color-sand: #BBB193;
 
-  --color-background: ...;
-  --color-surface: ...;
-  --color-text: ...;
-  --color-muted: ...;
-
-  --font-family-base: ...;
-  --font-family-heading: ...;
-
-  --space-xs: ...;
-  --space-sm: ...;
-  --space-md: ...;
-  --space-lg: ...;
-  --space-xl: ...;
-
-  --radius-sm: ...;
-  --radius-md: ...;
-  --radius-lg: ...;
-
-  --shadow-sm: ...;
-  --shadow-md: ...;
-
-  --content-max-width: ...;
+  /* Superficies en Dark Mode Elegante */
+  --md-sys-color-background: #0f1c24;
+  --md-sys-color-surface: #152632;
+  --md-sys-color-surface-container: #1b3140;
+  --md-sys-color-on-surface: var(--color-light);
+  --md-sys-color-outline: rgba(187, 177, 147, 0.28);
 }
 ```
 
-Los valores reales deben reflejar la identidad visual del producto.
-
 ---
 
-# 3. Colores
+## 3. Movimiento, Transiciones y Micro-Interacciones (Inspirado en Lando Norris)
 
-El sistema debe distinguir conceptualmente:
-
-- brand;
-- background;
-- surface;
-- text;
-- muted text;
-- border;
-- success;
-- warning;
-- error.
-
-No utilizar colores arbitrarios directamente dentro de cada componente cuando exista un token adecuado.
-
----
-
-# 4. Tipografía
-
-Definir:
-
-- familia principal;
-- familia de headings si corresponde;
-- tamaños;
-- pesos;
-- line-height;
-- letter-spacing cuando sea necesario.
-
-La escala debe proporcionar jerarquía clara:
-
-```text
-Display
-H1
-H2
-H3
-Body
-Small
-Caption
-```
-
-Los tamaños responsive pueden utilizar `clamp()` cuando mejore la adaptación.
-
----
-
-# 5. Espaciado
-
-Utilizar una escala consistente.
-
-Ejemplo conceptual:
-
-```text
-xs
-sm
-md
-lg
-xl
-2xl
-```
-
-Evitar introducir un valor nuevo para cada componente sin necesidad.
-
----
-
-# 6. Contenedores
-
-Las secciones deben utilizar un contenedor común cuando corresponda.
-
-Ejemplo conceptual:
-
+### 3.1. Hero Motion Blur
+Durante la rotación de diapositivas en el Hero, la imagen activa ejecuta un keyframe cinemático de desenfoque y escala:
 ```css
-.container {
-  width: min(100% - 2rem, var(--content-max-width));
-  margin-inline: auto;
+@keyframes heroMotionBlur {
+  0% {
+    opacity: 0.15;
+    filter: blur(8px);
+    transform: scale(1.06) translateX(12px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) translateX(0);
+  }
 }
 ```
 
-El valor final debe adaptarse al diseño real.
+### 3.2. Transición Fluida de Página y Barra Superior (Estilo High-End)
+Inspirado en los principios de movimiento de `landonorris.com`:
+1. **Header Inmutable y Estable:** El Top Bar (`.site-header`) permanece fijo y estable (`z-index: var(--z-header)`), libre de parpadeos o animaciones duplicadas al navegar entre páginas.
+2. **Top Progress Bar (`.page-progress-bar`):** Una línea ultra-fina (3px) con gradiente `--color-secondary` a `--color-tertiary` viaja por la parte superior para dar feedback inmediato de carga.
+3. **Smooth Content Reveal (`.page-content`):** El contenedor principal `<main id="main">` se desvanece suavemente al salir (`is-page-leaving`) y entra con un reveal cinemático (`is-page-entering`) con curva fluida `cubic-bezier(0.65, 0.05, 0, 1)` y ligero desenfoque inicial (`filter: blur(2px) -> 0`).
 
 ---
 
-# 7. Botones
+## 4. Componentes y Patrones UI del Portal
 
-Los botones deben tener estados claramente diferenciados:
-
-```text
-default
-hover
-focus-visible
-active
-disabled
-```
-
-Deben mantener:
-
-- contraste;
-- área táctil razonable;
-- feedback visual;
-- accesibilidad mediante teclado.
-
-Tipos recomendados:
-
-```text
-Primary
-Secondary
-Ghost
-```
-
-No crear variantes adicionales hasta que exista una necesidad real.
-
----
-
-# 8. Cards
-
-Las cards deben utilizarse cuando realmente exista una agrupación conceptual.
-
-No convertir toda sección en un conjunto de cards.
-
-Una card puede representar:
-
-- feature;
-- testimonio;
-- pricing plan;
-- contenido relacionado.
-
----
-
-# 9. Formularios
-
-Los campos deben tener:
-
-- label;
-- estado normal;
-- focus;
-- error;
-- disabled cuando corresponda.
-
-Los mensajes de error deben ser claros y útiles.
-
----
-
-# 10. Navegación
-
-La navegación debe proporcionar:
-
-- identidad del sitio;
-- acceso a secciones relevantes;
-- CTA principal cuando corresponda;
-- comportamiento responsive;
-- focus visible.
-
-El menú móvil debe mantener comportamiento accesible.
-
----
-
-# 11. Iconografía
-
-Preferir iconos consistentes.
-
-Los iconos decorativos no deben generar ruido para tecnologías asistivas.
-
-Cuando un icono sea informativo, debe existir una alternativa textual accesible.
-
----
-
-# 12. Imágenes
-
-Las imágenes deben:
-
-- tener propósito claro;
-- estar optimizadas;
-- conservar proporciones;
-- utilizar `alt` apropiado;
-- evitar desplazamientos de layout.
-
----
-
-# 13. Responsive Design
-
-El sistema visual debe funcionar desde mobile hacia desktop.
-
-No crear variantes completamente independientes para cada viewport.
-
-Preferir componentes fluidos.
-
-Utilizar breakpoints cuando exista un cambio real de layout, no para cada tamaño de dispositivo.
-
----
-
-# 14. Motion
-
-Las animaciones deben reforzar:
-
-- jerarquía;
-- feedback;
-- continuidad;
-- comprensión.
-
-No deben distraer.
-
-Respetar:
-
-```css
-@media (prefers-reduced-motion: reduce);
-```
-
----
-
-# 15. Componentes
-
-Los componentes visuales deben compartir tokens.
-
-Ejemplo conceptual:
-
-```text
-Button
-Card
-Badge
-Navigation
-Accordion
-Testimonial
-PricingCard
-SectionHeader
-```
-
-Crear un componente conceptual solamente cuando exista una responsabilidad visual reutilizable.
-
-No crear abstracciones JavaScript para componentes puramente visuales.
-
----
-
-# 16. Regla de consistencia
-
-Antes de introducir un nuevo:
-
-- color;
-- tamaño;
-- spacing;
-- radius;
-- shadow;
-- componente;
-
-comprobar si el sistema existente ya posee una alternativa adecuada.
-
-La consistencia tiene prioridad sobre la variedad.
+1. **Header y Menú Responsivo:** Barra fija superior con efecto glassmorphism, indicador de página activa (`is-active`) y menú hamburguesa accesible para dispositivos móviles.
+2. **Hero Carrusel:** Slider con temporizador automático configurado en **7.5 a 8 segundos** (`AUTOPLAY_DELAY = 7500ms`), pausa automática al posar el mouse o ganar foco (WCAG 2.1 AA) y navegación por teclado.
+3. **Showcase de Proyectos y Filtros:** Grilla de 12 columnas con tarjetas elevadas M3 y filtrado dinámico (`all`, `web-cloud`, `mobile`, `ai-data`).
+4. **Formulario de Contacto Interactivo:**
+   - Atributos `method="post"` y `action="/api/contact"`.
+   - Validación accesible de campos en tiempo real.
+   - Envío asíncrono con estado de carga.
+   - Vaciado total de inputs (`form.reset()`).
+   - Ocultamiento suave del formulario (`.form-fade-out`) y revelación del panel de confirmación (`.contact-success-card`) con opción interactiva para enviar otra consulta.

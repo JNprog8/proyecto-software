@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajos & Clientes — Next Corp</title>
+  <meta name="description" content="Casos de éxito y proyectos destacados de desarrollo de software, plataformas cloud, apps móviles e inteligencia artificial por Next Corp.">
+  <meta name="author" content="Next Corp">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Modulares -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Fondo Animado Atmosférico con Efecto Blur -->
+  <div class="site-background" aria-hidden="true">
+    <img src="assets/img/background-animated.gif" alt="" class="site-background__media">
+    <div class="site-background__overlay"></div>
+  </div>
+
+  <!-- Barra de Progreso de Navegación Superior (Top Progress Bar) -->
+  <div class="page-progress-bar" aria-hidden="true"></div>
+
+  <!-- Enlace accesible para saltar al contenido principal -->
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- ==========================================================================
+       Header y Navegación Principal
+       ========================================================================== -->
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Next Corp, ir al inicio">
+        <span class="logo__mark" aria-hidden="true">N</span>
+        <span>Next<span class="logo__accent">Corp</span></span>
+      </a>
+
+      <!-- Navegación Desktop -->
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="index.html" class="site-nav__link" data-nav-link>Home</a>
+        <a href="equipo.html" class="site-nav__link" data-nav-link>El Equipo</a>
+        <a href="servicios.html" class="site-nav__link" data-nav-link>Servicios</a>
+        <a href="trabajos.html" class="site-nav__link is-active" data-nav-link>Trabajos & Clientes</a>
+        <a href="contacto.html" class="site-nav__link" data-nav-link>Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-sm">
+        <a href="contacto.html" class="btn btn--primary" id="header-cta-btn">Cotizar Proyecto</a>
+        <button type="button" class="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" data-nav-toggle>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div class="mobile-nav" data-mobile-nav aria-label="Menú móvil">
+      <a href="index.html" class="mobile-nav__link" data-nav-link>Home</a>
+      <a href="equipo.html" class="mobile-nav__link" data-nav-link>El Equipo</a>
+      <a href="servicios.html" class="mobile-nav__link" data-nav-link>Servicios</a>
+      <a href="trabajos.html" class="mobile-nav__link is-active" data-nav-link>Trabajos & Clientes</a>
+      <a href="contacto.html" class="mobile-nav__link" data-nav-link>Contacto</a>
+    </div>
+  </header>
+
+  <main id="main" class="page-content" style="padding-top: calc(var(--header-height, 74px) + var(--space-xl));">
+    <!-- ==========================================================================
+         Encabezado de Proyectos & Portafolio
+         ========================================================================== -->
+    <section class="section" aria-label="Portafolio de Proyectos de Software">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Portafolio de Proyectos</p>
+          <h1 class="section-title">Trabajos Realizados y Casos de Éxito</h1>
+          <p class="section-subtitle">
+            Explorá cómo ayudamos a startups y empresas consolidadas a transformar sus operaciones con software escalable, apps intuitivas e IA de vanguardia.
+          </p>
+        </div>
+
+        <!-- Filtros de Categoría Tech -->
+        <div class="portfolio-filters" role="group" aria-label="Filtrar proyectos por especialidad de software" data-animate>
+          <button type="button" class="filter-btn is-active" data-portfolio-filter="all" aria-pressed="true">Todos</button>
+          <button type="button" class="filter-btn" data-portfolio-filter="web-cloud" aria-pressed="false">Web & Cloud</button>
+          <button type="button" class="filter-btn" data-portfolio-filter="mobile" aria-pressed="false">Apps Móviles</button>
+          <button type="button" class="filter-btn" data-portfolio-filter="ai-data" aria-pressed="false">IA & Datos</button>
+        </div>
+
+        <!-- Grid de Proyectos (5 Casos de Éxito Requeridos) -->
+        <div class="grid grid--3-col" data-portfolio-grid>
+          
+          <!-- Proyecto 1: CloudScale Analytics -->
+          <article class="project-card" data-portfolio-item="web-cloud" data-animate data-delay="100">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_cloud_analytics.jpg" alt="Dashboard SaaS CloudScale Analytics" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge project-card__category">Web & Cloud</span>
+              <h2 class="project-card__title">CloudScale Analytics</h2>
+              <p class="project-card__desc">
+                Plataforma SaaS en tiempo real para observabilidad distribuida, telemetría y monitoreo de clústeres Kubernetes con alertas automatizadas.
+              </p>
+              <div class="project-card__client">
+                <strong>Cliente:</strong> DataFlow Inc · <em>Arquitectura Serverless & WebSockets</em>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 2: FinSecure Pay -->
+          <article class="project-card" data-portfolio-item="mobile" data-animate data-delay="200">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_fintech_app.jpg" alt="Billetera digital móvil FinSecure Pay" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--orange project-card__category">Apps Móviles</span>
+              <h2 class="project-card__title">FinSecure Pay Mobile</h2>
+              <p class="project-card__desc">
+                Billetera digital multiplataforma (iOS & Android) con pagos sin contacto mediante código QR, biometría facial y cifrado financiero de extremo a extremo.
+              </p>
+              <div class="project-card__client">
+                <strong>Cliente:</strong> NeoBank Global · <em>Flutter & Go Microservicios</em>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 3: Nexus AI Copilot -->
+          <article class="project-card" data-portfolio-item="ai-data" data-animate data-delay="300">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_ai_copilot.jpg" alt="Copiloto corporativo Nexus AI" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--teal project-card__category">IA & Datos</span>
+              <h2 class="project-card__title">Nexus AI Copilot</h2>
+              <p class="project-card__desc">
+                Asistente inteligente con arquitectura RAG y base de datos vectorial para análisis, síntesis y extracción automatizada de contratos legales de alta complejidad.
+              </p>
+              <div class="project-card__client">
+                <strong>Cliente:</strong> LegalLex Enterprise · <em>LLM Multi-Agent & Qdrant</em>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 4: OmniCommerce Engine -->
+          <article class="project-card" data-portfolio-item="web-cloud" data-animate data-delay="100">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_ecommerce.jpg" alt="Motor transaccional distribuido OmniCommerce Engine" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge project-card__category">Web & Cloud</span>
+              <h2 class="project-card__title">OmniCommerce Engine</h2>
+              <p class="project-card__desc">
+                Motor distribuido de comercio electrónico capaz de procesar más de 20,000 transacciones por segundo con inventario unificado y tolerancia a fallos.
+              </p>
+              <div class="project-card__client">
+                <strong>Cliente:</strong> RetailMax Group · <em>Node.js, Redis & PostgreSQL</em>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 5: HealthPulse Telemed -->
+          <article class="project-card" data-portfolio-item="ai-data" data-animate data-delay="200">
+            <div class="project-card__image-wrap">
+              <img src="assets/img/portfolio/project_telemed.jpg" alt="Plataforma de telemedicina con IA HealthPulse" class="project-card__image" loading="lazy">
+            </div>
+            <div class="project-card__body">
+              <span class="badge badge--teal project-card__category">IA & Datos</span>
+              <h2 class="project-card__title">HealthPulse Telemed</h2>
+              <p class="project-card__desc">
+                Plataforma de telemedicina segura con historia clínica electrónica interoperable, videoconsultas encriptadas y asistencia diagnóstica potenciada por IA.
+              </p>
+              <div class="project-card__client">
+                <strong>Cliente:</strong> Global Care Systems · <em>WebRTC & Modelos Predictivos</em>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Carrusel Continuo de Marcas y Clientes (Infinite Marquee) -->
+        <div class="clients-section" data-animate>
+          <p class="eyebrow" style="margin-bottom: var(--space-lg);">Empresas que escalan su tecnología con Next Corp</p>
+          <div class="clients-marquee" aria-label="Carrusel continuo de clientes y marcas de confianza">
+            <div class="clients-marquee__track">
+              <!-- Grupo 1 -->
+              <div class="clients-marquee__group">
+                <div class="client-logo" title="Google"><img src="assets/img/clients/client_google.svg" alt="Logo de Google"></div>
+                <div class="client-logo" title="Microsoft"><img src="assets/img/clients/client_microsoft.svg" alt="Logo de Microsoft"></div>
+                <div class="client-logo" title="Amazon"><img src="assets/img/clients/client_amazon.svg" alt="Logo de Amazon"></div>
+                <div class="client-logo" title="Stripe"><img src="assets/img/clients/client_stripe.svg" alt="Logo de Stripe"></div>
+                <div class="client-logo" title="Airbnb"><img src="assets/img/clients/client_airbnb.svg" alt="Logo de Airbnb"></div>
+                <div class="client-logo" title="Envato"><img src="assets/img/clients/client_envato.svg" alt="Logo de Envato"></div>
+              </div>
+              <!-- Grupo 2 (Duplicado para loop continuo fluido) -->
+              <div class="clients-marquee__group" aria-hidden="true">
+                <div class="client-logo" title="Google"><img src="assets/img/clients/client_google.svg" alt="Logo de Google"></div>
+                <div class="client-logo" title="Microsoft"><img src="assets/img/clients/client_microsoft.svg" alt="Logo de Microsoft"></div>
+                <div class="client-logo" title="Amazon"><img src="assets/img/clients/client_amazon.svg" alt="Logo de Amazon"></div>
+                <div class="client-logo" title="Stripe"><img src="assets/img/clients/client_stripe.svg" alt="Logo de Stripe"></div>
+                <div class="client-logo" title="Airbnb"><img src="assets/img/clients/client_airbnb.svg" alt="Logo de Airbnb"></div>
+                <div class="client-logo" title="Envato"><img src="assets/img/clients/client_envato.svg" alt="Logo de Envato"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Corporativo
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="margin-bottom: var(--space-xs);">
+            <span class="logo__mark" aria-hidden="true">N</span>
+            <span>Next<span class="logo__accent">Corp</span></span>
+          </a>
+          <p>
+            Compañía de ingeniería de software especializada en Plataformas Cloud SaaS, Aplicaciones Móviles nativas y Multiplataforma, e Inteligencia Artificial con arquitecturas RAG.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Secciones</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="equipo.html">El Equipo Tech</a></li>
+            <li><a href="servicios.html">Servicios de Software</a></li>
+            <li><a href="trabajos.html">Trabajos & Clientes</a></li>
+            <li><a href="contacto.html">Contacto & Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contacto Rápido</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:engineering@nextcorp.com">engineering@nextcorp.com</a></li>
+            <li><a href="tel:+541148901234">+54 (11) 4890-1234</a></li>
+            <li><a href="contacto.html">Av. Corrientes 1450, CABA</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Next Corp. Todos los derechos reservados.</p>
+        <p>Desarrollado con estándares de ingeniería por JNprog8.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal ES Modules -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

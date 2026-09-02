@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Animations CSS - Transiciones Fluidas de Página, Motion Blur y Micro-Interacciones
+   Inspirado en los principios de movimiento de Lando Norris / High-End Web
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Barra de Progreso de Navegación Superior (Top Progress Bar)
+   -------------------------------------------------------------------------- */
+.page-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-tertiary));
+  box-shadow: 0 0 10px rgba(194, 148, 138, 0.8), 0 0 5px rgba(126, 168, 190, 0.6);
+  z-index: var(--z-loader-bar);
+  pointer-events: none;
+  opacity: 0;
+  transition: width 350ms var(--cubic-default), opacity 200ms ease;
+}
+
+.page-progress-bar.is-active {
+  opacity: 1;
+  width: 75%;
+}
+
+.page-progress-bar.is-finished {
+  width: 100%;
+  opacity: 0;
+  transition: width 200ms ease, opacity 250ms ease 150ms;
+}
+
+/* --------------------------------------------------------------------------
+   2. Transición Fluida del Contenido de Página (Sin duplicar ni tapar el Header)
+   -------------------------------------------------------------------------- */
+.page-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-page), transform var(--transition-page);
+  will-change: opacity, transform;
+}
+
+.page-content.is-page-leaving {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.page-content.is-page-entering {
+  animation: pageContentEnter 450ms var(--cubic-default) forwards;
+}
+
+@keyframes pageContentEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero Motion Blur (Cinemático y Fluido)
+   -------------------------------------------------------------------------- */
+@keyframes heroMotionBlur {
+  0% {
+    opacity: 0.15;
+    filter: blur(8px);
+    transform: scale(1.06) translateX(12px);
+  }
+  40% {
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes heroContentSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.carousel__slide.is-active .carousel__bg img {
+  animation: heroMotionBlur var(--transition-slow) forwards;
+  will-change: filter, transform, opacity;
+}
+
+.carousel__slide.is-active .carousel__content {
+  animation: heroContentSlideIn 650ms var(--cubic-default) 100ms forwards;
+}
+
+/* --------------------------------------------------------------------------
+   4. Animaciones del Formulario (Submit, Fade Out & Success Card)
+   -------------------------------------------------------------------------- */
+@keyframes formFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 800px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.97);
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+@keyframes successCardPop {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+    filter: blur(3px);
+  }
+  75% {
+    transform: translateY(-3px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes checkmarkGrow {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.form-fade-out {
+  animation: formFadeOut 450ms var(--cubic-smooth) forwards;
+  overflow: hidden;
+}
+
+.contact-success-card {
+  display: none;
+  background: linear-gradient(145deg, var(--md-sys-color-surface-container), var(--md-sys-color-surface));
+  border: 1px solid var(--color-sand);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: var(--elevation-3), var(--glow-primary);
+}
+
+.contact-success-card.is-visible {
+  display: block;
+  animation: successCardPop 550ms var(--cubic-smooth) forwards;
+}
+
+.contact-success-card__icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: var(--color-success-bg);
+  border: 2px solid var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-success);
+  animation: checkmarkGrow 450ms var(--cubic-smooth) 150ms forwards;
+}
+
+/* --------------------------------------------------------------------------
+   5. Entrada Suave al Hacer Scroll (IntersectionObserver)
+   -------------------------------------------------------------------------- */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 550ms var(--cubic-smooth),
+              transform 550ms var(--cubic-smooth);
+  will-change: opacity, transform;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-delay="100"] { transition-delay: 100ms; }
+[data-delay="200"] { transition-delay: 200ms; }
+[data-delay="300"] { transition-delay: 300ms; }
+[data-delay="400"] { transition-delay: 400ms; }
+
+/* --------------------------------------------------------------------------
+   6. Keyframes Auxiliares
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 350ms var(--cubic-smooth) forwards;
+}
+
+.animate-slide-up {
+  animation: slideInUp 400ms var(--cubic-smooth) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   7. Accesibilidad: Reducción de Movimiento (WCAG 2.1 AA)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .carousel__slide.is-active .carousel__bg img,
+  .carousel__slide.is-active .carousel__content {
+    animation: none !important;
+    filter: none !important;
+  }
+
+  .page-progress-bar {
+    display: none !important;
+  }
+}

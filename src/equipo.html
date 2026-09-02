@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Equipo Tech — Next Corp</title>
+  <meta name="description" content="Conocé al equipo de ingeniería de Next Corp: especialistas en arquitectura cloud, desarrollo móvil e inteligencia artificial.">
+  <meta name="author" content="Next Corp">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Modulares -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Fondo Animado Atmosférico con Efecto Blur -->
+  <div class="site-background" aria-hidden="true">
+    <img src="assets/img/background-animated.gif" alt="" class="site-background__media">
+    <div class="site-background__overlay"></div>
+  </div>
+
+  <!-- Barra de Progreso de Navegación Superior (Top Progress Bar) -->
+  <div class="page-progress-bar" aria-hidden="true"></div>
+
+  <!-- Enlace accesible para saltar al contenido principal -->
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- ==========================================================================
+       Header y Navegación Principal
+       ========================================================================== -->
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Next Corp, ir al inicio">
+        <span class="logo__mark" aria-hidden="true">N</span>
+        <span>Next<span class="logo__accent">Corp</span></span>
+      </a>
+
+      <!-- Navegación Desktop -->
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="index.html" class="site-nav__link" data-nav-link>Home</a>
+        <a href="equipo.html" class="site-nav__link is-active" data-nav-link>El Equipo</a>
+        <a href="servicios.html" class="site-nav__link" data-nav-link>Servicios</a>
+        <a href="trabajos.html" class="site-nav__link" data-nav-link>Trabajos & Clientes</a>
+        <a href="contacto.html" class="site-nav__link" data-nav-link>Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-sm">
+        <a href="contacto.html" class="btn btn--primary" id="header-cta-btn">Cotizar Proyecto</a>
+        <button type="button" class="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" data-nav-toggle>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div class="mobile-nav" data-mobile-nav aria-label="Menú móvil">
+      <a href="index.html" class="mobile-nav__link" data-nav-link>Home</a>
+      <a href="equipo.html" class="mobile-nav__link is-active" data-nav-link>El Equipo</a>
+      <a href="servicios.html" class="mobile-nav__link" data-nav-link>Servicios</a>
+      <a href="trabajos.html" class="mobile-nav__link" data-nav-link>Trabajos & Clientes</a>
+      <a href="contacto.html" class="mobile-nav__link" data-nav-link>Contacto</a>
+    </div>
+  </header>
+
+  <main id="main" class="page-content" style="padding-top: calc(var(--header-height, 74px) + var(--space-xl));">
+    <!-- ==========================================================================
+         Encabezado de Sección
+         ========================================================================== -->
+    <section class="section" aria-label="Presentación del Equipo">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Liderazgo & Talento</p>
+          <h1 class="section-title">El Equipo de Ingeniería de Next Corp</h1>
+          <p class="section-subtitle">
+            Arquitectos de software, desarrolladores y científicos de datos comprometidos con la creación de soluciones de vanguardia y alto rendimiento.
+          </p>
+        </div>
+
+        <!-- Grid de Integrantes (Mínimo 3 Perfiles de Software) -->
+        <div class="grid grid--3-col">
+          
+          <!-- Integrante 1: CTO -->
+          <article class="team-card" data-animate data-delay="100">
+            <div class="team-card__image-wrap">
+              <img src="assets/img/team/team_cto_cloud.jpg" alt="Ing. Sofía Valenzuela, Chief Technology Officer" class="team-card__image" loading="lazy">
+            </div>
+            <div class="team-card__body">
+              <h2 class="team-card__name">Ing. Sofía Valenzuela</h2>
+              <p class="team-card__role">Chief Technology Officer (CTO) & Cloud Architect</p>
+              <p class="team-card__bio">
+                Especialista en sistemas distribuidos, microservicios en Kubernetes y plataformas cloud de alta concurrencia. Cuenta con más de 12 años liderando la ingeniería en organizaciones de escala global.
+              </p>
+              <div class="team-card__socials">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="LinkedIn de Sofía Valenzuela">
+                  <img src="assets/icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="GitHub de Sofía Valenzuela">
+                  <img src="assets/icons/github.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="mailto:sofia.valenzuela@nextcorp.com" class="team-card__social-link" aria-label="Enviar email a Sofía Valenzuela">
+                  <img src="assets/icons/mail.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Integrante 2: Lead Mobile & Frontend -->
+          <article class="team-card" data-animate data-delay="200">
+            <div class="team-card__image-wrap">
+              <img src="assets/img/team/team_lead_software.jpg" alt="Lic. Lucas Albarracín, Lead Frontend & Mobile Engineer" class="team-card__image" loading="lazy">
+            </div>
+            <div class="team-card__body">
+              <h2 class="team-card__name">Lic. Lucas Albarracín</h2>
+              <p class="team-card__role" style="color: var(--color-secondary);">Lead Frontend & Mobile Engineer</p>
+              <p class="team-card__bio">
+                Experto en desarrollo multiplataforma (Flutter / React Native), diseño accesible y micro-animaciones de alta fidelidad con foco en rendimiento nativo y arquitecturas offline-first.
+              </p>
+              <div class="team-card__socials">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="LinkedIn de Lucas Albarracín">
+                  <img src="assets/icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="GitHub de Lucas Albarracín">
+                  <img src="assets/icons/github.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="mailto:lucas.albarracin@nextcorp.com" class="team-card__social-link" aria-label="Enviar email a Lucas Albarracín">
+                  <img src="assets/icons/mail.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Integrante 3: Lead AI -->
+          <article class="team-card" data-animate data-delay="300">
+            <div class="team-card__image-wrap">
+              <img src="assets/img/team/team_lead_software.jpg" alt="Dr. Mateo Rossi, Lead AI & Systems Engineer" class="team-card__image" loading="lazy">
+            </div>
+            <div class="team-card__body">
+              <h2 class="team-card__name">Dr. Mateo Rossi</h2>
+              <p class="team-card__role" style="color: var(--color-sand);">Lead AI & Systems Engineer</p>
+              <p class="team-card__bio">
+                Doctor en Ciencias de la Computación especializado en modelos de lenguaje natural (LLM), recuperación aumentada con generación (RAG) y orquestación de agentes autónomos inteligentes.
+              </p>
+              <div class="team-card__socials">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="LinkedIn de Mateo Rossi">
+                  <img src="assets/icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="GitHub de Mateo Rossi">
+                  <img src="assets/icons/github.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+                <a href="mailto:mateo.rossi@nextcorp.com" class="team-card__social-link" aria-label="Enviar email a Mateo Rossi">
+                  <img src="assets/icons/mail.svg" width="18" height="18" alt="" aria-hidden="true">
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Valores y Cultura de Ingeniería
+         ========================================================================== -->
+    <section class="section section--alt" aria-label="Valores y Cultura">
+      <div class="container">
+        <div class="grid grid--2-col items-center">
+          <div data-animate>
+            <p class="eyebrow">Cultura & Metodología</p>
+            <h2 class="section-title">Ingeniería sin atajos: cómo trabajamos</h2>
+            <p style="margin-bottom: var(--space-md);">
+              Fomentamos una cultura técnica orientada a resultados medibles, documentación rigurosa con Spec-Driven Development (SDD) y revisión constante por pares (Peer Reviews).
+            </p>
+            <p style="margin-bottom: var(--space-lg);">
+              Cada línea de código que producimos en Next Corp pasa por pipelines de CI/CD con pruebas unitarias, análisis estático de vulnerabilidades y verificación de rendimiento.
+            </p>
+            <a href="contacto.html" class="btn btn--primary">Sumate a trabajar con nosotros</a>
+          </div>
+
+          <div data-animate data-delay="200" style="background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline); border-radius: var(--radius-lg); padding: var(--space-xl);">
+            <h3 style="color: var(--color-light); margin-bottom: var(--space-md);">Nuestros Compromisos</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Calidad comprobable:</strong> Cobertura de tests y cero tolerancias a errores silenciosos.</span>
+              </li>
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Escalabilidad desde el día cero:</strong> Diseños elásticos preparados para picos de tráfico.</span>
+              </li>
+              <li class="flex items-center gap-sm">
+                <img src="assets/icons/check-circle.svg" width="20" height="20" alt="" aria-hidden="true">
+                <span><strong>Transparencia técnica:</strong> Comunicación directa con los ingenieros a cargo del proyecto.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Corporativo
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="margin-bottom: var(--space-xs);">
+            <span class="logo__mark" aria-hidden="true">N</span>
+            <span>Next<span class="logo__accent">Corp</span></span>
+          </a>
+          <p>
+            Compañía de ingeniería de software especializada en Plataformas Cloud SaaS, Aplicaciones Móviles nativas y Multiplataforma, e Inteligencia Artificial con arquitecturas RAG.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Secciones</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="equipo.html">El Equipo Tech</a></li>
+            <li><a href="servicios.html">Servicios de Software</a></li>
+            <li><a href="trabajos.html">Trabajos & Clientes</a></li>
+            <li><a href="contacto.html">Contacto & Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contacto Rápido</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:engineering@nextcorp.com">engineering@nextcorp.com</a></li>
+            <li><a href="tel:+541148901234">+54 (11) 4890-1234</a></li>
+            <li><a href="contacto.html">Av. Corrientes 1450, CABA</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Next Corp. Todos los derechos reservados.</p>
+        <p>Desarrollado con estándares de ingeniería por JNprog8.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal ES Modules -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
