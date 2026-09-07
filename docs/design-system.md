@@ -1,79 +1,102 @@
-# Design System del Portal Web (Next Corp)
+# Sistema de Diseño y Patrones UI (Next Corp)
 
-## 1. Objetivo y Rol
+## 1. Fundamentos y Filosofía Visual
 
-El presente Sistema de Diseño proporciona un lenguaje visual coherente, escalable y accesible para el **Desarrollador Frontend de páginas web**. Su propósito es garantizar la excelencia estética y funcional en todas las páginas del portal corporativo de **Next Corp** (**Desarrollo de Software**, abarcando *Desarrollo Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial & Data Engineering*), conforme a los requerimientos del **Sprint 1** y la metodología **Spec-Driven Development (SDD)**.
+El sistema de diseño de **Next Corp** está inspirado en **Material Design 3 (M3)**, referencias contemporáneas de **Awwwards** y paletas cromáticas verificadas en **Coolors** para garantizar contraste accesible (**WCAG 2.1 AA**), sofisticación tecnológica y micro-interacciones fluidas.
 
 ---
 
-## 2. Paleta de Colores UX/UI y Roles Tonales
+## 2. Paleta Cromática y Design Tokens
 
-La identidad cromática se basa en una paleta armónica refinada de cinco colores esenciales:
+Todos los colores se centralizan en variables CSS nativas dentro de [`src/css/variables.css`](../src/css/variables.css):
 
-| Token | Código HEX | Rol Semántico en la Interfaz |
+### 2.1. Colores Principales del Ecosistema
+| Token CSS | Valor Hexadecimal | Rol en el Sistema |
 | :--- | :--- | :--- |
-| `--color-primary` | `#28536B` | **Azul Petróleo / Navy Profundo:** Identidad de marca, solidez técnica, encabezados y botones de acción principal. |
-| `--color-secondary` | `#C2948A` | **Dusty Rose / Arcilla Cálida:** Color de acento cálido, botones secundarios, badges de Apps Móviles y elementos destacados. |
-| `--color-tertiary` | `#7EA8BE` | **Azul Aero / Celeste Suave:** Enlaces, bordes de foco interactivo, badges de Cloud y detalles luminosos. |
-| `--color-light` | `#F6F0ED` | **Blanco Alabastro / Lino Suave:** Tipografía principal de alto contraste, superficies limpias y fondos claros. |
-| `--color-sand` | `#BBB193` | **Sage Arena / Dorado Suave:** Bordes tenues, badges de Inteligencia Artificial & Data y marcadores sutiles. |
+| `--color-primary` | `#28536B` | **Azul Petróleo:** Color principal corporativo para headers, botones primarios y branding. |
+| `--color-secondary` | `#C2948A` | **Dusty Rose:** Acento cálido para badges de Apps Móviles, botones secundarios y foco. |
+| `--color-tertiary` | `#7EA8BE` | **Azul Aero:** Celeste de contraste para enlaces, bordes activos y highlights. |
+| `--color-light` | `#F6F0ED` | **Blanco Alabastro:** Superficie clara para tipografía de alto contraste y fondos neutros. |
+| `--color-sand` | `#BBB193` | **Sage Arena:** Tono terroso para etiquetas, líneas divisorias y detalles sutiles. |
 
-### 2.1. Tokens en CSS (`src/css/variables.css`)
+### 2.2. Superficies High-Tech Dark Mode (M3 Tonal Surfaces)
+| Token CSS | Valor | Uso |
+| :--- | :--- | :--- |
+| `--md-sys-color-background` | `#0f1c24` | Fondo global de la aplicación. |
+| `--md-sys-color-surface` | `#152632` | Fondo base de tarjetas y barras. |
+| `--md-sys-color-surface-container` | `#1b3140` | Contenedores intermedios e inputs. |
+| `--md-sys-color-surface-container-high` | `#243e50` | Elementos flotantes y modales. |
+| `--md-sys-color-outline` | `rgba(187, 177, 147, 0.28)` | Bordes sutiles con contraste WCAG. |
+
+---
+
+## 3. Tipografía Fluida (Fluid Typography)
+
+El sistema combina dos fuentes de Google Fonts:
+- **Títulos y Encabezados:** **Outfit** (moderna, geométrica, de alto impacto).
+- **Cuerpo y Controles:** **Inter** (alta legibilidad en cualquier escala y dispositivo).
 
 ```css
-:root {
-  --color-primary: #28536B;
-  --color-secondary: #C2948A;
-  --color-tertiary: #7EA8BE;
-  --color-light: #F6F0ED;
-  --color-sand: #BBB193;
-
-  /* Superficies en Dark Mode Elegante */
-  --md-sys-color-background: #0f1c24;
-  --md-sys-color-surface: #152632;
-  --md-sys-color-surface-container: #1b3140;
-  --md-sys-color-on-surface: var(--color-light);
-  --md-sys-color-outline: rgba(187, 177, 147, 0.28);
-}
+/* Escalas fluidas mediante clamp() */
+--font-size-display: clamp(2.5rem, 5vw + 1rem, 4.25rem);
+--font-size-h1: clamp(2rem, 3vw + 1rem, 3.25rem);
+--font-size-h2: clamp(1.5rem, 2vw + 0.75rem, 2.25rem);
+--font-size-h3: clamp(1.25rem, 1vw + 0.5rem, 1.75rem);
+--font-size-body: 1rem;
+--font-size-small: 0.875rem;
+--font-size-caption: 0.75rem;
 ```
 
 ---
 
-## 3. Movimiento, Transiciones y Micro-Interacciones (Inspirado en Lando Norris)
+## 4. Elevación y Sombras (M3 Elevation Tokens)
 
-### 3.1. Hero Motion Blur
-Durante la rotación de diapositivas en el Hero, la imagen activa ejecuta un keyframe cinemático de desenfoque y escala:
-```css
-@keyframes heroMotionBlur {
-  0% {
-    opacity: 0.15;
-    filter: blur(8px);
-    transform: scale(1.06) translateX(12px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1) translateX(0);
-  }
-}
-```
-
-### 3.2. Transición Fluida de Página y Barra Superior (Estilo High-End)
-Inspirado en los principios de movimiento de `landonorris.com`:
-1. **Header Inmutable y Estable:** El Top Bar (`.site-header`) permanece fijo y estable (`z-index: var(--z-header)`), libre de parpadeos o animaciones duplicadas al navegar entre páginas.
-2. **Top Progress Bar (`.page-progress-bar`):** Una línea ultra-fina (3px) con gradiente `--color-secondary` a `--color-tertiary` viaja por la parte superior para dar feedback inmediato de carga.
-3. **Smooth Content Reveal (`.page-content`):** El contenedor principal `<main id="main">` se desvanece suavemente al salir (`is-page-leaving`) y entra con un reveal cinemático (`is-page-entering`) con curva fluida `cubic-bezier(0.65, 0.05, 0, 1)` y ligero desenfoque inicial (`filter: blur(2px) -> 0`).
+El sistema utiliza niveles de elevación para transmitir jerarquía y profundidad:
+- `--elevation-1`: `0 1px 3px rgba(0, 0, 0, 0.25)` (Botones y tarjetas en reposo).
+- `--elevation-2`: `0 4px 8px rgba(0, 0, 0, 0.35)` (Hover de botones).
+- `--elevation-3`: `0 8px 24px rgba(0, 0, 0, 0.45)` (Header sticky y dropdowns).
+- `--elevation-4`: `0 16px 40px rgba(0, 0, 0, 0.55)` (Hover de tarjetas de proyectos y modales).
 
 ---
 
-## 4. Componentes y Patrones UI del Portal
+## 5. Micro-Animaciones y Curvas de Aceleración
 
-1. **Header y Menú Responsivo:** Barra fija superior con efecto glassmorphism, indicador de página activa (`is-active`) y menú hamburguesa accesible para dispositivos móviles.
-2. **Hero Carrusel:** Slider con temporizador automático configurado en **7.5 a 8 segundos** (`AUTOPLAY_DELAY = 7500ms`), pausa automática al posar el mouse o ganar foco (WCAG 2.1 AA) y navegación por teclado.
-3. **Showcase de Proyectos y Filtros:** Grilla de 12 columnas con tarjetas elevadas M3 y filtrado dinámico (`all`, `web-cloud`, `mobile`, `ai-data`).
-4. **Formulario de Contacto Interactivo:**
-   - Atributos `method="post"` y `action="/api/contact"`.
-   - Validación accesible de campos en tiempo real.
-   - Envío asíncrono con estado de carga.
-   - Vaciado total de inputs (`form.reset()`).
-   - Ocultamiento suave del formulario (`.form-fade-out`) y revelación del panel de confirmación (`.contact-success-card`) con opción interactiva para enviar otra consulta.
+Inspiradas en **Animista.net** y curvas calibradas en **Cubic-bezier.com**:
+- **Curva Suave Estándar:** `cubic-bezier(0.4, 0, 0.2, 1)` (Transición uniforme de interfaces).
+- **Curva de Rebote Sutil:** `cubic-bezier(0.34, 1.56, 0.64, 1)` (Interacción de botones y micro-indicadores).
+- **Duraciones:**
+  - Rápida (`--transition-fast`): `150ms` (Hover de botones y enlaces).
+  - Normal (`--transition-normal`): `300ms` (Transformaciones de cards y dropdowns).
+  - Lenta (`--transition-slow`): `500ms` (Fade de diapositivas y cambios de página).
+
+> [!IMPORTANT]
+> **Accesibilidad de Movimiento:** Si el usuario activa `prefers-reduced-motion: reduce`, todas las animaciones keyframe se desactivan y las transiciones se acortan a `0.01ms`.
+
+---
+
+## 6. Patrones de Componentes UI
+
+### 6.1. Hero Carrusel Cinemático (Home)
+- **Temporizador:** Barra de progreso lineal sincronizada a **7.5 segundos (`7500ms`)**.
+- **Pausa Inteligente:** Pausa indefinida en hover o cuando un elemento interno gana foco mediante teclado.
+- **Navegación:** Botones Anterior / Siguiente, puntos de salto directo y atajos de teclado (`ArrowLeft`, `ArrowRight`).
+
+### 6.2. Tarjetas de Servicios y Proyectos (Card Pattern)
+- Contenedores con fondo glassmorphism (`backdrop-filter: blur(16px)`).
+- Elevación reactiva en hover con `transform: translateY(-6px)`.
+- Badges de colores por especialidad:
+  - `.badge`: Web & Cloud (Azul Aero / Celeste).
+  - `.badge--orange`: Apps Móviles (Dusty Rose).
+  - `.badge--teal`: IA & Data (Sage Arena).
+
+### 6.3. Barra de Navegación Sticky & Top Progress
+- Encabezado fijo con detección de scroll (`.is-scrolled`).
+- Barra de progreso superior ultra-fina (`.page-progress-bar`) que guía visualmente las transiciones entre páginas sin saltos bruscos.
+
+### 6.4. Formulario Accesible con Estado
+- Campos con etiquetas explícitas `<label for="...">`.
+- Contenedores de error con `role="alert"` asociados con `aria-describedby`.
+- Estados visuales claros:
+  - `.form-control.is-invalid`: Borde rojo con mensaje explicativo.
+  - `.form-control.is-valid`: Borde verde de confirmación.
+  - `.btn.is-loading`: Spinner rotatorio que bloquea múltiples envíos accidentales.

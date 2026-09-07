@@ -1,8 +1,111 @@
 /**
- * Módulo de Carrusel: Slider horizontal cinemático con Barra de Carga en tiempo real,
- * cambio automático sincronizado al completarse la carga (5 segundos),
- * y pausa por tiempo indefinido mientras el cursor esté sobre el panel (hover).
+ * Módulo de Carrusel interactivo para el slider cinemático principal,
+ * coordinando renderizado visual accesible, animación continua con requestAnimationFrame,
+ * controles manuales y captura de gestos táctiles.
  */
+
+const DURATION = 7500;
+
+function renderSlide(track, slides, dots, currentIndex) {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+  slides.forEach((slide, idx) => {
+    const isActive = idx === currentIndex;
+    slide.classList.toggle('is-active', isActive);
+    slide.setAttribute('aria-hidden', String(!isActive));
+  });
+
+  dots.forEach((dot, idx) => {
+    dot.classList.toggle('is-active', idx === currentIndex);
+  });
+}
+
+function createDots(container, count, onSelect) {
+  if (!container) return [];
+
+  container.innerHTML = '';
+  const dots = [];
+
+  for (let idx = 0; idx < count; idx++) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = `carousel__dot ${idx === 0 ? 'is-active' : ''}`;
+    dot.setAttribute('aria-label', `Ir a la diapositiva ${idx + 1}`);
+    dot.dataset.slideIndex = String(idx);
+    container.appendChild(dot);
+    dots.push(dot);
+  }
+
+  container.addEventListener('click', (e) => {
+    const dot = e.target.closest('[data-slide-index]');
+    if (!dot) return;
+    e.preventDefault();
+    onSelect(Number(dot.dataset.slideIndex));
+  });
+
+  return dots;
+}
+
+function bindControls({ prevBtn, nextBtn, pauseBtn, carousel, onNext, onPrev, onTogglePause }) {
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      onNext();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      onPrev();
+    });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      onTogglePause();
+    });
+  }
+
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      onNext();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      onPrev();
+    }
+  });
+}
+
+function bindTouchSwipe(element, onSwipeLeft, onSwipeRight) {
+  let touchStartX = 0;
+
+  element.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  element.addEventListener('touchend', (e) => {
+    const diffX = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diffX) > 40) {
+      if (diffX > 0) onSwipeLeft();
+      else onSwipeRight();
+    }
+  }, { passive: true });
+}
+
+function bindLifecycleEvents({ heroSection, carousel, onPause, onResume }) {
+  heroSection.addEventListener('mouseenter', onPause);
+  heroSection.addEventListener('mouseleave', onResume);
+  carousel.addEventListener('focusin', onPause);
+  carousel.addEventListener('focusout', onResume);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) onPause();
+    else onResume();
+  });
+}
+
 export function initCarousel() {
   const carousel = document.querySelector('[data-carousel]');
   if (!carousel) return;
@@ -21,166 +124,92 @@ export function initCarousel() {
   let isPausedManually = false;
   let isHovered = false;
   let isTabHidden = false;
-
-  const DURATION = 5000; // 5 segundos exactos para completar la barra de carga
-  let animationFrameId = null;
   let startTime = null;
   let elapsedTime = 0;
 
-  // 1. Crear indicadores dinámicos
-  let dots = [];
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, idx) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = `carousel__dot ${idx === 0 ? 'is-active' : ''}`;
-      dot.setAttribute('aria-label', `Ir a la diapositiva ${idx + 1}`);
-      dot.addEventListener('click', (e) => {
-        e.preventDefault();
-        goToSlide(idx);
-      });
-      dotsContainer.appendChild(dot);
-      dots.push(dot);
-    });
-  }
-
-  // 2. Actualizar posición visual y estados de accesibilidad
-  const updateSlidePosition = () => {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    slides.forEach((slide, idx) => {
-      const isActive = idx === currentIndex;
-      slide.classList.toggle('is-active', isActive);
-      slide.setAttribute('aria-hidden', String(!isActive));
-    });
-
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === currentIndex);
-    });
-  };
-
-  // 3. Reiniciar la barra de progreso a 0%
-  const resetProgressBar = () => {
+  const resetProgress = () => {
     elapsedTime = 0;
     startTime = performance.now();
-    if (progressBar) {
-      progressBar.style.width = '0%';
-    }
+    if (progressBar) progressBar.style.width = '0%';
   };
 
-  // 4. Navegación entre diapositivas
   const goToSlide = (index) => {
     currentIndex = (index + slides.length) % slides.length;
-    updateSlidePosition();
-    resetProgressBar();
+    renderSlide(track, slides, dots, currentIndex);
+    resetProgress();
   };
 
-  const nextSlide = () => {
-    goToSlide(currentIndex + 1);
-  };
+  const nextSlide = () => goToSlide(currentIndex + 1);
+  const prevSlide = () => goToSlide(currentIndex - 1);
 
-  const prevSlide = () => {
-    goToSlide(currentIndex - 1);
-  };
+  const dots = createDots(dotsContainer, slides.length, goToSlide);
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      nextSlide();
-    });
+  bindControls({
+    prevBtn,
+    nextBtn,
+    pauseBtn,
+    carousel,
+    onNext: nextSlide,
+    onPrev: prevSlide,
+    onTogglePause: () => {
+      isPausedManually = !isPausedManually;
+      if (pauseBtn) {
+        pauseBtn.setAttribute('aria-pressed', String(isPausedManually));
+        pauseBtn.setAttribute('aria-label', isPausedManually ? 'Reanudar carrusel' : 'Pausar carrusel');
+      }
+    }
+  });
+
+  bindTouchSwipe(carousel, nextSlide, prevSlide);
+
+  const heroSection = carousel.closest('.hero') || carousel;
+
+  bindLifecycleEvents({
+    heroSection,
+    carousel,
+    onPause: () => {
+      isHovered = true;
+    },
+    onResume: () => {
+      isHovered = false;
+      startTime = performance.now();
+    }
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    isPausedManually = true;
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-pressed', 'true');
+      pauseBtn.setAttribute('aria-label', 'Reanudar carrusel');
+    }
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      prevSlide();
-    });
-  }
-
-  // 5. Motor de animación de la Barra de Carga (60 FPS con requestAnimationFrame)
-  const shouldAnimate = () => {
-    return !isPausedManually && !isHovered && !isTabHidden;
-  };
+  const shouldAnimate = () => !isPausedManually && !isHovered && !isTabHidden;
 
   const progressLoop = (currentTime) => {
-    if (!startTime) {
-      startTime = currentTime;
-    }
+    if (!startTime) startTime = currentTime;
 
     if (shouldAnimate()) {
       const delta = currentTime - startTime;
       startTime = currentTime;
       elapsedTime += delta;
 
-      const progressPercent = Math.min((elapsedTime / DURATION) * 100, 100);
-
       if (progressBar) {
-        progressBar.style.width = `${progressPercent}%`;
+        const percent = Math.min((elapsedTime / DURATION) * 100, 100);
+        progressBar.style.width = `${percent}%`;
       }
 
-      // Al completarse el 100% de la carga, pasar a la siguiente diapositiva
       if (elapsedTime >= DURATION) {
         nextSlide();
       }
     } else {
-      // Mientras esté pausado o con el mouse encima, mantener startTime actualizado sin incrementar elapsedTime
       startTime = currentTime;
     }
 
-    animationFrameId = requestAnimationFrame(progressLoop);
+    requestAnimationFrame(progressLoop);
   };
 
-  // 6. Control de Pausa Manual (Accesibilidad)
-  if (pauseBtn) {
-    pauseBtn.addEventListener('click', () => {
-      isPausedManually = !isPausedManually;
-      pauseBtn.setAttribute('aria-pressed', String(isPausedManually));
-      pauseBtn.setAttribute('aria-label', isPausedManually ? 'Reanudar carrusel' : 'Pausar carrusel');
-    });
-  }
-
-  // 7. Navegación por teclado
-  carousel.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      nextSlide();
-    } else if (e.key === 'ArrowLeft') {
-      prevSlide();
-    }
-  });
-
-  // 8. DETENER POR TIEMPO INDEFINIDO SI EL CURSOR ESTÁ POR ENCIMA DEL PANEL
-  const heroSection = carousel.closest('.hero') || carousel;
-
-  heroSection.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
-
-  heroSection.addEventListener('mouseleave', () => {
-    isHovered = false;
-    startTime = performance.now();
-  });
-
-  // También pausar si un elemento interno recibe foco por teclado
-  carousel.addEventListener('focusin', () => {
-    isHovered = true;
-  });
-
-  carousel.addEventListener('focusout', () => {
-    isHovered = false;
-    startTime = performance.now();
-  });
-
-  // 9. Visibilidad de pestaña (Page Visibility API)
-  document.addEventListener('visibilitychange', () => {
-    isTabHidden = document.hidden;
-    if (!isTabHidden) {
-      startTime = performance.now();
-    }
-  });
-
-  // Inicializar estado y arrancar motor de barra de progreso
-  updateSlidePosition();
-  resetProgressBar();
-  animationFrameId = requestAnimationFrame(progressLoop);
+  renderSlide(track, slides, dots, currentIndex);
+  resetProgress();
+  requestAnimationFrame(progressLoop);
 }

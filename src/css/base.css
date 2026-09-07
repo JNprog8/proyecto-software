@@ -168,6 +168,11 @@ button {
   border-width: 0;
 }
 
+/* Utilidad global de visibilidad para filtros y componentes */
+.is-hidden {
+  display: none !important;
+}
+
 /* Badges y Eyebrows */
 .eyebrow {
   display: inline-flex;

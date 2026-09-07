@@ -4,24 +4,25 @@
 
 Este archivo define las reglas operativas y metodológicas para agentes de IA que trabajen en este repositorio asumiendo el rol de **Desarrollador Frontend de páginas web**.
 
-El objetivo es desarrollar, optimizar y mantener el portal web corporativo de **Next Corp** cumpliendo con las especificaciones del **Sprint 1** ("Desarrollo de un portal Web" para una empresa dedicada al **Desarrollo de Software** de vanguardia: *Web & Cloud*, *Apps Móviles* e *Inteligencia Artificial*).
+El objetivo es desarrollar, optimizar y mantener el portal web corporativo de **Next Corp** cumpliendo con las especificaciones del **Sprint** ("Desarrollo de un portal Web" para una empresa dedicada al **Desarrollo de Software** de vanguardia: _Web & Cloud_, _Apps Móviles_ e _Inteligencia Artificial_).
 
 El código producido debe ser:
 
 - mantenible y modular;
 - extensible;
-- portable (ejecutable en cualquier navegador sin compilación obligatoria);
-- accesible (cumpliendo pautas WCAG 2.1 AA);
-- responsive (mobile-first);
+- portable;
+- accesible;
+- responsive;
 - performante y optimizado;
 - visualmente atractivo, profesional y de estándar internacional;
 - verificable visual y funcionalmente.
 
 ---
 
-## 1. Contexto del Negocio y Secciones del Portal (Sprint 1)
+## 1. Contexto del Negocio y Secciones del Portal
 
 **Next Corp** opera en tres divisiones clave de la ingeniería de software:
+
 1. **Desarrollo Web & Plataformas Cloud SaaS**: Aplicaciones a medida, microservicios, cloud-native y dashboards corporativos.
 2. **Aplicaciones Móviles & Multiplataforma**: Soluciones nativas e híbridas de alta concurrencia para iOS y Android.
 3. **Inteligencia Artificial, RAG & Data Engineering**: Integración de modelos LLM, agentes autónomos y analítica en tiempo real.
@@ -30,21 +31,21 @@ El código producido debe ser:
 
 ```text
 1. Home (Página Principal)
-   ├── Hero / Banner con Imagen destacada o Carrusel ("Quiénes somos y lo que hacemos en Software")
-   ├── Tira 1: Resumen de Servicios Tech (Web & Cloud, Mobile, AI & Data)
-   ├── Tira 2: Resumen de Trabajos / Proyectos (5 casos de éxito de software)
-   └── Tira 3: Resumen de Quiénes Somos (Cultura de ingeniería de Next Corp)
+   ├── Hero / Carrusel de secciones principales
+   ├── Tira 1: Resumen de Servicios
+   ├── Tira 2: Resumen de Proyectos
+   └── Tira 3: Resumen de Quiénes Somos
 
 2. El Equipo
-   ├── Descripción completa y valores de ingeniería de Next Corp
-   └── Fichas de integrantes del equipo tech (mínimo 3 integrantes: CTO, Lead Mobile, Lead AI con foto, rol, biografía y enlaces)
+   ├── Presentación del equipo de ingeniería de Next Corp
+   └── Fichas de integrantes del equipo tech
 
 3. Servicios
-   └── Descripción completa y detallada de los servicios (mínimo 3: Web & Cloud, Mobile Apps, IA & Data)
+   └── Descripción completa y detallada de los servicios
 
 4. Trabajos / Clientes
-   ├── Showcase de trabajos y proyectos realizados (mínimo 5 proyectos de software con detalle visual y técnico)
-   └── Grid / nube de clientes y marcas tech de confianza
+   ├── Showcase de trabajos y proyectos realizados
+   └── Grid / nube de clientes y marcas tech
 
 5. Contacto
    ├── Ubicación física del hub tecnológico con mapa integrado
@@ -87,26 +88,31 @@ El sitio se ejecuta en el navegador mediante tecnologías web estándares:
 El Desarrollador Frontend debe utilizar como referencia e inspiración las siguientes plataformas especializadas:
 
 ### 4.1. Sistemas de Diseño, Layout e Inspiración Visual
+
 - **[Material Design 3 (M3)](https://m3.material.io/)**: Tokens de diseño, elevación de capas, paletas dinámicas, estados interactivos (`hover`, `focus`, `pressed`) y componentes.
 - **[Bootstrap](https://getbootstrap.com/)**: Patrones de grid responsivo (12 columnas), contenedores, flexbox utilities y breakpoints estándar (`sm`, `md`, `lg`, `xl`, `xxl`).
 - **[Awwwards](https://www.awwwards.com/)**: Inspiración estética de clase mundial, diseño editorial interactivo y micro-interacciones.
 - **[Dribbble](https://dribbble.com/)**: Referencias visuales contemporáneas para portales corporativos, agencias creativas y exhibición de proyectos.
 
 ### 4.2. Color y Tipografía
+
 - **[Coolors](https://coolors.co/)**: Paletas cromáticas profesionales y verificación de ratios de contraste WCAG accesibles.
 
 ### 4.3. Animación, Motion y Curvas
+
 - **[Animista](https://animista.net/)**: Colección de micro-animaciones CSS y keyframes listos para aplicar.
 - **[GreenSock (GSAP)](https://greensock.com/)**: Referencia para animaciones coordinadas, secuencias fluidas y scroll interactivo.
 - **[Cubic-bezier.com](https://cubic-bezier.com/)**: Definición y ajuste de curvas de aceleración y timing functions para transiciones suaves y naturales.
 - **[LottieFiles](https://lottiefiles.com/)**: Animaciones vectoriales ligeras para enriquecer estados visuales, loaders y feedback interactivo.
 
 ### 4.4. Iconografía y Recursos Vectoriales
+
 - **[Lucide Icons](https://lucide.dev/)**: Set de iconos SVG modernos, limpios y consistentes.
 - **[Heroicons](https://heroicons.com/)**: Iconografía de alta calidad en estilos outline y solid.
 - **[SVG Repo](https://www.svgrepo.com/)**: Repositorio de vectores e ilustraciones libres en formato SVG optimizado.
 
 ### 4.5. Estándares y Documentación Web
+
 - **WHATWG / W3C** y **MDN Web Docs** como fuentes canónicas de especificaciones.
 - **W3Schools** como referencia práctica y pedagógica.
 
@@ -167,7 +173,13 @@ Docs → Conocimiento, decisiones de diseño y arquitectura
 
 ---
 
-## 10. Documentación
+## 10. Documentación Canónica
 
 Toda la documentación técnica producida debe redactarse en **español**.
-Mantener actualizados los archivos de `docs/` (`architecture.md`, `design-system.md`, `patterns.md`, `standards.md`) ante cualquier cambio de diseño, arquitectura o componentes.
+El conocimiento del proyecto se organiza exclusivamente en los siguientes manuales canónicos:
+
+- [`docs/architecture.md`](docs/architecture.md): Arquitectura general, modelo de datos y flujo de información.
+- [`docs/design-system.md`](docs/design-system.md): Tokens de diseño (M3), colorimetría, elevación y patrones UI.
+- [`docs/javascript.md`](docs/javascript.md): Módulos ES, utilidades y guía académica de eventos W3C (UNRN).
+- [`docs/standards.md`](docs/standards.md): Estándares de calidad, accesibilidad WCAG 2.1 AA y Core Web Vitals.
+- [`specs/sprint.md`](specs/sprint.md): Especificación ejecutable y contratos de interfaz del Sprint.

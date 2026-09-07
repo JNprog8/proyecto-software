@@ -1,40 +1,39 @@
 /**
- * Módulo de Portafolio / Trabajos: Filtros interactivos por categoría.
+ * Módulo de Portafolio: Filtra proyectos por categoría mediante delegación
+ * de eventos sobre el contenedor padre y alternancia de clases CSS puras (.is-hidden, .is-filtered-in).
  */
+import { delegate } from '../utils/dom.js';
+
 export function initPortfolio() {
-  const filterButtons = document.querySelectorAll('[data-portfolio-filter]');
-  const projectCards = document.querySelectorAll('[data-portfolio-item]');
+  const filterContainer = document.querySelector('[data-portfolio-filters]') || document.querySelector('.portfolio-filters');
+  const projectCards = Array.from(document.querySelectorAll('[data-portfolio-item]'));
 
-  if (filterButtons.length === 0 || projectCards.length === 0) return;
+  if (!filterContainer || projectCards.length === 0) return;
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const selectedCategory = btn.getAttribute('data-portfolio-filter');
+  const filterButtons = Array.from(filterContainer.querySelectorAll('[data-portfolio-filter]'));
 
-      // Actualizar estado de los botones
-      filterButtons.forEach((b) => {
-        const isActive = b === btn;
-        b.classList.toggle('is-active', isActive);
-        b.setAttribute('aria-pressed', String(isActive));
-      });
+  delegate(filterContainer, 'click', '[data-portfolio-filter]', (event, btn) => {
+    const selectedCategory = btn.getAttribute('data-portfolio-filter');
 
-      // Filtrar proyectos
-      projectCards.forEach((card) => {
-        const cardCategory = card.getAttribute('data-portfolio-item');
-        const matches = selectedCategory === 'all' || cardCategory === selectedCategory;
+    filterButtons.forEach((b) => {
+      const isActive = b === btn;
+      b.classList.toggle('is-active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
 
-        if (matches) {
-          card.classList.remove('is-hidden');
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 50);
-        } else {
-          card.classList.add('is-hidden');
-        }
-      });
+    projectCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-portfolio-item');
+      const matches = selectedCategory === 'all' || cardCategory === selectedCategory;
+
+      if (matches) {
+        card.classList.remove('is-hidden');
+        card.classList.remove('is-filtered-in');
+        void card.offsetWidth;
+        card.classList.add('is-filtered-in');
+      } else {
+        card.classList.add('is-hidden');
+        card.classList.remove('is-filtered-in');
+      }
     });
   });
 }

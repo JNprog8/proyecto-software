@@ -573,7 +573,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
   transition: transform var(--transition-slow);
+}
+
+.team-card__image--top {
+  object-position: center top;
+}
+
+.team-card__image--anderson,
+.team-card__image--neo {
+  object-position: center 35%;
+  transform-origin: center 35%;
 }
 
 .team-card:hover .team-card__image {
@@ -747,6 +759,10 @@
   transform: translateY(-6px);
   box-shadow: var(--elevation-4), var(--glow-primary);
   border-color: var(--color-tertiary);
+}
+
+.project-card.is-filtered-in {
+  animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .project-card__image-wrap {
@@ -944,6 +960,11 @@
 
 .form-control.is-invalid {
   border-color: var(--color-error);
+  box-shadow: 0 0 0 1px var(--color-error);
+}
+
+.form-control.is-valid {
+  border-color: #52b788;
 }
 
 .form-error {
@@ -970,6 +991,13 @@
   background: var(--color-success-bg);
   color: var(--color-success);
   border: 1px solid var(--color-success);
+}
+
+.form-status.is-error {
+  display: block;
+  background: rgba(224, 86, 36, 0.15);
+  color: #ff8566;
+  border: 1px solid var(--color-error);
 }
 
 .contact-info-list {

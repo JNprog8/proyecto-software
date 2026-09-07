@@ -1,15 +1,9 @@
 /**
- * Módulo de Transición Fluida de Páginas (Estilo Lando Norris / High-End UI):
- * Mantiene el Top Bar fijo y estable sin duplicar animaciones ni parpadeos,
- * coordinando una barra de carga superior ultra-fina con un suave reveal del contenido principal.
+ * Módulo de Transición Fluida de Páginas: Mantiene el Top-Bar fijo y coordina
+ * una barra de progreso superior con la animación suave de entrada y salida del contenido principal.
  */
-export function initPageTransitions() {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
 
-  const mainContent = document.querySelector('#main') || document.querySelector('main');
-
-  // 1. Inyectar o asegurar la barra de progreso superior en el DOM
+function getOrCreateProgressBar() {
   let progressBar = document.querySelector('.page-progress-bar');
   if (!progressBar) {
     progressBar = document.createElement('div');
@@ -17,8 +11,51 @@ export function initPageTransitions() {
     progressBar.setAttribute('aria-hidden', 'true');
     document.body.appendChild(progressBar);
   }
+  return progressBar;
+}
 
-  // 2. Animación de entrada suave del contenido al cargar
+function isEligibleInternalLink(link, event) {
+  if (!link) return false;
+
+  const href = link.getAttribute('href');
+  if (!href) return false;
+
+  if (
+    href.startsWith('#') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:') ||
+    href.startsWith('javascript:') ||
+    link.target === '_blank' ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.shiftKey
+  ) {
+    return false;
+  }
+
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const targetPath = href.split('#')[0].split('?')[0];
+
+  if (targetPath === currentPath && !href.includes('#')) {
+    return false;
+  }
+
+  return (
+    href.endsWith('.html') ||
+    href.includes('index.html') ||
+    href.includes('equipo.html') ||
+    href.includes('servicios.html') ||
+    href.includes('trabajos.html') ||
+    href.includes('contacto.html')
+  );
+}
+
+export function initPageTransitions() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const mainContent = document.querySelector('#main') || document.querySelector('main');
+  const progressBar = getOrCreateProgressBar();
+
   if (mainContent) {
     mainContent.classList.add('page-content', 'is-page-entering');
     setTimeout(() => {
@@ -26,7 +63,6 @@ export function initPageTransitions() {
     }, 500);
   }
 
-  // Finalizar barra de progreso al estar lista la página
   window.addEventListener('pageshow', () => {
     if (progressBar) {
       progressBar.classList.add('is-finished');
@@ -36,63 +72,23 @@ export function initPageTransitions() {
     }
   });
 
-  // 3. Interceptar clics en enlaces de navegación interna
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a');
-    if (!link) return;
+    if (!isEligibleInternalLink(link, event)) return;
 
+    event.preventDefault();
     const href = link.getAttribute('href');
-    if (!href) return;
 
-    // Ignorar hashes en la misma página, enlaces externos o teclas modificadoras
-    if (
-      href.startsWith('#') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('javascript:') ||
-      link.target === '_blank' ||
-      event.ctrlKey ||
-      event.metaKey ||
-      event.shiftKey
-    ) {
-      return;
+    if (progressBar) {
+      progressBar.className = 'page-progress-bar is-active';
     }
 
-    // Comprobar si es un enlace a una página HTML interna
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    const targetPath = href.split('#')[0].split('?')[0];
-
-    // Si ya estamos en esa página exacta (ej. clic en Home estando en Home), no relanzar
-    if (targetPath === currentPath && !href.includes('#')) {
-      event.preventDefault();
-      return;
+    if (mainContent) {
+      mainContent.classList.add('is-page-leaving');
     }
 
-    const isInternalPage =
-      href.endsWith('.html') ||
-      href.includes('index.html') ||
-      href.includes('equipo.html') ||
-      href.includes('servicios.html') ||
-      href.includes('trabajos.html') ||
-      href.includes('contacto.html');
-
-    if (isInternalPage) {
-      event.preventDefault();
-
-      // Iniciar barra de progreso superior
-      if (progressBar) {
-        progressBar.className = 'page-progress-bar is-active';
-      }
-
-      // Transicionar suavemente solo el contenido principal (el header queda intacto)
-      if (mainContent) {
-        mainContent.classList.add('is-page-leaving');
-      }
-
-      // Navegar rápidamente de forma limpia
-      setTimeout(() => {
-        window.location.href = href;
-      }, 220);
-    }
+    setTimeout(() => {
+      window.location.href = href;
+    }, 220);
   });
 }
