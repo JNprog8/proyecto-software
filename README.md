@@ -73,7 +73,7 @@
 │   └── standards.md        # Estándares de calidad
 │
 ├── specs/                  # Spec-Driven Development
-│   └── sprint-1.md         # Especificación técnica y contratos de UI
+│   └── sprint.md         # Especificación técnica y contratos de UI
 │
 └── src/                    # Código fuente
     ├── index.html          # Sección 1: Home (Hero Carrusel y Tiras de Resumen)
