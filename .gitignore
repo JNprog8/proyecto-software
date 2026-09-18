@@ -1,0 +1,15 @@
+# Entorno y logs
+*.log
+.env
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Datos de persistencia local si no se usan volúmenes con nombre
+*.sql.bak
+mariadb_data/
