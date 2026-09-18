@@ -5,8 +5,12 @@
 
 USE app_db;
 
+-- 0. Limpieza previa para garantizar idempotencia en reinicializaciones
+DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `roles`;
+
 -- 1. Tabla de Roles
-CREATE TABLE IF NOT EXISTS `roles` (
+CREATE TABLE `roles` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `nombre` VARCHAR(50) NOT NULL UNIQUE,
     `descripcion` TEXT NULL,

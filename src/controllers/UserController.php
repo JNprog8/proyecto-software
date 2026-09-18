@@ -14,24 +14,32 @@ class UserController {
     }
 
     /**
+     * Envía una respuesta HTTP en formato JSON con soporte UTF-8 sin escapar caracteres unicode.
+     */
+    private function sendJson(int $statusCode, array $data): void {
+        http_response_code($statusCode);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
+    /**
      * Listado y búsqueda de usuarios.
      * GET /api/users?search=...&rol_id=...
      */
     public function index(): void {
-        header('Content-Type: application/json; charset=utf-8');
         try {
             $search = isset($_GET['search']) ? trim($_GET['search']) : null;
             $rolId = isset($_GET['rol_id']) && is_numeric($_GET['rol_id']) ? (int)$_GET['rol_id'] : null;
 
             $users = $this->userRepo->getAll($search, $rolId);
-            echo json_encode([
+            $this->sendJson(200, [
                 'success' => true,
                 'total' => count($users),
                 'data' => $users
             ]);
         } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
+            $this->sendJson(500, [
                 'success' => false,
                 'error' => 'Error al listar usuarios: ' . $e->getMessage()
             ]);
@@ -43,25 +51,21 @@ class UserController {
      * GET /api/users/{id}
      */
     public function show(int $id): void {
-        header('Content-Type: application/json; charset=utf-8');
         try {
             $user = $this->userRepo->getById($id);
             if (!$user) {
-                http_response_code(404);
-                echo json_encode([
+                $this->sendJson(404, [
                     'success' => false,
                     'error' => 'Usuario no encontrado.'
                 ]);
-                return;
             }
 
-            echo json_encode([
+            $this->sendJson(200, [
                 'success' => true,
                 'data' => $user
             ]);
         } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
+            $this->sendJson(500, [
                 'success' => false,
                 'error' => 'Error al obtener usuario: ' . $e->getMessage()
             ]);
@@ -73,27 +77,22 @@ class UserController {
      * POST /api/users
      */
     public function store(): void {
-        header('Content-Type: application/json; charset=utf-8');
         $input = json_decode(file_get_contents('php://input'), true);
 
         if (!$input) {
-            http_response_code(400);
-            echo json_encode([
+            $this->sendJson(400, [
                 'success' => false,
                 'error' => 'Datos inválidos o cuerpo de solicitud vacío.'
             ]);
-            return;
         }
 
         $validationErrors = $this->validateUserData($input);
         if (!empty($validationErrors)) {
-            http_response_code(422);
-            echo json_encode([
+            $this->sendJson(422, [
                 'success' => false,
                 'errors' => $validationErrors,
                 'error' => implode(' ', $validationErrors)
             ]);
-            return;
         }
 
         try {
@@ -109,15 +108,13 @@ class UserController {
             $id = $this->userRepo->create($user);
             $createdUser = $this->userRepo->getById($id);
 
-            http_response_code(201);
-            echo json_encode([
+            $this->sendJson(201, [
                 'success' => true,
                 'message' => 'Usuario registrado exitosamente.',
                 'data' => $createdUser
             ]);
         } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
+            $this->sendJson(500, [
                 'success' => false,
                 'error' => 'Error al crear el usuario: ' . $e->getMessage()
             ]);
@@ -129,37 +126,30 @@ class UserController {
      * PUT /api/users/{id}
      */
     public function update(int $id): void {
-        header('Content-Type: application/json; charset=utf-8');
         $existing = $this->userRepo->getById($id);
 
         if (!$existing) {
-            http_response_code(404);
-            echo json_encode([
+            $this->sendJson(404, [
                 'success' => false,
                 'error' => 'El usuario a modificar no existe.'
             ]);
-            return;
         }
 
         $input = json_decode(file_get_contents('php://input'), true);
         if (!$input) {
-            http_response_code(400);
-            echo json_encode([
+            $this->sendJson(400, [
                 'success' => false,
                 'error' => 'Datos inválidos o cuerpo de solicitud vacío.'
             ]);
-            return;
         }
 
         $validationErrors = $this->validateUserData($input, $id);
         if (!empty($validationErrors)) {
-            http_response_code(422);
-            echo json_encode([
+            $this->sendJson(422, [
                 'success' => false,
                 'errors' => $validationErrors,
                 'error' => implode(' ', $validationErrors)
             ]);
-            return;
         }
 
         try {
@@ -175,14 +165,13 @@ class UserController {
             $this->userRepo->update($user);
             $updatedUser = $this->userRepo->getById($id);
 
-            echo json_encode([
+            $this->sendJson(200, [
                 'success' => true,
                 'message' => 'Usuario actualizado correctamente.',
                 'data' => $updatedUser
             ]);
         } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
+            $this->sendJson(500, [
                 'success' => false,
                 'error' => 'Error al actualizar el usuario: ' . $e->getMessage()
             ]);
@@ -194,34 +183,29 @@ class UserController {
      * DELETE /api/users/{id}
      */
     public function destroy(int $id): void {
-        header('Content-Type: application/json; charset=utf-8');
         try {
             $existing = $this->userRepo->getById($id);
             if (!$existing) {
-                http_response_code(404);
-                echo json_encode([
+                $this->sendJson(404, [
                     'success' => false,
                     'error' => 'El usuario a eliminar no existe.'
                 ]);
-                return;
             }
 
             $deleted = $this->userRepo->delete($id);
             if ($deleted) {
-                echo json_encode([
+                $this->sendJson(200, [
                     'success' => true,
                     'message' => "El usuario '{$existing->getUsername()}' fue eliminado exitosamente."
                 ]);
             } else {
-                http_response_code(500);
-                echo json_encode([
+                $this->sendJson(500, [
                     'success' => false,
                     'error' => 'No se pudo eliminar el registro.'
                 ]);
             }
         } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
+            $this->sendJson(500, [
                 'success' => false,
                 'error' => 'Error al eliminar usuario: ' . $e->getMessage()
             ]);
@@ -273,7 +257,6 @@ class UserController {
             } else {
                 $duplicateEmail = $this->userRepo->findByEmail($email, $excludeId);
                 if ($duplicateEmail) {
-                    // Criterio de aceptación explícito: "Si el mail esta repetido mostrar en pantalla que el usuario ya existe"
                     $errors['email'] = "El correo electrónico '{$email}' ya existe. El usuario ya se encuentra registrado.";
                 }
             }
