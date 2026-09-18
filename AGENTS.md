@@ -30,3 +30,10 @@ Antes de finalizar cualquier tarea de desarrollo o refactorización:
 - **Vanilla PHP 8.2:** Sin frameworks ni Composer.
 - **Vanilla JS & CSS:** Sin Bootstrap, Tailwind, jQuery ni librerías frontend.
 - **Patrón Repository:** Toda interacción con la base de datos se realiza a través de `src/repositories/` usando PDO con sentencias preparadas.
+
+---
+
+## 4. Skills del Repositorio (`.agents/skills/`)
+Cuando se requiera ejecutar flujos de trabajo específicos, consulta las guías operativas:
+- [abmc-entity-generator](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/.agents/skills/abmc-entity-generator/SKILL.md): Secuencia en 6 pasos para crear, modelar y registrar nuevas entidades.
+- [database-ops](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/.agents/skills/database-ops/SKILL.md): Comandos operativos de MariaDB, restauración y diagnóstico en Podman.
