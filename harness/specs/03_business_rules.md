@@ -40,3 +40,39 @@ Todos los siguientes campos son de carga mandatoria:
 ### BR-06: Baja de Usuarios
 - La eliminación de un usuario libera su `email` y `username`, permitiendo que en el futuro puedan ser registrados nuevamente.
 - La baja debe ser confirmada explícitamente por el operador en un modal de confirmación antes de disparar la petición `DELETE`.
+
+---
+
+## 3. Reglas de Onboarding y Workflows
+
+### BR-07: Flujo de Aprobación de Usuarios
+- Al registrarse, todo nuevo visitante ingresa por defecto con `estado_usuario_id` que apunte a 'PENDIENTE'.
+- Si un usuario tiene estado 'PENDIENTE', puede autenticarse (Login), pero un middleware interceptará las peticiones y denegará el acceso a los módulos operativos, mostrando una vista estática de "Cuenta en Revisión".
+- Solo un usuario con rol de **Tutor** puede transicionar este estado a 'APROBADO'.
+
+### BR-08: Validación Condicional de Tipo de Participante
+- Si al registrarse el visitante envía `tipo_participante_id` que apunta a 'Estudiante', el campo `legajo` se vuelve **estrictamente obligatorio** a nivel backend.
+- Si se envía un tipo correspondiente a 'Externo/Público', el campo `legajo` debe ignorarse e insertarse como `NULL`.
+
+---
+
+## 4. Reglas de Proyectos e Inscripciones
+
+### BR-09: Límite de Inscripciones
+- Un participante (exclusivamente si está 'APROBADO') solo puede estar inscrito en **un único proyecto** al mismo tiempo.
+- Este límite debe estar respaldado irrevocablemente a nivel de motor SQL mediante una restricción `UNIQUE(usuario_id)` en la tabla pivote `inscripciones_proyectos`.
+
+### BR-10: Flujo de Aprobación de Proyectos
+- Todo proyecto propuesto nace con `estado_proyecto_id` apuntando a 'PENDIENTE'.
+- Solo los usuarios con rol de **Mentor** tienen el privilegio de cambiar este estado a 'APROBADO' o 'RECHAZADO'.
+
+---
+
+## 5. Control de Acceso Basado en Roles (RBAC)
+
+### BR-11: Matriz Estricta de Responsabilidades
+- **Visitante**: Acceso exclusivo a vistas públicas y endpoints de autenticación/registro.
+- **Participante**: Capacidad para inscribirse en 1 proyecto y proponer proyectos. *(Condición: Su estado de cuenta debe ser Aprobado)*.
+- **Tutor**: Acceso a la *Cola de Usuarios Pendientes* y facultad para aprobarlos/rechazarlos. No interfiere con proyectos.
+- **Mentor**: Acceso a la *Cola de Proyectos Pendientes* y facultad para aprobarlos/rechazarlos. No interfiere con cuentas de usuario.
+- **Administrador**: Exclusivo responsable del CRUD general de Usuarios y Roles (mantenimiento estructural del sistema).

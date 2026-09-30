@@ -1,0 +1,20 @@
+/**
+ * Estilos de Layout (Estructura de Secciones Principales)
+ */
+
+/* Hero Section con Gradiente */
+.hero-section {
+    background: radial-gradient(circle at 80% 20%, rgba(193, 18, 31, 0.25), transparent 50%),
+                linear-gradient(135deg, #003049 0%, #001F2E 50%, #00121C 100%);
+    border-bottom: 1px solid rgba(253, 240, 213, 0.1);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #F4F1DE 0%, #808F85 50%, #595959 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fw-extrabold {
+    font-weight: 800;
+}

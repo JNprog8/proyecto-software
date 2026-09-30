@@ -22,21 +22,26 @@ Este archivo define las reglas estrictas de ingeniería que **Gemini 3.8 Flash**
    - Si creas nuevas tablas o campos, debes documentarlo en `harness/specs/01_domain_entities.md` y actualizar `sql/01_init.sql`.
 
 4. **Frontend**:
-   - Mantén JavaScript 100% Vanilla (sin jQuery, React, Vue, etc.).
+   - Cumplir las directivas de UI/UX ([04_ui_ux_guidelines.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/specs/04_ui_ux_guidelines.md)) y de arquitectura JavaScript ([06_frontend_guidelines.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/specs/06_frontend_guidelines.md)).
+   - Mantén JavaScript 100% Vanilla modular (sin jQuery, React, Vue, etc.).
    - Mantén CSS Vanilla con Custom Properties (sin Tailwind, Bootstrap, Sass).
    - Usa modales nativos con la API `<dialog>`.
+   - Utiliza atributos `data-*` para selectores y lógica de eventos JS.
 
 ---
 
 ## 2. Protocolo de Verificación Obligatorio
 
 Antes de informar al usuario que una tarea está terminada, el agente DEBE:
-1. Ejecutar el script de pruebas de la API:
+1. Validar el cumplimiento de los lineamientos de backend ([05_backend_guidelines.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/specs/05_backend_guidelines.md)) y frontend ([04_ui_ux_guidelines.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/specs/04_ui_ux_guidelines.md), [06_frontend_guidelines.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/specs/06_frontend_guidelines.md)).
+2. Auditar el Quality Gate y Checklists de Aceptación ([acceptance_checklists.md](file:///home/joaco/Documentos/UNRN/Proyecto%20Software/practicas/ABMC/harness/harness_tools/acceptance_checklists.md)).
+3. Ejecutar el script de pruebas de la API:
    ```bash
    bash harness/harness_tools/test_api.sh
    ```
-2. Si se modificó la estructura de la base de datos o se requiere un estado limpio para pruebas, ejecutar:
+4. Si se modificó la estructura de la base de datos o se requiere un estado limpio para pruebas, ejecutar:
    ```bash
    bash harness/harness_tools/reset_db.sh
    ```
-3. Si los tests pasan con código `0`, documentar el resultado de la validación.
+5. Si los tests pasan con código `0`, documentar el resultado de la validación.
+

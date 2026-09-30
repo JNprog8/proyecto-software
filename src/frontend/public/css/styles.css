@@ -1,0 +1,19 @@
+/**
+ * Manifiesto Principal de Estilos CSS
+ * Implementación de Patrón (ITCSS)
+ */
+
+/* 1. Tokens de Diseño y Variables */
+@import url('./variables.css');
+
+/* 2. Estilos Base (Resets y Globales) */
+@import url('./base.css');
+
+/* 3. Estilos Estructurales (Layouts) */
+@import url('./layouts.css');
+
+/* 4. Componentes Específicos */
+@import url('./components.css?v=2');
+
+/* 5. Animaciones y Transiciones */
+@import url('./animations.css');

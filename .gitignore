@@ -13,3 +13,10 @@ Thumbs.db
 # Datos de persistencia local si no se usan volúmenes con nombre
 *.sql.bak
 mariadb_data/
+
+# Documentos locales y notas de entrega
+intrucciones_entrega.md
+instrucciones_entrega.md
+INSTRUCCIONES_ENTREGA.md
+LEEME.md
+LEEME.txt

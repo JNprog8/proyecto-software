@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirigir la raíz del proyecto a /src/ si se accede desde la raíz en Apache
+    RewriteRule ^$ src/ [R=302,L]
+</IfModule>
+
+DirectoryIndex index.php

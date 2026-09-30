@@ -44,9 +44,9 @@ else
 fi
 
 # 4. Filtro por búsqueda
-echo -n "4. Probando filtro de búsqueda (?search=joaquin)... "
-SEARCH_RESP=$(curl -s "${BASE_URL}/api/users?search=joaquin")
-if echo "$SEARCH_RESP" | grep -q 'Joaquín'; then
+echo -n "4. Probando filtro de búsqueda (?search=juan)... "
+SEARCH_RESP=$(curl -s "${BASE_URL}/api/users?search=juan")
+if echo "$SEARCH_RESP" | grep -q 'Juan'; then
     echo -e "${GREEN}[OK]${NC} Búsqueda operativa."
 else
     echo -e "${RED}[FALLO]${NC} No se encontró el registro: $SEARCH_RESP"
@@ -139,5 +139,74 @@ else
     exit 1
 fi
 
-echo -e "\n${GREEN}=== TODAS LAS PRUEBAS DEL HARNESS PASARON SATISFACTORIAMENTE ===${NC}"
+# 11. Edge Case: Payload JSON malformado
+echo -n "11. Probando Edge Case: Payload malformado (debe ser HTTP 400)... "
+MALFORMED_RESP=$(curl -s -w "\n%{http_code}" -X POST "${BASE_URL}/api/users" \
+    -H "Content-Type: application/json" \
+    -d "{invalid_json:")
+MALFORMED_STATUS=$(echo "$MALFORMED_RESP" | tail -n1)
+if [ "$MALFORMED_STATUS" -eq 400 ]; then
+    echo -e "${GREEN}[OK]${NC} HTTP 400 rechazado adecuadamente."
+else
+    echo -e "${RED}[FALLO]${NC} Se esperaba 400 pero se obtuvo HTTP $MALFORMED_STATUS"
+    exit 1
+fi
+
+# 12. Edge Case: Ataque de inyección XSS / Caracteres inválidos en nickname
+echo -n "12. Probando Edge Case: Intento de inyección de script en nickname... "
+INJECTION_RESP=$(curl -s -w "\n%{http_code}" -X POST "${BASE_URL}/api/users" \
+    -H "Content-Type: application/json" \
+    -d '{"nombre":"Hacker","apellido":"Test","username":"<script>alert(1)</script>","email":"hacker@unrn.edu.ar","rol_id":4}')
+INJECTION_STATUS=$(echo "$INJECTION_RESP" | tail -n1)
+if [ "$INJECTION_STATUS" -eq 422 ]; then
+    echo -e "${GREEN}[OK]${NC} HTTP 422 Sanidad de entrada validada."
+else
+    echo -e "${RED}[FALLO]${NC} Se esperaba 422 pero se obtuvo HTTP $INJECTION_STATUS"
+    exit 1
+fi
+
+# 13. Edge Case: ID inexistente
+echo -n "13. Probando Edge Case: Consulta de ID inexistente (/api/users/999999)... "
+NOTFOUND_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${BASE_URL}/api/users/999999")
+if [ "$NOTFOUND_STATUS" -eq 404 ]; then
+    echo -e "${GREEN}[OK]${NC} HTTP 404 manejado limpiamente."
+else
+    echo -e "${RED}[FALLO]${NC} Se esperaba 404 pero se obtuvo HTTP $NOTFOUND_STATUS"
+    exit 1
+fi
+
+# 14. Paginación en Base de Datos
+echo -n "14. Probando Paginación en BD (?page=1&limit=5)... "
+PAGE_RESP=$(curl -s "${BASE_URL}/api/users?page=1&limit=5")
+if echo "$PAGE_RESP" | grep -q '"pagination"' && echo "$PAGE_RESP" | grep -q '"limit":5'; then
+    echo -e "${GREEN}[OK]${NC} Metadatos de paginación verificados."
+else
+    echo -e "${RED}[FALLO]${NC} Respuesta de paginación inválida: $PAGE_RESP"
+    exit 1
+fi
+
+# 15. RBAC en Servidor: Rechazo a perfil sin permisos
+COOKIE_JAR=$(mktemp)
+echo -n "15. Probando RBAC en Servidor: Conmutar a Visitante e intentar baja... "
+curl -s -c "$COOKIE_JAR" -b "$COOKIE_JAR" -X POST "${BASE_URL}/api/auth/switch" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":0}' > /dev/null
+
+FORBIDDEN_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -c "$COOKIE_JAR" -b "$COOKIE_JAR" \
+    -X DELETE "${BASE_URL}/api/users/2")
+
+# Restaurar identidad a Organizador
+curl -s -c "$COOKIE_JAR" -b "$COOKIE_JAR" -X POST "${BASE_URL}/api/auth/switch" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":1}' > /dev/null
+rm -f "$COOKIE_JAR"
+
+if [ "$FORBIDDEN_STATUS" -eq 403 ]; then
+    echo -e "${GREEN}[OK]${NC} HTTP 403 Forbidden garantizado por el backend."
+else
+    echo -e "${RED}[FALLO]${NC} Se esperaba 403 pero se obtuvo HTTP $FORBIDDEN_STATUS"
+    exit 1
+fi
+
+echo -e "\n${GREEN}=== TODAS LAS PRUEBAS DEL HARNESS (15/15) PASARON SATISFACTORIAMENTE ===${NC}"
 exit 0

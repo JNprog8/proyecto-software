@@ -56,13 +56,21 @@ Obtiene la lista de todos los roles disponibles en el sistema.
 Lista los usuarios registrados, con soporte para búsqueda textual y filtrado por rol.
 
 * **Parámetros de Consulta (Query Params)**:
-  * `search` (opcional, `string`): Término de búsqueda filtrando en nombre, apellido, username o email.
-  * `rol_id` (opcional, `int`): ID del rol a filtrar.
+  * `page` (opcional, `int`, default: 1): Número de página para paginación en base de datos.
+  * `limit` (opcional, `int`, default: 10, max: 100): Cantidad de registros por página.
+  * `search` / `q` (opcional, `string`): Término de búsqueda filtrando en nombre, apellido, username o email.
+  * `rol_id` / `role` (opcional, `int`): ID del rol a filtrar.
 * **Respuesta 200 OK**:
   ```json
   {
     "success": true,
-    "total": 3,
+    "total": 14,
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 14,
+      "total_pages": 2
+    },
     "data": [
       {
         "id": 1,
@@ -72,9 +80,10 @@ Lista los usuarios registrados, con soporte para búsqueda textual y filtrado po
         "username": "joaquin",
         "email": "jgonzalez@unrn.edu.ar",
         "rol_id": 1,
-        "rol_nombre": "Administrador",
+        "rol_nombre": "Organizador",
         "created_at": "2026-09-18 04:39:05",
-        "updated_at": "2026-09-18 04:39:05"
+        "updated_at": "2026-09-18 04:39:05",
+        "deleted_at": null
       }
     ]
   }
@@ -105,24 +114,29 @@ Crea una nueva cuenta de usuario (Alta).
 * **Respuestas**:
   * `201 Created`: Usuario creado exitosamente con sus datos persistidos.
   * `400 Bad Request`: Payload vacío o formato JSON inválido.
+  * `403 Forbidden`: Acceso denegado si la sesión no posee rol de Organizador.
   * `422 Unprocessable Entity`: Error de validación de campos requeridos o duplicados.
 
 ---
 
 ### `PUT /api/users/{id}`
-Modifica los datos de un usuario existente.
+Modifica los datos de un usuario existente de forma idempotente.
 
 * **Cuerpo de Solicitud (JSON)**: Mismos campos que en el alta.
 * **Respuestas**:
   * `200 OK`: Usuario modificado correctamente.
-  * `404 Not Found`: Si el ID especificado no existe.
+  * `400 Bad Request`: JSON malformado.
+  * `403 Forbidden`: Acceso denegado si la sesión no posee rol de Organizador.
+  * `404 Not Found`: Si el ID especificado no existe o fue dado de baja.
   * `422 Unprocessable Entity`: Error de validación (ej. email ya usado por otro usuario).
 
 ---
 
 ### `DELETE /api/users/{id}`
-Elimina el registro de un usuario (Baja).
+Ejecuta la baja lógica (*Soft Delete*) de un usuario asignando la marca temporal en `deleted_at`.
 
 * **Respuestas**:
-  * `200 OK`: `{"success": true, "message": "El usuario 'username' fue eliminado exitosamente."}`
-  * `404 Not Found`: Si el ID no existe en la base de datos.
+  * `200 OK`: Usuario dado de baja correctamente (`{"success": true, "message": "El usuario 'username' fue dado de baja correctamente."}`).
+  * `400 Bad Request`: Intento de eliminar la cuenta raíz de Organizador (ID 1).
+  * `403 Forbidden`: Acceso denegado si la sesión no posee rol de Organizador.
+  * `404 Not Found`: Si el usuario no existe o ya fue eliminado.

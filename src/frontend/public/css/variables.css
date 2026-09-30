@@ -1,0 +1,57 @@
+/**
+ * Variables y Design Tokens (Light/Dark Mode)
+ */
+:root {
+    --font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Base Estructural e Identidad UNRN */
+    --color-primary-900: #11202C;
+    --color-primary-700: #1F5F8B;
+    --color-primary-500: #4D8DB5;
+    --color-primary-100: #E8F1F6;
+    --color-accent: #E00427;
+    --color-accent-dark: #A3031C;
+    --color-cream: #FDF0D5;
+
+    /* Semántica */
+    --color-success: #218739;
+    --color-warning: #B26A00;
+    --color-danger: #C1121F;
+    --color-info: #1F5F8B;
+
+    /* Roles de aplicacion */
+    --badge-organizador-bg: #fee2e2;
+    --badge-organizador-text: #b91c1c;
+    --badge-organizador-border: #fca5a5;
+
+    --badge-mentor-bg: #e0f2fe;
+    --badge-mentor-text: #0369a1;
+    --badge-mentor-border: #7dd3fc;
+
+    --badge-juez-bg: #fef3c7;
+    --badge-juez-text: #92400e;
+    --badge-juez-border: #fcd34d;
+
+    --badge-participante-bg: #dcfce7;
+    --badge-participante-text: #15803d;
+    --badge-participante-border: #86efac;
+
+    /* Light Mode (Sobreescritura de Colores Base-Bootstrap) */
+    --bs-primary: var(--color-primary-700);
+    --bs-info: var(--color-info);
+    --bs-success: var(--color-success);
+    --bs-warning: var(--color-warning);
+    --bs-danger: var(--color-danger);
+    
+    --bs-body-bg: #F6F8FA;
+    --bs-body-color: #172B3A;
+}
+
+/* Dark Mode */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #0B1822; 
+    --bs-body-color: #F3F7FA; 
+    
+    --bs-primary: var(--color-primary-500); 
+    --bs-border-color: #284252;
+}

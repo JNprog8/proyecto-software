@@ -1,0 +1,304 @@
+/**
+ * Estilos de Componentes (Navbar, Tarjetas, Badges, Modales, Avatares)
+ */
+
+.identity-banner {
+    background-color: #11202C;
+}
+
+/* Navbar Institucional */
+.navbar {
+    background: #ffffff;
+    color: #11202C;
+}
+
+.navbar-brand .brand-title,
+.navbar-brand .brand-unrn {
+    color: #E00427;
+}
+
+.navbar-brand .brand-subtitle,
+.navbar-brand .brand-uni,
+.navbar-brand .brand-rn {
+    color: #11202C;
+}
+
+.navbar-brand .accent {
+    color: #E00427;
+}
+
+.nav-link {
+    color: #11202C;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 0.25rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0px;
+    left: 0;
+    background-color: var(--color-accent);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-accent) !important;
+    background: transparent;
+}
+
+.nav-icon {
+    color: #7FB3D1;
+}
+
+.role-selector {
+    background: #0A2435;
+    color: #FFFFFF;
+    border: 1px solid #31566D;
+}
+
+.admin-button {
+    background: transparent;
+    color: #11202C;
+    border: 1px solid #11202C;
+}
+
+.admin-button:hover {
+    background: #11202C;
+    color: #FFFFFF;
+}
+
+.theme-toggle {
+    background: transparent;
+    color: #11202C;
+    border: 1px solid #11202C;
+}
+
+.theme-toggle:hover {
+    background: #11202C;
+    color: #FFFFFF;
+}
+
+[data-bs-theme="dark"] .navbar {
+    background: #0A2435;
+}
+
+[data-bs-theme="dark"] .admin-button {
+    background: transparent;
+    color: #BFD6E4;
+    border: 1px solid #4D8DB5;
+}
+[data-bs-theme="dark"] .admin-button:hover {
+    background: #4D8DB5;
+    color: #0A2435;
+}
+
+[data-bs-theme="dark"] .theme-toggle {
+    background: #163447;
+    color: #BFD6E4;
+    border: 1px solid #4D8DB5;
+}
+[data-bs-theme="dark"] .theme-toggle:hover {
+    background: #4D8DB5;
+    color: #0A2435;
+}
+[data-bs-theme="dark"] .nav-link {
+    color: #A0B2C0;
+}
+[data-bs-theme="dark"] .navbar-brand .brand-title,
+[data-bs-theme="dark"] .navbar-brand .brand-unrn {
+    color: #FFFFFF;
+}
+[data-bs-theme="dark"] .navbar-brand .brand-subtitle,
+[data-bs-theme="dark"] .navbar-brand .brand-uni,
+[data-bs-theme="dark"] .navbar-brand .brand-rn {
+    color: var(--bs-primary);
+}
+
+/* Tarjetas de Desafíos con Microinteracciones */
+.challenge-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #f1f5f9;
+}
+
+.challenge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Badges de Roles */
+.badge-role {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid transparent;
+}
+
+.badge-role-1, .badge-role-organizador {
+    background-color: var(--badge-organizador-bg);
+    color: var(--badge-organizador-text);
+    border-color: var(--badge-organizador-border);
+}
+
+.badge-role-2, .badge-role-mentor {
+    background-color: var(--badge-mentor-bg);
+    color: var(--badge-mentor-text);
+    border-color: var(--badge-mentor-border);
+}
+
+.badge-role-3, .badge-role-juez {
+    background-color: var(--badge-juez-bg);
+    color: var(--badge-juez-text);
+    border-color: var(--badge-juez-border);
+}
+
+.badge-role-4, .badge-role-participante {
+    background-color: var(--badge-participante-bg);
+    color: var(--badge-participante-text);
+    border-color: var(--badge-participante-border);
+}
+
+/* Badges de fallback */
+.badge-role-default {
+    background-color: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+/* Avatares de Usuario */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C1121F, #003049);
+    color: #FDF0D5;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modales */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1055;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-dialog {
+    position: relative;
+    width: min(100%, 32rem);
+    margin: 1.75rem auto;
+}
+
+.modal-dialog-centered {
+    display: flex;
+    min-height: calc(100% - 3.5rem);
+    align-items: center;
+}
+
+.modal-content {
+    width: 100%;
+    background: var(--color-surface, #fff);
+    color: var(--color-text-main, #172b3a);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: rgb(15 23 42 / 55%);
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 575px) {
+    .modal {
+        padding: 0.75rem;
+    }
+
+    .modal-dialog {
+        margin: 0.75rem auto;
+    }
+
+    .modal-dialog-centered {
+        min-height: calc(100% - 1.5rem);
+    }
+}
+
+/* Logo Institucional SVG */
+.unrn-logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Modo Claro: Ocultar SVG y mostrar PNG */
+.unrn-logo-wrapper .logo-dark {
+    display: none;
+}
+.unrn-logo-wrapper .logo-light {
+    display: block;
+    height: 35px;
+    width: auto;
+    border-radius: 4px;
+    /* Un ligero borde o sombra si es necesario para el PNG blanco sobre fondo azul */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Modo Oscuro: Ocultar PNG y mostrar SVG con contenedor blanco ajustado */
+[data-bs-theme="dark"] .unrn-logo-wrapper .logo-light {
+    display: none;
+}
+[data-bs-theme="dark"] .unrn-logo-wrapper .logo-dark {
+    display: inline-flex;
+    background-color: #F3F7FA;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.4rem;
+}
+
+[data-bs-theme="dark"] .unrn-logo-wrapper .logo-dark svg {
+    height: 22px;
+    width: auto;
+}
+
+[data-bs-theme="dark"] .unrn-logo-wrapper .logo-unrn {
+    fill: #172B3A; /* Letras de UNRN en "negro/azul oscuro" para mayor legibilidad */
+}
+
+[data-bs-theme="dark"] .unrn-logo-wrapper .logo-text {
+    fill: #31566D; 
+}

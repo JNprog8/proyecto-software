@@ -1,0 +1,55 @@
+/**
+ * Estilos Base (Resets y Elementos HTML)
+ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Modificaciones estructurales de Dark Mode sobre clases base - Bootstrap */
+[data-bs-theme="dark"] .bg-white, 
+[data-bs-theme="dark"] .bg-light {
+    background-color: #102532 !important;
+}
+
+[data-bs-theme="dark"] #desafios h2,
+[data-bs-theme="dark"] #roles h2 {
+    color: var(--color-cream) !important;
+}
+
+[data-bs-theme="dark"] .card, 
+[data-bs-theme="dark"] .modal-content,
+[data-bs-theme="dark"] .list-group-item {
+    background-color: #163447 !important;
+    border-color: #284252 !important;
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .table-light {
+    --bs-table-bg: #102532;
+    --bs-table-color: #F3F7FA;
+    --bs-table-border-color: #284252;
+}
+
+/* Tablas */
+.table th {
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+}
+
+.table-hover tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+/* Utilidades */
+.max-w-600 {
+    max-width: 600px;
+}

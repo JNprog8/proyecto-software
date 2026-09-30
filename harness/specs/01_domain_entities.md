@@ -37,16 +37,63 @@ Representa una cuenta de usuario dentro del sistema.
 | `username` | `VARCHAR(50)` | No | `UNIQUE`, regex `^[a-zA-Z0-9._-]{3,30}$` | Nombre de usuario o nickname para login/identificación |
 | `email` | `VARCHAR(100)` | No | `UNIQUE`, validación RFC 5322 | Correo electrónico principal |
 | `rol_id` | `INT` | No | `FOREIGN KEY` &rarr; `roles(id)` | Identificador del rol asignado |
+| `tipo_participante_id` | `INT` | Sí | `FOREIGN KEY` &rarr; `tipos_participante(id)` | Identificador del tipo de participante |
+| `estado_usuario_id` | `INT` | No | `FOREIGN KEY` &rarr; `estados_usuario(id)`, Def: 1 | Identificador del estado de aprobación |
+| `legajo` | `VARCHAR(50)` | Sí | - | Número de estudiante (condicional) |
 | `created_at` | `TIMESTAMP` | No | `DEFAULT CURRENT_TIMESTAMP` | Fecha y hora de alta en el sistema |
 | `updated_at` | `TIMESTAMP` | No | `ON UPDATE CURRENT_TIMESTAMP` | Fecha y hora de última modificación |
+| `deleted_at` | `TIMESTAMP` | Sí | `DEFAULT NULL`, Index | Fecha y hora de baja lógica (Soft Delete) |
 
 ### Relación entre Entidades
-- **Relación Rol &harr; Usuario**: `1 : N` (Un rol puede pertenecer a muchos usuarios, un usuario posee exactamente un único rol obligatorio).
+- **Roles y Catálogos &harr; Usuario**: `1 : N` (Un rol, tipo y estado pertenece a muchos usuarios).
+- **Soft Delete**: Los usuarios eliminados conservan `deleted_at IS NOT NULL`.
 
 ---
 
-## 3. Representación en Memoria (POPO / Modelos PHP)
+## 3. Entidades de Catálogo (Abstracciones de Estado y Tipo)
+
+Para evitar el uso de `ENUMS` y permitir escalabilidad y mantenibilidad, se normalizan los estados y tipos en tablas de diccionario (Lookup Tables):
+
+- **`estados_usuario`**: `id` (PK), `nombre` (Ej: 1=Pendiente, 2=Aprobado, 3=Rechazado).
+- **`tipos_participante`**: `id` (PK), `nombre` (Ej: 1=Estudiante, 2=Externo).
+- **`estados_proyecto`**: `id` (PK), `nombre` (Ej: 1=Pendiente, 2=Aprobado, 3=Rechazado).
+
+---
+
+## 4. Entidad: Proyecto (`proyectos`)
+
+Representa una idea o proyecto propuesto por un participante para la Hackaton.
+
+### Atributos
+| Campo | Tipo de Dato | Nulo | Restricción | Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | `INT` | No | `AUTO_INCREMENT`, `PRIMARY KEY` | Identificador único |
+| `titulo` | `VARCHAR(150)` | No | - | Título del proyecto |
+| `descripcion` | `TEXT` | No | - | Detalle y objetivos |
+| `autor_id` | `INT` | No | `FOREIGN KEY` &rarr; `usuarios(id)` | Participante que lo propuso |
+| `estado_proyecto_id` | `INT` | No | `FOREIGN KEY` &rarr; `estados_proyecto(id)` | Estado de aprobación del proyecto |
+| `created_at` | `TIMESTAMP` | No | `DEFAULT CURRENT_TIMESTAMP` | Fecha de creación |
+
+---
+
+## 5. Entidad Pivote: Inscripciones (`inscripciones_proyectos`)
+
+Registra en qué proyecto participa un usuario.
+
+### Atributos
+| Campo | Tipo de Dato | Nulo | Restricción | Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| `usuario_id` | `INT` | No | `FOREIGN KEY` &rarr; `usuarios(id)` | Usuario inscrito |
+| `proyecto_id` | `INT` | No | `FOREIGN KEY` &rarr; `proyectos(id)` | Proyecto al que se inscribe |
+| `created_at` | `TIMESTAMP` | No | `DEFAULT CURRENT_TIMESTAMP` | Fecha de inscripción |
+
+**Restricción de Negocio Crítica:** `UNIQUE(usuario_id)`. Un participante solo puede inscribirse a **un** proyecto.
+
+---
+
+## 6. Representación en Memoria (POPO / Modelos PHP)
 
 Cada entidad de dominio cuenta con su correspondiente clase en `src/models/`:
-- `Role.php`: Métodos accesores (`getId()`, `getNombre()`, `getDescripcion()`, `getCreatedAt()`) e implementación de `JsonSerializable`.
-- `User.php`: Métodos accesores, método calculado `getNombreCompleto()` e implementación de `JsonSerializable`.
+- `Role.php`, `EstadoUsuario.php`, `TipoParticipante.php`, `EstadoProyecto.php`
+- `User.php`: Incorpora los FK como propiedades.
+- `Project.php` y `Enrollment.php`.
